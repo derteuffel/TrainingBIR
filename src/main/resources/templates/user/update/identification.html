@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/jquery.3.3.1.min.js}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <link th:href="@{/css/bootstrap.min.css}" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" rel="stylesheet">
+    <link th:href="@{/css/addTheses.css}"  rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet">
+    <title>Modification </title>
+    <style>
+        hr.style14 {
+            border: 0;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+            background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+            background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+            background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+        }
+        .border{
+            border-bottom:1px solid #F1F1F1;
+            margin-bottom:10px;
+        }
+        .main-section{
+            box-shadow: 10px 10px 10px 10px;
+        }
+        .image-section{
+            padding: 0px;
+        }
+        .image-section img{
+            width: 100%;
+            height:250px;
+            position: relative;
+        }
+        .user-image{
+            position: absolute;
+            margin-top:-50px;
+        }
+        .user-left-part{
+            margin: 0px;
+        }
+        .user-image img{
+            width:100px;
+            height:100px;
+        }
+        .user-profil-part{
+            padding-bottom:30px;
+            background-color:#FAFAFA;
+        }
+        .follow{
+            margin-top:70px;
+        }
+        .user-detail-row{
+            margin:0px;
+        }
+        .user-detail-section2 p{
+            font-size:12px;
+            padding: 0px;
+            margin: 0px;
+        }
+        .user-detail-section2{
+            margin-top:10px;
+        }
+        .user-detail-section2 span{
+            color:#7CBBC3;
+            font-size: 20px;
+        }
+        .user-detail-section2 small{
+            font-size:12px;
+            color:#D3A86A;
+        }
+        .profile-right-section{
+            padding: 20px 0px 10px 15px;
+            background-color: #FFFFFF;
+        }
+        .profile-right-section-row{
+            margin: 0px;
+        }
+        .profile-header-section1 h1{
+            font-size: 25px;
+            margin: 0px;
+        }
+        .profile-header-section1 h5{
+            color: #0062cc;
+        }
+        .req-btn{
+            height:30px;
+            font-size:12px;
+        }
+        .profile-tag{
+            padding: 10px;
+            border:1px solid #F6F6F6;
+        }
+        .profile-tag p{
+            font-size: 12px;
+            color:black;
+        }
+        .profile-tag i{
+            color:#ADADAD;
+            font-size: 20px;
+        }
+        .image-right-part{
+            background-color: #FCFCFC;
+            margin: 0px;
+            padding: 5px;
+        }
+        .img-main-rightPart{
+            background-color: #FCFCFC;
+            margin-top: auto;
+        }
+        .image-right-detail{
+            padding: 0px;
+        }
+        .image-right-detail p{
+            font-size: 12px;
+        }
+        .image-right-detail a:hover{
+            text-decoration: none;
+        }
+        .image-right img{
+            width: 100%;
+        }
+        .image-right-detail-section2{
+            margin: 0px;
+        }
+        .image-right-detail-section2 p{
+            color:#38ACDF;
+            margin:0px;
+        }
+        .image-right-detail-section2 span{
+            color:#7F7F7F;
+        }
+
+        .nav-link{
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body class="">
+<div class="container">
+    <div class="row" style="padding-right: 15px">
+        <div class="col-12 col-sm-6 col-lg-3">
+            <img th:src="@{/images/logo-bir.png}" style="width: 100%;height: inherit">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-9 alert-warning" style="padding: 4rem">
+            <h3 class="text-center">Bataillon d'Intervention Rapide</h3>
+        </div>
+    </div>
+    <nav class=" text-center  pt-3 navbar-light bg-light sticky-top" style="height: 6rem">
+        <h3 class="text-center" >Formulaire Modification d'un utilisateur</h3>
+        <hr class="style14">
+    </nav>
+    <br>
+    <form th:object="${user}" method="post" th:action="@{/user/update/identification}" enctype="multipart/form-data">
+    <div class="mt-3 container main-section mb-3 rounded">
+        <input type="hidden" name="userId" th:value="${user.userId}">
+            <div class="border" style="padding-left: 15px;padding-right: 15px">
+            <h5 class="text-center">INFORMATION D'IDENTIFICATION</h5>
+            <br>
+                <div class="row">
+                <div class="col-12 col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="userName">Nom:</label>
+                        <input class="form-control" type="text" th:field="*{userName}" id="userName" />
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="userFirstName">Prenom:</label>
+                        <input class="form-control" type="text" th:field="*{userFirstName}" id="userFirstName" />
+                    </div>
+                </div>
+            </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="userBirthDate">Date de Naissance:</label>
+                            <input class="form-control" type="date" th:field="*{userBirthDate}" id="userBirthDate" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group custom-file">
+                            <label for="userAvatar">Photo:</label>
+                            <input class="form-control-file border" type="file" name="file" id="userAvatar" />
+                            <input class="form-control-file border" type="text" name="userAvatar" th:value="${user.userAvatar}" id="userAvatar" style="display: none" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="userMilitaryCode">Matricule Militaire:</label>
+                            <input class="form-control" type="text" th:field="*{userMilitaryCode}" id="userMilitaryCode" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userAccountCode">Matricule Solde:</label>
+                            <input class="form-control" type="text" th:field="*{userAccountCode}" id="userAccountCode" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="userCNINumber">Numero CNI:</label>
+                            <input class="form-control" type="text" th:field="*{userCNINumber}" id="userCNINumber" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userCIMNumber">Numero CIM:</label>
+                            <input class="form-control" type="text" th:field="*{userCIMNumber}" id="userCIMNumber" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="userFlotteTelephonNumber">Numero téléphone Flotte:</label>
+                            <input class="form-control" type="text" th:field="*{userFlotteTelephonNumber}" id="userFlotteTelephonNumber" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userPersonalTelephonNumber">Numero téléphone Personnel:</label>
+                            <input class="form-control" type="text" th:field="*{userPersonalTelephonNumber}" id="userPersonalTelephonNumber" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="userGunType">Type de fusil:</label>
+                            <select class="form-control" type="text" th:field="*{userGunType}" id="userGunType" >
+                                <option value=""> Choisissez un type de fusil</option>
+                                <option value="GALIL/SAR">GALIL/SAR</option>
+                                <option value="GALIL/ACE">GALIL/ACE</option>
+                                <option value="AK47">AK47</option>
+                                <option value="FAL">FAL</option>
+                                <option value="M21">M21</option>
+                                <option value="Autres">Autres</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userGunNumber">Numero du Fusil:</label>
+                            <input class="form-control" type="text" th:field="*{userGunNumber}" id="userGunNumber" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="userPAType">Type de PA:</label>
+                            <select class="form-control" type="text" th:field="*{userPAType}" id="userPAType" >
+                                <option value=""> Choisissez un type de PA</option>
+                                <option value="JERICHO">JERICHO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                                <label for="userPANumber">Numero du PA:</label>
+                            <input class="form-control" type="text" th:field="*{userPANumber}" id="userPANumber" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userRegion">Region d'origine:</label>
+                            <select class="form-control" type="text" th:field="*{userRegion}" id="userRegion" >
+                                <option value=""> Choisissez une region</option>
+                                <option value="ADAMAOUA">ADAMAOUA</option>
+                                <option value="CENTRE">CENTRE</option>
+                                <option value="EXTREME-NORD">EXTREME-NORD</option>
+                                <option value="EST">EST</option>
+                                <option value="LITORAL">LITORAL</option>
+                                <option value="OUEST">OUEST</option>
+                                <option value="NORD">NORD</option>
+                                <option value="NORD-OUEST">NORD-OUEST</option>
+                                <option value="SUD">SUD</option>
+                                <option value="SUD-OUEST">SUD-OUEST</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userDivision">Departement d'origine:</label>
+                            <input class="form-control" type="text" th:field="*{userDivision}" id="userDivision" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userSubDivision">Arrondissement d'origine:</label>
+                            <input class="form-control" type="text" th:field="*{userSubDivision}" id="userSubDivision" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userCity">Quartier:</label>
+                            <input class="form-control" type="text" th:field="*{userCity}" id="userCity" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userHome">Domicile:</label>
+                            <input class="form-control" type="text" th:field="*{userHome}" id="userHome" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userSexe">Sexe:</label>
+                            <select class="form-control" type="text" th:field="*{userSexe}" id="userSexe" >
+                                <option value=""> Choisissez un sexe</option>
+                                <option value="MASCULIN">MASCULIN</option>
+                                <option value="FEMININ">FEMININ</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userEthnie">Ethnie:</label>
+                            <input class="form-control" type="text" th:field="*{userEthnie}" id="userEthnie" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="userEmail">Adresse Email:</label>
+                            <input class="form-control" type="email" th:field="*{userEmail}" id="userEmail" />
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+    </div>
+        <br>
+        <div style="display: none">
+        <div class="mt-3 container main-section mb-3 rounded">
+            <div class="border" style="padding-left: 15px;padding-right: 15px">
+                <h5 class="text-center">INFORMATION VIE FAMILIALE</h5>
+                <br>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="fatherName">Nom du père:</label>
+                            <input class="form-control" type="text" th:field="*{fatherName}" id="fatherName" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="fatherFirstName">Prenom du père:</label>
+                            <input class="form-control" type="text" th:field="*{fatherFirstName}" id="fatherFirstName" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="motherName">Nom de la mère:</label>
+                            <input class="form-control" type="text" th:field="*{motherName}" id="motherName" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="motherFirstName">Prenom de la mère:</label>
+                            <input class="form-control" type="text" th:field="*{motherFirstName}" id="motherFirstName" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="matrimonialStatus">Situation Matrimoniale:</label>
+                            <select class="form-control" type="text" th:field="*{matrimonialStatus}" id="matrimonialStatus" >
+                                <option value=""> Choisissez un status</option>
+                                <option value="Celibataire">Celibataire</option>
+                                <option value="Marié">Marié</option>
+                                <option value="Divorcer">Divorcer</option>
+                                <option value="Veuf/Veuve">Veuf/Veuve</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="childNumber">Numbre d'enfant:</label>
+                            <input class="form-control" type="number" th:field="*{childNumber}" id="childNumber" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="residence">Lieu de Résidence:</label>
+                            <input class="form-control" type="text" th:field="*{residence}" id="residence" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="helpPersonName">Personne a contacter en cas de besoin:</label>
+                            <input class="form-control" type="text" th:field="*{helpPersonName}" id="helpPersonName" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="lienParente">Lien de parenté:</label>
+                            <input class="form-control" type="text" th:field="*{lienParente}" id="lienParente" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="helpPersonPhone">N° Téléphone de la personne:</label>
+                            <input class="form-control" type="text" th:field="*{helpPersonPhone}" id="helpPersonPhone" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="mt-3 container main-section mb-3 rounded">
+            <div class="border" style="padding-left: 15px;padding-right: 15px">
+                <h5 class="text-center">INFORMATIONS NIVEAU D'INSTRUCTION</h5>
+                <br>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="userHigerCivilDiplom">Diplome civil le plus élevé:</label>
+                            <input class="form-control" type="text" th:field="*{userHigerCivilDiplom}" id="userHigerCivilDiplom" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="userDepartment">Filère:</label>
+                            <input class="form-control" type="text" th:field="*{userDepartment}" id="userDepartment" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="userTrainingLevelInstruction">Niveau d'instruction:</label>
+                            <input class="form-control" type="text" th:field="*{userTrainingLevelInstruction}" id="userTrainingLevelInstruction" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="civilHigerDiplomObtainDate">Année d'obtention:</label>
+                            <input class="form-control" type="text" th:field="*{civilHigerDiplomObtainDate}" id="civilHigerDiplomObtainDate" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="civilQualification">Qualification civil:</label>
+                            <input class="form-control" type="text" th:field="*{civilQualification}" id="civilQualification" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="militaryDiplom">Diplome militaire le plus élevé:</label>
+                            <input class="form-control" type="text" th:field="*{militaryDiplom}" id="militaryDiplom" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="militaryDiplomObtainDate">Année d'obtention:</label>
+                            <input class="form-control" type="text" th:field="*{militaryDiplomObtainDate}" id="militaryDiplomObtainDate" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="militaryQualification">Qualification militaire:</label>
+                            <input class="form-control" type="text" th:field="*{militaryQualification}" id="militaryQualification" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="talkingLanguage">Langues parlées:</label>
+                            <input class="form-control" type="text" th:field="*{talkingLanguages}" id="talkingLanguage" placeholder="Entrez les langues parler separe par des points virgule" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="whritingLanguage">Langues écrite:</label>
+                            <input class="form-control" type="text" th:field="*{whritingLanguages}" id="whritingLanguage" placeholder="Entrez les langues ecrite separe par des points virgule" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="mt-3 container main-section mb-3 rounded">
+            <div class="border" style="padding-left: 15px;padding-right: 15px">
+                <h5 class="text-center">INFORMATION SUR LA VIE PROFESSIONNELLE</h5>
+                <br>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="gradeStatus">Grade:</label>
+                            <input class="form-control" type="text" th:field="*{gradeStatus}" id="gradeStatus" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="echelonStatus">Echellon:</label>
+                            <input class="form-control" type="text" th:field="*{echelonStatus}" id="echelonStatus" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="materialTokenDate">Date de prise d'effet:</label>
+                            <input class="form-control" type="date" th:field="*{materialTokenDate}" id="materialTokenDate" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="serviceTokenDate">Date d'entrée en service:</label>
+                            <input class="form-control" type="date" th:field="*{serviceTokenDate}" id="serviceTokenDate" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="trainingCenter">Ecole ou Centre de Formation:</label>
+                            <input class="form-control" type="text" th:field="*{trainingCenter}" id="trainingCenter" />
+                         </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="naturalLearntraining">Formation d'origine:</label>
+                            <input class="form-control" type="text" th:field="*{naturalLearntraining}" id="naturalLearntraining" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="affectation">Détachement:</label>
+                            <input class="form-control" type="text" th:field="*{affectation}" id="affectation" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="fonctionStatus">Fonction Actuelle:</label>
+                            <input class="form-control" type="text" th:field="*{fonctionStatus}" id="fonctionStatus" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="specialitie">Spécialités:</label>
+                            <input class="form-control" type="text" th:field="*{specialities}" id="specialitie" placeholder="Entrez vos specialités separe par des points virgule" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="teamAlphaEntrance">Date d'entrée Ops Alpha:</label>
+                            <input class="form-control" type="date" th:field="*{teamAlphaEntrance}" id="teamAlphaEntrance" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="mt-3 container main-section mb-3 rounded">
+            <div class="border" style="padding-left: 15px;padding-right: 15px">
+                <h5 class="text-center">RENSEIGNEMENTS COMPLEMENTAIRES</h5>
+                <br>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="userReligion">Religion:</label>
+                            <input class="form-control" type="text" th:field="*{userReligion}" id="userReligion" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="bloodGroup">Groupe Sanguin:</label>
+                            <input class="form-control" type="text" th:field="*{bloodGroup}" id="bloodGroup" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="medicalBackup">Antecedant Médicaux:</label>
+                            <input class="form-control" type="text" th:field="*{medicalBackups}" id="medicalBackup" placeholder="Entrez vos informations separe par des points virgule"/>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="swimmingStatus">Nageur?:</label>
+                            <select class="form-control" th:field="*{swimmingStatus}" id="swimmingStatus" >
+                                <option value="">Faite votre choix</option>
+                                <option value="true">Oui</option>
+                                <option value="false">Non</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="decorationsAndDate">Décorations et Dates:</label>
+                            <input class="form-control" type="text" th:field="*{decorationsAndDates}" id="decorationsAndDate" placeholder="Entrez vos informations separe par des points virgule" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="internshipAndCourse">Stages et Cours Suivis:</label>
+                            <input class="form-control" type="text" th:field="*{internshipAndCourses}" id="internshipAndCourse" placeholder="Entrez vos informations separe par des points virgule"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="lastKnowledge">Connaissances Anterieures:</label>
+                            <input class="form-control" type="text" th:field="*{lastKnowledges}" id="lastKnowledge" placeholder="Entrez vos informations separe par des points virgule" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                                    <label for="sport">Sports Pratiqués:</label>
+                                    <input class="form-control" type="text" th:field="*{sports}" id="sport" placeholder="Entrez vos informations separe par des points virgule" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="particularMark">Marques particulières:</label>
+                            <input class="form-control" type="text" th:field="*{particularMarks}" id="particularMark" placeholder="Entrez vos informations separe par des points virgule" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                         <div class="form-group ">
+                        <label for="height">Taille:</label>
+                        <input class="form-control" type="text" th:field="*{height}" id="height" />
+                    </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="rectifiedHeight">Taille rectifié:</label>
+                            <input class="form-control" type="text" th:field="*{rectifiedHeight}" id="rectifiedHeight" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="mt-3 container main-section mb-3 rounded">
+            <div class="border" style="padding-left: 15px;padding-right: 15px">
+                <h5 class="text-center">SIGNALEMENTS</h5>
+                <br>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="hairColor">Cheveux:</label>
+                            <input class="form-control" type="text" th:field="*{hairColor}" id="hairColor" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="eyesStatus">Yeux:</label>
+                            <input class="form-control" type="text" th:field="*{eyesStatus}" id="eyesStatus" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="noiseStatus">Nez:</label>
+                            <input class="form-control" type="text" th:field="*{noiseStatus}" id="noiseStatus" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="faceStatus">Visage:</label>
+                            <input class="form-control" type="text" th:field="*{faceStatus}" id="faceStatus" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="foreHeadStatus">Front:</label>
+                            <input class="form-control" type="text" th:field="*{foreHeadStatus}" id="foreHeadStatus" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="dyedStatus">Teint:</label>
+                            <input class="form-control" type="text" th:field="*{dyedStatus}" id="dyedStatus" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="form-group ">
+                            <label for="militaryDriverLicencceCategory">Permis militaire:</label>
+                            <input class="form-control" type="text" th:field="*{militaryDriverLicencceCategory}" id="militaryDriverLicencceCategory" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="form-group ">
+                            <label for="civilDriverLicencceCategory">Permis civil:</label>
+                            <input class="form-control" type="text" th:field="*{civilDriverLicencceCategory}" id="civilDriverLicencceCategory" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="form-group ">
+                            <label for="driveWithNoDriverLicence">Savoir Conduire sans permis:</label>
+                            <input class="form-control" type="text" th:field="*{driveWithNoDriverLicence}" id="driveWithNoDriverLicence" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-1">
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="anotherAboutUser">Autres signalement:</label>
+                            <input class="form-control" type="text" th:field="*{anotherAboutUser}" id="anotherAboutUser" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6">
+                        <div class="form-group ">
+                            <label for="enrollmentDate">Date d'enregistrement:</label>
+                            <input class="form-control" type="date" th:field="*{enrollmentDate}" id="enrollmentDate" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        </div>
+        <div class="row  mt-1">
+            <div class="col-12 col-sm-6 col-lg-6">
+                <div class="form-group">
+                    <a class="btn btn-danger" th:href="@{/user/detail/}+${user.userId}">Retour</a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-6">
+                <div class="form-group ">
+                    <button class="btn btn-success pull-right" type="submit">Sauvegardé</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

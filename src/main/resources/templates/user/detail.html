@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Contenu d'un utilisateur</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <script>
+        $(document).ready(function(){
+            $("#detailPersonnel").click(function(){
+                $("#personnel").slideToggle("slow");
+            });
+            $("#detailFamilial").click(function(){
+                $("#familial").slideToggle("slow");
+            });
+            $("#detailInstruction").click(function(){
+                $("#instruction").slideToggle("slow");
+            });
+            $("#detailProfessionnel").click(function(){
+                $("#professionnel").slideToggle("slow");
+            });
+            $("#detailComplementaire").click(function(){
+                $("#complementaire").slideToggle("slow");
+            });
+            $("#detailSignalement").click(function(){
+                $("#signalement").slideToggle("slow");
+            });
+        });
+    </script>
+
+    <style>
+        .border{
+            border-bottom:1px solid #F1F1F1;
+            margin-bottom:10px;
+        }
+        .main-secction{
+            box-shadow: 10px 10px 10px;
+        }
+        .image-section{
+            padding: 0px;
+        }
+        .image-section img{
+            width: 100%;
+            height:250px;
+            position: relative;
+        }
+        .user-image{
+            position: absolute;
+            margin-top:-50px;
+        }
+        .user-left-part{
+            margin: 0px;
+        }
+        .user-image img{
+            width:100px;
+            height:100px;
+        }
+        .user-profil-part{
+            padding-bottom:30px;
+            background-color:#FAFAFA;
+        }
+        .follow{
+            margin-top:70px;
+        }
+        .user-detail-row{
+            margin:0px;
+        }
+        .user-detail-section2 p{
+            font-size:12px;
+            padding: 0px;
+            margin: 0px;
+        }
+        .user-detail-section2{
+            margin-top:10px;
+        }
+        .user-detail-section2 span{
+            color:#7CBBC3;
+            font-size: 20px;
+        }
+        .user-detail-section2 small{
+            font-size:12px;
+            color:#D3A86A;
+        }
+        .profile-right-section{
+            padding: 20px 0px 10px 15px;
+            background-color: #FFFFFF;
+        }
+        .profile-right-section-row{
+            margin: 0px;
+        }
+        .profile-header-section1 h1{
+            font-size: 25px;
+            margin: 0px;
+        }
+        .profile-header-section1 h5{
+            color: #0062cc;
+        }
+        .req-btn{
+            height:30px;
+            font-size:12px;
+        }
+        .profile-tag{
+            padding: 10px;
+            border:1px solid #F6F6F6;
+        }
+        .profile-tag p{
+            font-size: 12px;
+            color:black;
+        }
+        .profile-tag i{
+            color:#ADADAD;
+            font-size: 20px;
+        }
+        .image-right-part{
+            background-color: #FCFCFC;
+            margin: 0px;
+            padding: 5px;
+        }
+        .img-main-rightPart{
+            background-color: #FCFCFC;
+            margin-top: auto;
+        }
+        .image-right-detail{
+            padding: 0px;
+        }
+        .image-right-detail p{
+            font-size: 12px;
+        }
+        .image-right-detail a:hover{
+            text-decoration: none;
+        }
+        .image-right img{
+            width: 100%;
+        }
+        .image-right-detail-section2{
+            margin: 0px;
+        }
+        .image-right-detail-section2 p{
+            color:#38ACDF;
+            margin:0px;
+        }
+        .image-right-detail-section2 span{
+            color:#7F7F7F;
+        }
+
+        .nav-link{
+            font-size: 1.2em;
+        }
+        #personnel, #detailPersonnel {
+            padding: 5px;
+            text-align: center;
+            background-color: #e5eecc;
+            border: solid 1px #c3c3c3;
+        }
+
+        #personnel {
+            padding: 5px;
+            display: none;
+        }
+
+        #familial, #detailFamilial {
+            padding: 5px;
+            text-align: center;
+            background-color: #e5eecc;
+            border: solid 1px #c3c3c3;
+        }
+
+        #familial {
+            padding: 5px;
+            display: none;
+        }
+        #instruction, #detailInstruction {
+            padding: 5px;
+            text-align: center;
+            background-color: #e5eecc;
+            border: solid 1px #c3c3c3;
+        }
+
+        #instruction {
+            padding: 5px;
+            display: none;
+        }
+        #professionnel, #detailProfessionnel {
+            padding: 5px;
+            text-align: center;
+            background-color: #e5eecc;
+            border: solid 1px #c3c3c3;
+        }
+
+        #professionnel {
+            padding: 5px;
+            display: none;
+        }
+        #complementaire, #detailComplementaire {
+            padding: 5px;
+            text-align: center;
+            background-color: #e5eecc;
+            border: solid 1px #c3c3c3;
+        }
+
+        #complementaire {
+            padding: 5px;
+            display: none;
+        }
+        #signalement, #detailSignalement {
+            padding: 5px;
+            text-align: center;
+            background-color: #e5eecc;
+            border: solid 1px #c3c3c3;
+        }
+
+        #signalement {
+            padding: 5px;
+            display: none;
+        }
+        hr.style14 {
+            border: 0;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+            background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+            background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+            background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="row" style="padding-right: 15px; background: #FFFFFF">
+    <div class="col-12 col-sm-6 col-lg-3">
+        <img th:src="@{/images/logo-bir.png}" style="width: 100%;height: inherit">
+    </div>
+    <div class="col-12 col-sm-6 col-lg-9 alert-warning" style="padding: 4rem">
+        <h3 class="text-center">Bataillon d'Intervention Rapide</h3>
+    </div>
+</div>
+<nav class=" text-center  pt-3 navbar-light bg-light sticky-top" style="height: 6rem">
+    <h3 class="text-center" >Contenu Détaillé d'un Utilisateur</h3>
+    <hr class="style14">
+</nav>
+<br>
+<div class="main-secction mb-3 rounded">
+    <div class="row" style="width: inherit;margin-left: 0;margin-right: 0">
+        <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+            <img th:src="@{/images/hqdefault.jpg}" style="width: inherit;height: 300px">
+        </div>
+        <div class="row user-left-part">
+            <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
+                <div class="row ">
+                    <div th:if="${user.userAvatar}" class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+                        <img th:src="${user.userAvatar}" class="rounded-circle">
+                    </div>
+                    <div th:unless="${user.userAvatar}" class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+                        <img th:src="@{/images/default-profile.png}" class="rounded-circle">
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center" >
+                        <a class="btn btn-danger btn-block follow" data-toggle="modal" data-target="#modal-warning" th:attr="data-target='#modal-warning'+${user.userId }">Supprimer<span></span>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash"></i></a>
+                    </div>
+                    <div class="row user-detail-row">
+                        <div class="col-md-12 col-sm-12 user-detail-section2 pull-left">
+                            <div class="border"></div>
+                            <span>ELEVES</span>&nbsp;&nbsp;
+                            <a th:href="@{/user/all}">Retour</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
+                <div class="row profile-right-section-row">
+                    <div class="col-md-12 profile-header">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                                <h1 th:text="${user.userName}">Juan Perez</h1>
+                                <h5 th:text="${user.fonctionStatus}">Developer</h5>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1  text-center pull-rigth">
+                                <a th:href="@{/#}" class="btn btn-primary btn-block">BIR Maroua</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="text-left pl-2 pr-2" id="detailPersonnel">
+                                    INFORMATIONS D'IDENTIFICATIONS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="pull-right">Detail&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                                </div>
+                                <div  id="personnel" style="padding: 10px">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Nom :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userName}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Prenom :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userFirstName}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Date Naiss :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userBirthDate}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Lieux de Naissance:</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userBornPlace}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Mat Militaire :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userMilitaryCode}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Mat Solde :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userAccountCode}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Num CIM :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userCIMNumber}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Num CNI :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userCNINumber}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Tel Flotte :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userFlotteTelephonNumber}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Tel Personnel :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userPersonalTelephonNumber}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Type Fusil :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userGunType}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Num Fusil :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userGunNumber}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Type PA :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userPAType}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Num PA :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userPANumber}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Region d'Origine :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userRegion}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Departement :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userDivision}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Arrondissement :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userSubDivision}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Quartier :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userCity}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Domicile :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userHome}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Sexe :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userSexe}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Ethnie :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userEthnie}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Email :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userEmail}"></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="pull-right" th:href="@{/user/update/identification/}+${user.userId}"><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;&nbsp;Edité</i></a>
+                                <br>
+                                <div class="text-left pl-2 pr-2" id="detailFamilial">
+                                    INFORMATIONS VIE FAMILIALE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="pull-right ">Detail&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                                </div>
+                                <div  id="familial" style="padding: 10px">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Nom Père :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.fatherName}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Prenom du Père :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.fatherFirstName}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Nom Mère :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.motherName}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Prenom Mère :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.motherFirstName}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Sit Matrimoniale:</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.matrimonialStatus}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Nombre Enfant:</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.childNumber}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Tuteur :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.helpPersonName}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Lien Parenté :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.lienParente}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Tel Tuteur :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.helpPersonPhone}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Domicile :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.residence}"></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="pull-right" th:href="@{/user/update/familial/}+${user.userId}"><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;&nbsp;Edité</i></a>
+                                <br>
+                                <div class="text-left pl-2 pr-2" id="detailInstruction">
+                                    INFORMATIONS NIVEAU D'INSTRUCTION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="pull-right ">Detail&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                                </div>
+                                <div  id="instruction" style="padding: 10px">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Dip Civil Elevé :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userHigerCivilDiplom}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Niveau instruction :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userTrainingLevelInstruction}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Filière:</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userDepartment}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Année Obtention :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.civilHigerDiplomObtainDate}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Dip Militaire :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.militaryDiplom}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Année Obtention :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.militaryDiplomObtainDate}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Qual Militaire :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.militaryQualification}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Qual Civile :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.civilQualification}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Langues Parlés :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:each="langue:${user.talkingLanguages}" th:text="${langue}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Langues Ecrites:</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:each="ecrite:${user.whritingLanguages}" th:text="${ecrite}"></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="pull-right" th:href="@{/user/update/instruction/}+${user.userId}"><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;&nbsp;Edité</i></a>
+                                <br>
+                                <div class="text-left pl-2 pr-2" id="detailProfessionnel">
+                                    INFORMATIONS DE LA VIE PROFESSIONNEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="pull-right ">Detail&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                                </div>
+                                <div  id="professionnel" style="padding: 10px">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Grade :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.gradeStatus}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Echellon :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.echelonStatus}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Date Prise d'effet :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.materialTokenDate}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Date d'entrée Serv :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.serviceTokenDate}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Ecole ou centre de Formation:</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.trainingCenter}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Formation d'Origine:</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.naturalLearntraining}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Détachement :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.affectation}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Fonction Actuelle :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.fonctionStatus}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Spécialités :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:each="specialite:${user.specialities}" th:text="${specialite}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Date entrée OPS Alpha :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.teamAlphaEntrance}"></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="pull-right" th:href="@{/user/update/professionnel/}+${user.userId}"><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;&nbsp;Edité</i></a>
+                                <br>
+                                <div class="text-left pl-2 pr-2" id="detailComplementaire">
+                                    INFORMATIONS COMPLEMENTAIRES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="pull-right ">Detail&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                                </div>
+                                <div  id="complementaire" style="padding: 10px">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Religion :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.userReligion}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Groupe Sanguin :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.bloodGroup}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Antecedants Medicaux :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:each="antecedent: ${user.medicalBackups}" th:text="${antecedent}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Nageur?:</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:if="${user.swimmingStatus == 'true'}" ><span>Oui</span></h6>
+                                            <h6 th:unless="${user.swimmingStatus == 'true' }"><span>Non</span></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Décorations et Dates :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:each=" decoration : ${user.decorationsAndDates}" th:text="${decoration}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Stages et Cours Suivis :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:each="stage:${user.internshipAndCourses}" th:text="${stage}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Connaissances Anterieures :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:each="connaissance : ${user.lastKnowledges}" th:text="${connaissance}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Sports Pratiqués:</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:each="sport : ${user.sports}" th:text="${sport}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Taille :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.height}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Taille Rectifier :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.rectifiedHeight}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Marques Particulières :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:each=" marque : ${user.particularMarks}" th:text="${marque}"></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="pull-right" th:href="@{/user/update/complementaire/}+${user.userId}"><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;&nbsp;Edité</i></a>
+                                <br>
+                                <div class="text-left pl-2 pr-2" id="detailSignalement">
+                                    INFORMATIONS SIGNALEMENT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="pull-right ">Detail&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                                </div>
+                                <div  id="signalement" style="padding: 10px">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Cheveux :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.hairColor}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Nez :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.noiseStatus}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Yeux :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6  th:text="${user.eyesStatus}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Visage:</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.faceStatus}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Front :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.foreHeadStatus}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Teint :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6  th:text="${user.dyedStatus}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Permis Militaire :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6  th:text="${user.militaryDriverLicencceCategory}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Permis Civil:</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6  th:text="${user.civilDriverLicencceCategory}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Savoir Conduire sans Permis :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.driveWithNoDriverLicence}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Autres :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6 th:text="${user.anotherAboutUser}"></h6>
+                                        </div>
+                                    </div>
+                                    <hr class="style14">
+                                    <div class="row">
+                                        <div class="col-md-4 text-left">
+                                            <h6>Date d'enregistrement :</h6>
+                                        </div>
+                                        <div class="col-md-8 text-left">
+                                            <h6  th:text="${user.enrollmentDate}"></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="pull-right" th:href="@{/user/update/signalement/}+${user.userId}"><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;&nbsp;Edité</i></a>
+                                <br>
+                            </div>
+                            <div class="col-md-4 img-main-rightPart">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row image-right-part">
+                                            <div class="col-md-6 pull-left image-right-detail">
+                                                <h6></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 image-right-detail-section2">
+                                        <img th:src="@{/images/bir.jpeg}" style="width: inherit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete user modal -->
+<div class="modal card modal-warning fade in" th:id="modal-warning+${user.userId }" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h5 class="modal-title">Suppression d'un utilisateur</h5>
+            </div>
+            <div class="modal-body text-center">
+                <h3>Etes vous sure de vouloir supprimer définitivement cet Utilisateur?</h3>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Close</button>
+                <a type="button" class="btn btn-danger" th:href="@{/user/delete/{userId}(userId=${user.userId})}"><i class="fa fa-check"></i>&nbsp;Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete user modal -->
+</div>
+</body>
+
+</html>S

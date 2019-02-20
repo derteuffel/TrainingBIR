@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet">
+    <title>A propos </title>
+    <style>
+        .image{
+            background-image: url("../../images/hqdefault.jpg");
+            width: 100%;
+        }
+        hr.style14 {
+            border: 0;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+            background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+            background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+            background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+        }
+        .border{
+            border-bottom:1px solid #F1F1F1;
+            margin-bottom:10px;
+        }
+        .main-section{
+            box-shadow: 10px 10px 10px 10px;
+        }
+        .image-section{
+            padding: 0px;
+        }
+        .image-section img{
+            width: 100%;
+            height:250px;
+            position: relative;
+        }
+        .user-image{
+            position: absolute;
+            margin-top:-50px;
+        }
+        .user-left-part{
+            margin: 0px;
+        }
+        .user-image img{
+            width:100px;
+            height:100px;
+        }
+        .user-profil-part{
+            padding-bottom:30px;
+            background-color:#FAFAFA;
+        }
+        .follow{
+            margin-top:70px;
+        }
+        .user-detail-row{
+            margin:0px;
+        }
+        .user-detail-section2 p{
+            font-size:12px;
+            padding: 0px;
+            margin: 0px;
+        }
+        .user-detail-section2{
+            margin-top:10px;
+        }
+        .user-detail-section2 span{
+            color:#7CBBC3;
+            font-size: 20px;
+        }
+        .user-detail-section2 small{
+            font-size:12px;
+            color:#D3A86A;
+        }
+        .profile-right-section{
+            padding: 20px 0px 10px 15px;
+            background-color: #FFFFFF;
+        }
+        .profile-right-section-row{
+            margin: 0px;
+        }
+        .profile-header-section1 h1{
+            font-size: 25px;
+            margin: 0px;
+        }
+        .profile-header-section1 h5{
+            color: #0062cc;
+        }
+        .req-btn{
+            height:30px;
+            font-size:12px;
+        }
+        .profile-tag{
+            padding: 10px;
+            border:1px solid #F6F6F6;
+        }
+        .profile-tag p{
+            font-size: 12px;
+            color:black;
+        }
+        .profile-tag i{
+            color:#ADADAD;
+            font-size: 20px;
+        }
+        .image-right-part{
+            background-color: #FCFCFC;
+            margin: 0px;
+            padding: 5px;
+        }
+        .img-main-rightPart{
+            background-color: #FCFCFC;
+            margin-top: auto;
+        }
+        .image-right-detail{
+            padding: 0px;
+        }
+        .image-right-detail p{
+            font-size: 12px;
+        }
+        .image-right-detail a:hover{
+            text-decoration: none;
+        }
+        .image-right img{
+            width: 100%;
+        }
+        .image-right-detail-section2{
+            margin: 0px;
+        }
+        .image-right-detail-section2 p{
+            color:#38ACDF;
+            margin:0px;
+        }
+        .image-right-detail-section2 span{
+            color:#7F7F7F;
+        }
+
+        .nav-link{
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row" style="padding-right: 15px">
+        <div class="col-12 col-sm-6 col-lg-3">
+            <img th:src="@{/images/logo-bir.png}" style="width: 100%;height: inherit">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-9 alert-warning" style="padding: 4rem">
+            <h3 class="text-center">Bataillon d'Intervention Rapide</h3>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-sm   navbar-light bg-light sticky-top" style="height: 6rem">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <h3 class="text-center">Formulaire d'ajout d'une compagnie</h3>
+        </div>
+    </nav>
+    <br>
+    <form th:object="${compagnie}" method="post" th:action="@{/compagnie/save}" enctype="multipart/form-data">
+        <div class="mt-3 container main-section mb-3 rounded">
+            <div class="border" style="padding-right: 30px; padding-left: 30px">
+                <h4 class="text-center">AJOUT DES INFORMATIONS</h4>
+                <br>
+                <div class="col-12 col-sm-6 col-lg-12">
+                    <div class="form-group">
+                        <label for="compagnieName">Nom de la Compagnie:</label>
+                        <input class="form-control" type="text" th:field="*{compagnieName}" id="compagnieName" />
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-12">
+                    <div class="form-group custom-file">
+                        <label for="compagnieAvatar">Photo:</label>
+                        <input class="form-control-file border" type="file" name="file" id="compagnieAvatar" />
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-12 mt-3">
+                    <div class="form-group">
+                        <label for="compagnieLocation">Localisation de la Compagnie:</label>
+                        <input class="form-control" type="text" th:field="*{compagnieLocation}" id="compagnieLocation" />
+                    </div>
+                </div>
+            </div>
+            <div class="row  pr-4 pl-4 pb-4" style="margin-bottom: 3rem">
+                <div class="col-12 col-sm-6 col-lg-6 pr-4 pl-4">
+                    <a th:href="@{/compagnie/all}" class="btn btn-danger" style="width: 100%">Retour</a>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-6 pr-4 pl-4" >
+                    <button type="submit" class="btn btn-success" style="width: 100%">Validé</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+    <a th:href="@{/home}" class="mx-auto pb-3 text-center">
+        <img alt="jQuery 2 DotNet" class="rounded mx-auto d-block" height="52px;" th:src="@{/images/bas_de_page.png}" style="display: block" width="208px; ">
+    </a>
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.navbar-light .dmenu').hover(function () {
+            $(this).find('.sm-menu').first().stop(true, true).slideDown(150);
+        }, function () {
+            $(this).find('.sm-menu').first().stop(true, true).slideUp(105)
+        });
+    });
+</script>
+</body>
+</html>
