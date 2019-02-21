@@ -85,6 +85,7 @@ public class UserController {
 
         String fileName= fileUploadService.storeFile(file);
         user.setUserAvatar("/downloadFile/"+fileName);
+        user.setStatus(true);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();
@@ -93,6 +94,7 @@ public class UserController {
     /**########## Update an user #########**/
     @PostMapping("/update")
     public String updateSignalement(User user){
+        user.setStatus(true);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();
@@ -133,6 +135,7 @@ public class UserController {
             user.setSpecialities(specialite);
         }
         user.setSpecialitie(null);
+        user.setStatus(true);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();
@@ -194,6 +197,7 @@ public class UserController {
 
         user.setParticularMark(null);
 
+        user.setStatus(true);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();

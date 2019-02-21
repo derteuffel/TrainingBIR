@@ -188,7 +188,7 @@
                         <div class="form-group custom-file">
                             <label for="userAvatar">Photo:</label>
                             <input class="form-control-file border" type="file" name="file" id="userAvatar" />
-                            <input class="form-control-file border" type="text" name="userAvatar" th:value="${user.userAvatar}" id="userAvatar" style="display: none" />
+                            <input class="form-control-file border" type="text" th:field="*{userAvatar}"  id="userAvatar" style="display: none" />
                         </div>
                     </div>
                 </div>

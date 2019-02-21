@@ -254,11 +254,11 @@
         <div class="row user-left-part">
             <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
                 <div class="row ">
-                    <div th:if="${user.userAvatar}" class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
-                        <img th:src="${user.userAvatar}" class="rounded-circle">
+                    <div th:if="${user.userAvatar == '/downloadFile/null'}" class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+                        <img th:src="@{/images/default-profile.png}" class="rounded-circle">
                     </div>
                     <div th:unless="${user.userAvatar}" class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
-                        <img th:src="@{/images/default-profile.png}" class="rounded-circle">
+                        <img th:src="${user.userAvatar}" class="rounded-circle">
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center" >
                         <a class="btn btn-danger btn-block follow" data-toggle="modal" data-target="#modal-warning" th:attr="data-target='#modal-warning'+${user.userId }">Supprimer<span></span>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash"></i></a>
