@@ -3,6 +3,7 @@ package com.derteuffel.controller;
 import com.derteuffel.data.PagerModel;
 import com.derteuffel.data.User;
 import com.derteuffel.repository.CompagnieRepository;
+import com.derteuffel.repository.CourseRepository;
 import com.derteuffel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,6 +34,10 @@ public class UserController {
     private UserRepository userRepository;
     @Autowired
     private FileUploadService fileUploadService;
+
+    @Autowired
+    private CourseRepository courseRepository;
+
 
     @Autowired
     private CompagnieRepository compagnieRepository;
@@ -305,6 +310,8 @@ public class UserController {
     @GetMapping("/courses/{userId}")
     public String courses(Model model, @PathVariable Long userId) {
         model.addAttribute("user", userRepository.findById(userId).get());
+        model.addAttribute("courses", courseRepository.findAll());
+
         return "user/courses";
     }
     /**########## List of all the courses and their notes #########**/
@@ -312,6 +319,7 @@ public class UserController {
     /**########## List of all the users, courses and averages #########**/
     @GetMapping("/users/courses/average")
     public String usersCoursesAverage(Model model) {
+        model.addAttribute("courses", courseRepository.findAll());
         return "user/coursesAverage";
     }
     /**########## List of all the users, courses and averages #########**/

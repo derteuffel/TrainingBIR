@@ -296,65 +296,9 @@
         <th>Moyenne</th>
         </thead>
         <tbody>
-        <tr>
-            <td>Education Physique Militaire et Sportive</td>
-            <td>12</td>
-
-        </tr>
-
-        <tr>
-            <td>Combat</td>
+        <tr th:each="course : ${courses}" >
+            <td th:text="${course.courseName}">Rattrapages/révisions</td>
             <td>16</td>
-
-        </tr>
-        <tr>
-            <td>Instruction Sur le Tir</td>
-            <td>16</td>
-
-        </tr>
-        <tr>
-            <td>Tirs</td>
-            <td>16</td>
-
-        </tr>
-        <tr>
-            <td>Armement</td>
-            <td>16</td>
-
-        </tr>
-        <tr>
-            <td>Explosifs et ODT</td>
-            <td>16</td>
-
-        </tr>
-        <tr>
-            <td>Hygiène et Secourisme Opérationnel</td>
-            <td>16</td>
-
-        </tr>
-        <tr>
-            <td>Présentation et Ordre serrée</td>
-            <td>16</td>
-                </tr>
-        <tr>
-            <td>Règlement</td>
-            <td>16</td>
-
-        </tr>
-        <tr>
-            <td>Formation civique et morale</td>
-            <td>16</td>
-
-        </tr>
-        <tr>
-            <td>Droit international humanitaire</td>
-            <td>16</td>
-
-        </tr>
-        <tr>
-            <td>Rattrapages/révisions</td>
-            <td>16</td>
-
         </tr>
         </tbody>
     </table>

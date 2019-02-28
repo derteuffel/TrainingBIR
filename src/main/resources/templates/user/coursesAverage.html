@@ -281,18 +281,7 @@
     <table  class="table table-bordered table-hover table-lg display" id="user">
         <thead class="thead-light">
         <th>Utilisateurs</th>
-        <th>Education Physique Militaire et Sportive</th>
-        <th>Combat</th>
-        <th>Instruction Sur le Tir</th>
-        <th>Tirs</th>
-        <th>Armement</th>
-        <th>Explosifs et ODT</th>
-        <th>Hygiène et Secourisme Opérationnel</th>
-        <th>Présentation et Ordre serrée</th>
-        <th>Règlement</th>
-        <th>Formation civique et morale</th>
-        <th>Droit international humanitaire</th>
-        <th>Rattrapages/révisions</th>
+        <th th:each="course : ${courses}" th:text="${course.courseName}"></th>
         </thead>
         <tbody>
         <tr>
