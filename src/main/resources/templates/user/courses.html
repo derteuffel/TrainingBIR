@@ -260,7 +260,7 @@
         <tbody>
         <tr>
             <td>Education Physique Militaire et Sportive</td>
-            <td>16</td>
+            <td><a href="#" data-toggle="modal" class="text-dark" style="cursor: hand;display:block;width:100%;:hover:color:blue;" data-target="#modalAddNote">16</a></td>
             <td>12</td>
             <td>9</td>
             <td>14</td>
@@ -383,6 +383,25 @@
         </tbody>
     </table>
 </div>
+<div class="modal fade" id="modalAddNote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Ajout d'une note</h4>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <form class="text-center" th:action="@{/user/course/courseId/note/noteId}">
+                    <input name="note"   class="form-control validate mb-1  ">
+                    <input type="submit" value="ok" class="btn btn-success " style="width:50%">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 
 </html>
