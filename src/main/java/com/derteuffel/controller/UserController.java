@@ -311,9 +311,8 @@ public class UserController {
 
     /**########## List of all the users, courses and averages #########**/
     @GetMapping("/users/courses/average")
-    public String usersCoursesAverage(Model model, @PathVariable Long userId) {
-        model.addAttribute("user", userRepository.findById(userId).get());
-        return "user/courses";
+    public String usersCoursesAverage(Model model) {
+        return "user/coursesAverage";
     }
     /**########## List of all the users, courses and averages #########**/
 
