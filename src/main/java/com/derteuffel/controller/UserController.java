@@ -301,13 +301,21 @@ public class UserController {
     }
 
 
-    /**########## List all the courses and their notes #########**/
+    /**########## List of all the courses and their notes #########**/
     @GetMapping("/courses/{userId}")
     public String courses(Model model, @PathVariable Long userId) {
         model.addAttribute("user", userRepository.findById(userId).get());
         return "user/courses";
     }
-        /**########## List all the courses and their notes #########**/
+    /**########## List of all the courses and their notes #########**/
+
+    /**########## List of all the users, courses and averages #########**/
+    @GetMapping("/users/courses/average")
+    public String usersCoursesAverage(Model model, @PathVariable Long userId) {
+        model.addAttribute("user", userRepository.findById(userId).get());
+        return "user/courses";
+    }
+    /**########## List of all the users, courses and averages #########**/
 
 
     /**########## Get one user #########**/
