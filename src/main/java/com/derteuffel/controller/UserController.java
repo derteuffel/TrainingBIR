@@ -300,6 +300,16 @@ public class UserController {
         return "redirect:/user/all";
     }
 
+
+    /**########## List all the courses and their notes #########**/
+    @GetMapping("/courses/{userId}")
+    public String courses(Model model, @PathVariable Long userId) {
+        model.addAttribute("user", userRepository.findById(userId).get());
+        return "user/courses";
+    }
+        /**########## List all the courses and their notes #########**/
+
+
     /**########## Get one user #########**/
 
     @GetMapping("/detail/{userId}")
