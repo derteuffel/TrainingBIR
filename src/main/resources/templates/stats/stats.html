@@ -269,19 +269,6 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/about}">A Propos</a>
                 </li>
-                <!-- <li class="nav-item dropdown dmenu">
-                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                   Dropdown link
-                 </a>
-                 <div class="dropdown-menu sm-menu">
-                   <a class="dropdown-item" href="#">Link 1</a>
-                   <a class="dropdown-item" href="#">Link 2</a>
-                   <a class="dropdown-item" href="#">Link 3</a>
-                   <a class="dropdown-item" href="#">Link 4</a>
-                   <a class="dropdown-item" href="#">Link 5</a>
-                   <a class="dropdown-item" href="#">Link 6</a>
-                 </div>
-               </li> -->
             </ul>
         </div>
     </nav>
@@ -296,9 +283,9 @@
         <th>Moyenne</th>
         </thead>
         <tbody>
-        <tr th:each="course : ${courses}" >
+        <tr th:each="course,i : ${courses}" >
             <td th:text="${course.courseName}">Rattrapages/révisions</td>
-            <td>16</td>
+            <td th:text="${averages[i.index]}"></td>
         </tr>
         </tbody>
     </table>
