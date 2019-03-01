@@ -355,11 +355,32 @@ public class UserController {
                 notes.add(temp2);
             }
         }
-        System.out.println(notes);
+
+        for(int i=0;i<notes.size();i++)
+        {
+                notes.get(i).add(new Note(average(notes.get(i)),null,null,null));
+
+        }
         model.addAttribute("notes",notes);
         return "user/courses";
     }
+
     /**########## List of all the courses and their notes #########**/
+
+    /** helper average **/
+    public double average(List<Note> notes)
+    {
+        double average=0.0;
+        for(int i=0;i<notes.size();i++)
+        {
+
+            if(notes.get(i)==null) ;
+            else
+            average+=notes.get(i).getNoteVal();
+        }
+        return average/notes.size();
+    }
+    /** helper average **/
 
     /**########## List of all the users, courses and averages #########**/
     @GetMapping("/users/courses/average")
