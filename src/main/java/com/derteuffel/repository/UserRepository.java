@@ -20,5 +20,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u from User as u join u.section us where us.sectionId=:id order by u.userId desc")
     Collection<User> findBySection(Long sectionId);
 
-    List<User> findAllByStatus(Boolean status);
+    List<User> findAllByStatus(boolean status);
 }
