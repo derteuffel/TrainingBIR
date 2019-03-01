@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Contenu d'un utilisateur</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script th:src="@{/js/dataTable/courses.js}" type="text/javascript"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+    <link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet">
+    <link th:href="@{/css/addTheses.css}"  rel="stylesheet">
+    <link th:href="@{/css/compagnies.css}"  rel="stylesheet">
+    <style>
+        .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row" style="padding-right: 15px; background: #FFFFFF">
+        <div class="col-12 col-sm-6 col-lg-3">
+            <img th:src="@{/images/logo-bir.png}" style="width: 100%;height: inherit">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-9 alert-warning" style="padding: 4rem">
+            <h3 class="text-center">Bataillon d'Intervention Rapide</h3>
+        </div>
+    </div>
+    <nav class=" text-center  pt-3 navbar-light bg-light sticky-top" style="height: 6rem">
+        <h3 class="text-center" >Liste des matières et leurs notes de <span th:text="${user.userName}"></span></h3>
+        <hr class="style14">
+    </nav>
+    <br>
+    <table  class="table table-bordered table-hover table-lg display" id="data">
+        <thead class="thead-light">
+        <th>Matières</th>
+        <th th:each="sequence : ${sequences}">Note de la séquence <span th:text="${sequence.sequenceNumber}"></span></th>
+        <th>Moyenne</th>
+        </thead>
+        <tbody>
+        <tr th:each="course,i : ${courses}" >
+            <td th:text="${course.courseName}">Education Physique Militaire et Sportive</td>
+            <!-- sequences -->
+            <td  th:each="note,j : ${notes[i.index]}">
+                    <a href="#" data-toggle="modal" class=" text-dark" style="width:100%;cursor:hand" th:attr="data-target='#modalAddNote' +'a'+${user.userId} + 'a' + ${course.courseId} + 'a' + ${j.index}">
+                        <span th:if="${note!=null}" th:text="${note.noteVal}" ></span>
+                        <span th:if="${note==null}">0</span>
+                    </a>
+                    <div class="modal fade" th:id="'modalAddNote'+'a'+${user.userId} + 'a' + ${course.courseId} + 'a' + ${j.index}"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title w-100 font-weight-bold">Ajout d'une note</h4>
+                                </div>
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <form class="text-center" method="get" th:action="@{'/note/addnote/' + ${user.userId} + '/' + ${course.courseId} + '/' + ${j.index+1}}">
+                                            <input name="noteVal" type="number" step="any" class="form-control validate mb-1  ">
+                                            <input type="submit" value="ok" class="btn btn-success " style="width:50%">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            <!-- sequences -->
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+
+</html>
