@@ -382,10 +382,37 @@ public class UserController {
     }
     /** helper average **/
 
+
+    public double average2(List<Note> notes)
+    {
+        if(notes.size()==0) return 0;
+        double average=0.0;
+        for(int i=0;i<notes.size();i++)
+        {
+            average+=notes.get(i).getNoteVal();
+        }
+        return average/6;
+    }
+    /** helper average **/
     /**########## List of all the users, courses and averages #########**/
     @GetMapping("/users/courses/average")
     public String usersCoursesAverage(Model model) {
-        model.addAttribute("courses", courseRepository.findAll1());
+        List<Course> courses = courseRepository.findAll1();
+        List<User> users = userRepository.findAll();
+        model.addAttribute("courses", courses);
+        model.addAttribute("users",users);
+        List<List<Double>> averages = new ArrayList<>();
+        for(int i=0;i< users.size();i++ )
+        {
+            List<Double> average1 = new ArrayList<>();
+            for(int j=0;j< courses.size();j++ )
+            {
+
+                average1.add(average2(courseRepository.findNotesByCourseIdByUserId(courses.get(j).getCourseId(),users.get(i).getUserId())));
+            }
+                averages.add(average1);
+        }
+        model.addAttribute ("averages",averages);
         return "user/coursesAverage";
     }
     /**########## List of all the users, courses and averages #########**/

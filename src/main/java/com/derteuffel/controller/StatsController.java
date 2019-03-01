@@ -36,6 +36,8 @@ public class StatsController {
         }
         return average/divider;
     }
+    /** helper average **/
+
 
     @GetMapping("/all")
     public String users(Model model){
