@@ -15,5 +15,21 @@ public class Sequence implements Serializable {
     @GeneratedValue
     Long sequenceId;
 
+    public Long getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    public void setSequenceNumber(Long sequenceNumber) {
+        this.sequenceNumber = sequenceNumber;
+    }
+
+    public Long getSequenceId() {
+        return sequenceId;
+    }
+
+    public void setSequenceId(Long sequenceId) {
+        this.sequenceId = sequenceId;
+    }
+    public Sequence(){}
     private Long sequenceNumber;
 }

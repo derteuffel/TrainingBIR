@@ -20,6 +20,13 @@ public class Note implements Serializable{
     @GeneratedValue
     private Long noteId;
 
+    public double getNoteVal() {
+        return noteVal;
+    }
+
+    public void setNoteVal(double noteVal) {
+        this.noteVal = noteVal;
+    }
 
     private double noteVal;
 
@@ -27,23 +34,43 @@ public class Note implements Serializable{
     @JoinColumn(name = "userId", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private User users;
+    private User user;
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "courseId", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Course courses;
+    private Course course;
 
+
+    public Sequence getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(Sequence sequence) {
+        this.sequence = sequence;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "sequenceId", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Sequence sequences;
+    private Sequence sequence;
 
 
+    public Note(double mNoteVal,User mUser, Course mCourse, Sequence mSequence)
+    {
+
+        noteVal= mNoteVal;
+        user = mUser;
+        course = mCourse;
+        sequence = mSequence;
+    }
+    public Note()
+    {
+
+    }
     public Long getNoteId() {
         return noteId;
     }

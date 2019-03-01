@@ -17,6 +17,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUserMilitaryCodeIgnoreCase(String userMilitaryCode);
     User findByUserCNINumberIgnoreCase(String userCNINumber);
+
     @Query("select u from User as u join u.section us where us.sectionId=:id order by u.userId desc")
     Collection<User> findBySection(Long sectionId);
 

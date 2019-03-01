@@ -1,10 +1,7 @@
 package com.derteuffel.controller;
 
-import com.derteuffel.data.PagerModel;
-import com.derteuffel.data.User;
-import com.derteuffel.repository.CompagnieRepository;
-import com.derteuffel.repository.CourseRepository;
-import com.derteuffel.repository.UserRepository;
+import com.derteuffel.data.*;
+import com.derteuffel.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +36,11 @@ public class UserController {
     @Autowired
     private CourseRepository courseRepository;
 
+    @Autowired
+    private NoteRepository noteRepository;
+
+    @Autowired
+    private SequenceRepository sequenceRepository;
 
     @Autowired
     private CompagnieRepository compagnieRepository;
@@ -306,12 +309,54 @@ public class UserController {
     }
 
 
+
+
     /**########## List of all the courses and their notes #########**/
     @GetMapping("/courses/{userId}")
     public String courses(Model model, @PathVariable Long userId) {
+        List<Course> courses = courseRepository.findAll1();
         model.addAttribute("user", userRepository.findById(userId).get());
-        model.addAttribute("courses", courseRepository.findAll());
-
+        model.addAttribute("courses", courses);
+        model.addAttribute("sequences", sequenceRepository.findAll());
+        List<List<Note>> notes = new ArrayList<List<Note>>();
+        List<Note> temp = new ArrayList<>();
+        List<Note> temp2 = new ArrayList<>();
+        temp2.add(null);
+        temp2.add(null);
+        temp2.add(null);
+        temp2.add(null);
+        temp2.add(null);
+        temp2.add(null);
+        Iterator<Course> coursesIterator =  courses.iterator();
+        while (coursesIterator.hasNext())
+        {
+            temp2= new ArrayList<>();
+            temp2.add(null);
+            temp2.add(null);
+            temp2.add(null);
+            temp2.add(null);
+            temp2.add(null);
+            temp2.add(null);
+            temp = courseRepository.findNotesByCourseIdByUserId(coursesIterator.next().getCourseId(),userId);
+            if(temp.size()==0)
+            {
+                temp.add(null);
+                temp.add(null);
+                temp.add(null);
+                temp.add(null);
+                temp.add(null);
+                temp.add(null);
+                notes.add(temp);
+            }
+            else {
+                for (int i = 0; i < temp.size(); i++) {
+                    temp2.set((int) (long) temp.get(i).getSequence().getSequenceNumber() - 1, temp.get(i));
+                }
+                notes.add(temp2);
+            }
+        }
+        System.out.println(notes);
+        model.addAttribute("notes",notes);
         return "user/courses";
     }
     /**########## List of all the courses and their notes #########**/
@@ -319,7 +364,7 @@ public class UserController {
     /**########## List of all the users, courses and averages #########**/
     @GetMapping("/users/courses/average")
     public String usersCoursesAverage(Model model) {
-        model.addAttribute("courses", courseRepository.findAll());
+        model.addAttribute("courses", courseRepository.findAll1());
         return "user/coursesAverage";
     }
     /**########## List of all the users, courses and averages #########**/

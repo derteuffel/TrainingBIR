@@ -1,9 +1,9 @@
 package com.derteuffel.data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by neword on 28/02/2019.
@@ -31,6 +31,10 @@ public class Course implements Serializable {
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
-
+    public Course(){}
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "course")
+    private Set<Note> notes = new HashSet<>();
 
 }

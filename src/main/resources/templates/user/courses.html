@@ -249,42 +249,45 @@
     <table  class="table table-bordered table-hover table-lg display" id="user">
         <thead class="thead-light">
         <th>Matières</th>
-        <th>Note Séquence 1</th>
-        <th>Note Séquence 2</th>
-        <th>Note Séquence 3</th>
-        <th>Note Séquence 4</th>
-        <th>Note Séquence 5</th>
-        <th>Note Séquence 6</th>
+        <th th:each="sequence : ${sequences}">Note de la séquence <span th:text="${sequence.sequenceNumber}"></span></th>
         <th>Moyenne</th>
         </thead>
         <tbody>
-        <tr th:each="course : ${courses}" >
+        <tr th:each="course,i : ${courses}" >
             <td th:text="${course.courseName}">Education Physique Militaire et Sportive</td>
-            <td><a href="#" data-toggle="modal" class="text-dark" style="cursor: hand;display:block;width:100%;:hover:color:blue;" data-target="#modalAddNote">16</a></td>
+            <!-- sequences -->
+            <td  th:each="note,j : ${notes[i.index]}">
+                    <a href="#" data-toggle="modal" class=" text-dark" style="width:100%;cursor:hand" th:attr="data-target='#modalAddNote' +'a'+${user.userId} + 'a' + ${course.courseId} + 'a' + ${j.index}">
+                        <span th:if="${note!=null}" th:text="${note.noteVal}" ></span>
+                        <span th:if="${note==null}">0</span>
+                    </a>
+                    <div class="modal fade" th:id="'modalAddNote'+'a'+${user.userId} + 'a' + ${course.courseId} + 'a' + ${j.index}"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title w-100 font-weight-bold">Ajout d'une note</h4>
+                                </div>
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <form class="text-center" method="get" th:action="@{'/note/addnote/' + ${user.userId} + '/' + ${course.courseId} + '/' + ${j.index+1}}">
+                                            <input name="noteVal" type="number" step="any" class="form-control validate mb-1  ">
+                                            <input type="submit" value="ok" class="btn btn-success " style="width:50%">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            <!-- sequences -->
+            <td>0</td>
 
         </tr>
-
         </tbody>
     </table>
 </div>
-<div class="modal fade" id="modalAddNote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Ajout d'une note</h4>
-            </div>
-            <div class="modal-body mx-3">
-                <div class="md-form mb-5">
-                    <form class="text-center" th:action="@{/user/course/courseId/note/noteId}">
-                    <input name="note"   class="form-control validate mb-1  ">
-                    <input type="submit" value="ok" class="btn btn-success " style="width:50%">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 </body>
 
