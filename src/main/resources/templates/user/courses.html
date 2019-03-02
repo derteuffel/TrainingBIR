@@ -35,12 +35,13 @@
     <nav class=" text-center  pt-3 navbar-light bg-light sticky-top" style="height: 6rem">
         <h3 class="text-center" >Liste des matières et leurs notes de <span th:text="${user.userName}"></span></h3>
         <hr class="style14">
+
+        <a th:href="@{/home}" class="btn btn-primary">Retour</a>
     </nav>
     <br>
     <table  class="table table-bordered table-hover table-lg display" id="data">
         <thead class="thead-light">
-        <th>Matières</th>
-        <th th:each="sequence : ${sequences}">Note de la séquence <span th:text="${sequence.sequenceNumber}"></span></th>
+        <th>Matières</th><th th:each="sequence : ${sequences}">Note de la séquence <span th:text="${sequence.sequenceNumber}"></span></th>
         <th>Moyenne</th>
         </thead>
         <tbody>
