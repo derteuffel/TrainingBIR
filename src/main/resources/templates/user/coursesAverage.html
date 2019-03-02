@@ -36,6 +36,8 @@
     <nav class=" text-center  pt-3 navbar-light bg-light sticky-top" style="height: 6rem">
         <h3 class="text-center" >Utilisateurs, Matières et Moyennes par matière</h3>
         <hr class="style14">
+
+        <a th:href="@{/home}" class="btn btn-primary">Retour</a>
     </nav>
     <br>
     <table  class="table table-bordered table-hover table-lg display" id="data">
@@ -52,6 +54,32 @@
     </table>
 </div>
 
+
+<!-- add these button -->
+<a href="#" data-toggle="modal" data-target="#addCourse" class="addButton btn btn-primary rounded-circle">
+    <i class="fa fa-plus"></i>
+    </i>
+</a>
+<!-- add these button -->
+
+<div class="modal fade" th:id="addCourse"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Ajout d'une matière</h4>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <form class="text-center" th:object="${course}"  method="post" th:action="@{/course/addCourse/}">
+                        <input name="courseName" class="form-control validate mb-1"/>
+                        <input type="submit" value="ok" class="btn btn-success " style="width:50%">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 

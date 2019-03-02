@@ -421,6 +421,7 @@ public class UserController {
             }
                 averages.add(average1);
         }
+        model.addAttribute("course", new Course());
         model.addAttribute ("averages",averages);
         return "user/coursesAverage";
     }
