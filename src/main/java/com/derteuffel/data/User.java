@@ -3,6 +3,7 @@ package com.derteuffel.data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -147,6 +148,7 @@ public class User implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date enrollmentDate;
 
+    @NotNull
     private boolean status;
 
     @ManyToOne
@@ -177,7 +179,7 @@ public class User implements Serializable {
                 ArrayList<String> lastKnowledges, String lastKnowledge, ArrayList<String> sports, String sport,String rectifiedHeight, String height,
                 ArrayList<String> particularMarks, String particularMark, String hairColor, String noiseStatus, String eyesStatus, String faceStatus,
                 String foreHeadStatus, String dyedStatus, String militaryDriverLicencceCategory, String civilDriverLicencceCategory, String driveWithNoDriverLicence,
-                String anotherAboutUser, boolean status, String userBornPlace) {
+                String anotherAboutUser, Boolean status, String userBornPlace) {
         this.userId = userId;
         this.userName = userName;
         this.rectifiedHeight=rectifiedHeight;
@@ -274,11 +276,11 @@ public class User implements Serializable {
         this.userBornPlace = userBornPlace;
     }
 
-    public boolean getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

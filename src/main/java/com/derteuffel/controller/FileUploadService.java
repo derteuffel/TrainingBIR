@@ -22,7 +22,6 @@ import java.nio.file.StandardCopyOption;
 public class FileUploadService {
 
     private  final Path fileStorageLocation;
-    @Autowired
     public FileUploadService(FileStorageProperties fileStorageProperties) {
         this.fileStorageLocation= Paths.get(fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
         try {

@@ -408,7 +408,7 @@ public class UserController {
     @GetMapping("/users/courses/average")
     public String usersCoursesAverage(Model model) {
         List<Course> courses = courseRepository.findAll1();
-        List<User> users = userRepository.findAll();
+        List<User> users = userRepository.findAllByStatus(true);
         model.addAttribute("courses", courses);
         model.addAttribute("users",users);
         List<List<Double>> averages = new ArrayList<>();
@@ -417,7 +417,6 @@ public class UserController {
             List<Double> average1 = new ArrayList<>();
             for(int j=0;j< courses.size();j++ )
             {
-
                 average1.add(average2(courseRepository.findNotesByCourseIdByUserId(courses.get(j).getCourseId(),users.get(i).getUserId())));
             }
                 averages.add(average1);

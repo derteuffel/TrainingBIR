@@ -76,11 +76,11 @@ public class GestionFormationBirApplication implements CommandLineRunner {
 				/** ADD ALL USERBIRTHDATE END **/
 			}
 
-			System.out.println(noms);
-		//	List<User> users= userRepository.findAll();
-		/*	for (int i=0;i<users.size();i++){
+			/*System.out.println(noms);
+			List<User> users= userRepository.findAll();
+			for (int i=0;i<users.size();i++){
 				User user=users.get(i);
-				user.setUserAvatar("/downloadFile/");
+				user.setStatus(true);
 				userRepository.save(user);
 			}*/
 			fis.close();
