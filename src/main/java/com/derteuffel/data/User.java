@@ -147,7 +147,7 @@ public class User implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date enrollmentDate;
 
-    private Boolean status;
+    private boolean status;
 
     @ManyToOne
     private Section section;
@@ -177,7 +177,7 @@ public class User implements Serializable {
                 ArrayList<String> lastKnowledges, String lastKnowledge, ArrayList<String> sports, String sport,String rectifiedHeight, String height,
                 ArrayList<String> particularMarks, String particularMark, String hairColor, String noiseStatus, String eyesStatus, String faceStatus,
                 String foreHeadStatus, String dyedStatus, String militaryDriverLicencceCategory, String civilDriverLicencceCategory, String driveWithNoDriverLicence,
-                String anotherAboutUser, Boolean status, String userBornPlace) {
+                String anotherAboutUser, boolean status, String userBornPlace) {
         this.userId = userId;
         this.userName = userName;
         this.rectifiedHeight=rectifiedHeight;
@@ -274,11 +274,11 @@ public class User implements Serializable {
         this.userBornPlace = userBornPlace;
     }
 
-    public Boolean getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

@@ -90,7 +90,12 @@ public class UserController {
     /**########## Update an user #########**/
     @PostMapping("/update/identification")
     public String updateIdentification(User user, Model model, @RequestParam("file") MultipartFile file){
-
+        if (file != null){
+            String fileName= fileUploadService.storeFile(file);
+            user.setUserAvatar("/downloadFile/"+fileName);
+        }else {
+            user.setUserAvatar("/downloadFile/");
+        }
         String fileName= fileUploadService.storeFile(file);
         user.setUserAvatar("/downloadFile/"+fileName);
         user.setStatus(true);
@@ -215,8 +220,13 @@ public class UserController {
     @PostMapping("/save")
     public String save(User user, Model model, Errors errors, @RequestParam("file") MultipartFile file){
 
-        String fileName= fileUploadService.storeFile(file);
-        user.setUserAvatar("/downloadFile/"+fileName);
+        if (!file.isEmpty()){
+            String fileName= fileUploadService.storeFile(file);
+            user.setUserAvatar("/downloadFile/"+fileName);
+        }else {
+            user.setUserAvatar("/downloadFile/");
+        }
+
         User user1= userRepository.findByUserMilitaryCodeIgnoreCase(user.getUserMilitaryCode());
         if (user1 != null){
             errors.rejectValue("userMilitaryCode","user.error","Il existe déja un utilisateur avec ce code");
@@ -423,10 +433,8 @@ public class UserController {
 
     @GetMapping("/detail/{userId}")
     public String detail(Model model, @PathVariable Long userId){
-
-        Optional<User> optional = userRepository.findById(userId);
-
-        model.addAttribute("user",optional.get());
+        User user =userRepository.getOne(userId);
+        model.addAttribute("user",user);
         return "user/detail";
     }
 
