@@ -17,4 +17,6 @@ public interface SectionRepository extends JpaRepository<Section,Long>{
 
     @Query("select s from Section as s join s.compagnie sc where sc.compagnieId=:id order by s.sectionId desc")
     Collection<Section> findAllByCompagnie(@Param("id") Long compagnieId);
+
+    Section findBySectionName(String sectionName);
 }

@@ -412,6 +412,9 @@ public class UserController {
         model.addAttribute("courses", courses);
         model.addAttribute("users",users);
         List<List<Double>> averages = new ArrayList<>();
+        List<Double> moyennes= new ArrayList<>();
+        Double note=0.0;
+        Double moyenne=0.0;
         for(int i=0;i< users.size();i++ )
         {
             List<Double> average1 = new ArrayList<>();
@@ -420,7 +423,17 @@ public class UserController {
                 average1.add(average2(courseRepository.findNotesByCourseIdByUserId(courses.get(j).getCourseId(),users.get(i).getUserId())));
             }
                 averages.add(average1);
+            System.out.println(averages.get(i));
+            for (Double note1 : average1){
+                note=+note1;
+            }
+            moyenne=note/average1.size();
+            moyennes.add(moyenne);
+            System.out.println(average1);
         }
+        System.out.println(moyennes);
+        System.out.println(averages);
+        model.addAttribute("moyennes",moyennes);
         model.addAttribute("course", new Course());
         model.addAttribute ("averages",averages);
         return "user/coursesAverage";

@@ -26,6 +26,7 @@ $(document).ready( function () {
 
         ]
     })
+        var sectionUsers = $('#sectionUsers').DataTable()
 
 });
 

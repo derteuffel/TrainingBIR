@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.util.Collection;
 
 /**
@@ -35,7 +36,9 @@ public class CompagnieController {
         return "compagnie/compagnies";
     }
     @GetMapping("/detail/{compagnieId}")
-    public String compagnie(@PathVariable Long compagnieId, Model model){
+    public String compagnie(@PathVariable Long compagnieId, Model model, HttpSession session){
+        session.setAttribute("compagnieId", compagnieId);
+        model.addAttribute("sections", sectionRepository.findAllByCompagnie(compagnieId));
         model.addAttribute("compagnie", compagnieRepository.getOne(compagnieId));
         return "compagnie/detail";
     }
@@ -44,6 +47,25 @@ public class CompagnieController {
     public String form(Model model){
         model.addAttribute("compagnie", new Compagnie());
         return "compagnie/form";
+    }
+
+    @GetMapping("/edit/form/{compagnieId}")
+    public String edit(Model model, @PathVariable Long compagnieId){
+        Compagnie compagnie=compagnieRepository.getOne(compagnieId);
+        model.addAttribute("compagnie", compagnie);
+        return "compagnie/edit";
+    }
+
+    @PostMapping("/update/{compagnieId}")
+    public String update(Compagnie compagnie,@RequestParam("file") MultipartFile file){
+        if (file.isEmpty()){
+            compagnieRepository.save(compagnie);
+        }else {
+            String fileName= fileUploadService.storeFile(file);
+            compagnie.setCompagnieAvatar("/downloadFile/"+fileName);
+            compagnieRepository.save(compagnie);
+        }
+        return "redirect:/compagnie/all";
     }
 
     @PostMapping("/save")

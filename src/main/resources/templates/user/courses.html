@@ -19,9 +19,6 @@
     <link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet">
     <link th:href="@{/css/addTheses.css}"  rel="stylesheet">
     <link th:href="@{/css/compagnies.css}"  rel="stylesheet">
-    <style>
-        .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
-    </style>
 </head>
 <body>
 <div class="container">
@@ -42,7 +39,8 @@
     <br>
     <table  class="table table-bordered table-hover table-lg display" id="data">
         <thead class="thead-light">
-        <th>Matières</th><th th:each="sequence : ${sequences}">Note de la séquence <span th:text="${sequence.sequenceNumber}"></span></th>
+        <th>Matières</th><th th:each="sequence : ${sequences}">Note séquence <span th:text="${sequence.sequenceNumber}"></span>
+        </th>
         <th>Moyenne</th>
         </thead>
         <tbody>

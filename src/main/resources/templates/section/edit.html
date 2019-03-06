@@ -154,37 +154,33 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <h3 class="text-center">Formulaire d'ajout d'une compagnie</h3>
+            <h3 class="text-center">Formulaire de maodification d'une Section</h3>
         </div>
     </nav>
     <br>
-    <form th:object="${compagnie}" method="post" th:action="@{/compagnie/save}" enctype="multipart/form-data">
+    <form th:object="${section}" method="post" th:action="@{/section/update/{sectionId}(sectionId=${section.sectionId})}" enctype="multipart/form-data">
         <div class="mt-3 container main-section mb-3 rounded">
             <div class="border" style="padding-right: 30px; padding-left: 30px">
                 <h4 class="text-center">AJOUT DES INFORMATIONS</h4>
                 <br>
                 <div class="col-12 col-sm-6 col-lg-12">
                     <div class="form-group">
-                        <label for="compagnieName">Nom de la Compagnie:</label>
-                        <input class="form-control" type="text" th:field="*{compagnieName}" id="compagnieName" />
+                        <label for="sectionName">Nom de la Section:</label>
+                        <input class="form-control" type="text" th:field="*{sectionName}" id="sectionName" />
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-12">
+                <div class="col-12 col-sm-6 col-lg-12 mb-3">
                     <div class="form-group custom-file">
-                        <label for="compagnieAvatar">Photo:</label>
-                        <input class="form-control-file border" type="file" name="file" id="compagnieAvatar" />
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-12 mt-3">
-                    <div class="form-group">
-                        <label for="compagnieLocation">Localisation de la Compagnie:</label>
-                        <input class="form-control" type="text" th:field="*{compagnieLocation}" id="compagnieLocation" />
+                        <label for="sectionAvatar">Photo:</label>
+                        <p th:text="${section.sectionAvatar}"></p>
+                        <input class="form-control-file border" type="file" name="file" id="sectionAvatar" />
+                        <input class="form-control-file border" type="text" th:field="*{sectionAvatar}" style="display: none" />
                     </div>
                 </div>
             </div>
             <div class="row  pr-4 pl-4 pb-4" style="margin-bottom: 3rem">
                 <div class="col-12 col-sm-6 col-lg-6 pr-4 pl-4">
-                    <a th:href="@{/compagnie/all}" class="btn btn-danger" style="width: 80%">Retour</a>
+                    <a th:href="@{/compagnie/detail/}+${session.compagnieId}" class="btn btn-danger" style="width: 80%">Retour</a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-6 pr-4 pl-4" >
                     <button type="submit" class="btn btn-success" style="width: 80%">Validé</button>

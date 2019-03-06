@@ -6,6 +6,7 @@ import com.derteuffel.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +22,25 @@ public class CourseController {
     CourseRepository courseRepository;
 
     @PostMapping("/addCourse")
-    public String addCourse(Course course)
+    public String addCourse(Course course, Errors errors, Model model)
     {
-        courseRepository.save(course);
+    Course course1=courseRepository.findByCourseName(course.getCourseName());
+        if (course1 != null){
+            errors.rejectValue("courseName","course.error","Il existe une Matiere deja avec ce titre");
+        }
+        if (errors.hasErrors()){
+            model.addAttribute("errors","Vous ne pouvez pas enregistrer cette avec ce nom car il existe deja une matiere avec ce meme nom");
+            return "compagnie/form";
+        }else {
+            courseRepository.save(course);
+        }
         return "redirect:/user/users/courses/average";
+    }
+
+    @PostMapping("/update/{courseId}")
+    public String update(Course course){
+        courseRepository.save(course);
+        return "redirect:/stats/all";
     }
 
 }

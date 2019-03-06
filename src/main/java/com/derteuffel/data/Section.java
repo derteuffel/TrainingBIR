@@ -15,16 +15,26 @@ public class Section implements Serializable {
     private Long sectionId;
 
     private String sectionName;
+    private String sectionAvatar;
     @ManyToOne
     private Compagnie compagnie;
     @OneToMany(mappedBy = "section")
     private Collection<User> users;
 
-    public Section(String sectionName) {
+    public Section(String sectionName, String sectionAvatar) {
         this.sectionName = sectionName;
+        this.sectionAvatar=sectionAvatar;
     }
 
     public Section() {
+    }
+
+    public String getSectionAvatar() {
+        return sectionAvatar;
+    }
+
+    public void setSectionAvatar(String sectionAvatar) {
+        this.sectionAvatar = sectionAvatar;
     }
 
     public Section(String sectionName, Compagnie compagnie) {

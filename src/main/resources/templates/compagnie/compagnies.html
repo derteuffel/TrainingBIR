@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <link th:href="@{/css/compagnies.css}"  rel="stylesheet">
     <link th:href="@{/css/addTheses.css}"  rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <title>compagnies</title>
@@ -81,29 +82,18 @@
         COMPAGNIES
     </h2>
     <div class="row" >
-        <div class="col-12 col-sm-6 col-lg-4 mt-3" th:each="compagnie : ${compagnies}">
-            <div class="card">
-                <img class="card-img-top" th:src="${compagnie.compagnieAvatar}" alt="Card image cap" style="height: 200px">
-                <div class="card-body">
-                    <h5 class="card-title border-bottom pb-3" th:text="${compagnie.compagnieName}">Card title <a href="#" class="float-right d-inline-flex share"><i class="fas fa-info text-primary"></i></a></h5>
-                    <div class="row">
-                        <div class="col-md-5" style="padding-right: 0">
-                            <p class="card-text"><span>Localisation </span>&nbsp;&nbsp;<i class="fa fa-circle"></i></p>
-                        </div>
-                        <div class="col-md-7">
-                            <p class="card-text" th:text="${compagnie.compagnieLocation}"></p>
-                        </div>
-                    </div>
-                    <a th:href="@{/compagnie/detail/}+${compagnie.compagnieId}" class="btn btn-sm btn-info float-right">Ouvrir <i class="fas fa-angle-double-right"></i></a>
-                </div>
-            </div>
+        <div class="col-md-3 mt-3 text-center" th:each="compagnie : ${compagnies}">
+                <a th:href="@{/compagnie/detail/}+${compagnie.compagnieId}" class="btn" >
+                <img class="card-img-top" th:src="${compagnie.compagnieAvatar}" alt="Card image cap" style="height: 200px; border-radius: 50%">
+                </a>
+            <br>
+            <a class="btn btn-warning rounded-circle" th:href="@{/compagnie/edit/form/}+${compagnie.compagnieId}"><i class="fa fa-pencil-alt"></i></a>
         </div>
     </div>
     <hr>
     <!-- add these button -->
     <a th:href="@{/compagnie/add/form}" class="addButton btn btn-primary rounded-circle">
         <i class="fa fa-plus"></i>
-        </i>
     </a>
     <a th:href="@{/home}" class="mx-auto pb-3 text-center">
         <img alt="jQuery 2 DotNet" class="rounded mx-auto d-block" height="52px;" th:src="@{/images/bas_de_page.png}" style="display: block" width="208px; ">

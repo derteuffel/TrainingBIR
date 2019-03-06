@@ -66,18 +66,41 @@
     <nav class=" text-center  pt-3 navbar-light bg-light sticky-top" style="height: 6rem">
         <h3 class="text-center" >Moyenne Générale par matière</h3>
         <hr class="style14">
-
-        <a th:href="@{/home}" class="btn btn-primary">Retour</a>
     </nav>
     <br>
     <table  class="table table-bordered table-hover table-lg display" id="data">
         <thead class="thead-light">
         <th>Matières</th>
+        <th>Actions</th>
         <th>Moyenne</th>
         </thead>
         <tbody>
         <tr th:each="course,i : ${courses}" >
-            <td th:text="${course.courseName}">Rattrapages/révisions</td>
+            <td th:text="${course.courseName}"></td>
+            <td><a data-toggle="modal" data-target="#modal-edit" th:attr="data-target='#modal-edit'+${course.courseId}"><i class="fa fa-pencil"></i></a>
+                <div class="modal card modal-warning alert-warning fade in" th:id="modal-edit+${course.courseId}" >
+                    <div class="modal-dialog">
+                        <form th:action="@{/course/update/{courseId}(courseId=${course.courseId})}" method="post" th:object="${course}">
+                            <div class="modal-content">
+                                <div class="modal-header text-center alert-info">
+                                    <h5 class="modal-title">Modification d'une Matière</h5>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <h3>Vous allez modifier le nom de cette matiere</h3>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="courseName" placeholder="Changer Votre Matière ici">
+                                    </div>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Retour</button>
+                                    <button  class="btn btn-success"  type="submit"><i class="fa fa-check"></i>&nbsp;Oui</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div></td>
             <td th:text="${averages[i.index]}"></td>
         </tr>
         </tbody>

@@ -11,6 +11,10 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet">
     <title>A propos </title>
     <style>
+        .image{
+            background-image: url("../../images/hqdefault.jpg");
+            width: 100%;
+        }
         hr.style14 {
             border: 0;
             height: 1px;
@@ -154,14 +158,14 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <h3 class="text-center">Formulaire d'ajout d'une compagnie</h3>
+            <h3 class="text-center">Formulaire de modification d'une compagnie</h3>
         </div>
     </nav>
     <br>
-    <form th:object="${compagnie}" method="post" th:action="@{/compagnie/save}" enctype="multipart/form-data">
+    <form th:object="${compagnie}" method="post" th:action="@{/compagnie/update/{compagnieId}(compagnieId=${compagnie.compagnieId})}" enctype="multipart/form-data">
         <div class="mt-3 container main-section mb-3 rounded">
             <div class="border" style="padding-right: 30px; padding-left: 30px">
-                <h4 class="text-center">AJOUT DES INFORMATIONS</h4>
+                <h4 class="text-center">MODIFICATIONS DES INFORMATIONS</h4>
                 <br>
                 <div class="col-12 col-sm-6 col-lg-12">
                     <div class="form-group">
@@ -172,7 +176,9 @@
                 <div class="col-12 col-sm-6 col-lg-12">
                     <div class="form-group custom-file">
                         <label for="compagnieAvatar">Photo:</label>
+                        <p th:text="${compagnie.compagnieAvatar}"></p>
                         <input class="form-control-file border" type="file" name="file" id="compagnieAvatar" />
+                        <input class="form-control-file border" type="text" th:field="*{compagnieAvatar}" style="display: none" id="compagnieAvatar" />
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-12 mt-3">
