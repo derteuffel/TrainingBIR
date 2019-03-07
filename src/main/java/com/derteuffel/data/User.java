@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by derteuffel on 25/01/2019.
@@ -151,6 +152,9 @@ public class User implements Serializable {
     @NotNull
     private boolean status;
 
+    @OneToMany(mappedBy = "user")
+    private List<Observations> observationses;
+
     @ManyToOne
     private Section section;
 
@@ -282,6 +286,22 @@ public class User implements Serializable {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public List<Observations> getObservationses() {
+        return observationses;
+    }
+
+    public void setObservationses(List<Observations> observationses) {
+        this.observationses = observationses;
     }
 
     public Section getSection() {

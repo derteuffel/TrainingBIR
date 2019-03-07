@@ -7,12 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.format.annotation.NumberFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -405,6 +407,7 @@ public class UserController {
     }
     /** helper average **/
     /**########## List of all the users, courses and averages #########**/
+    DecimalFormat formatter= new DecimalFormat("#0.00");
     @GetMapping("/users/courses/average")
     public String usersCoursesAverage(Model model) {
         List<Course> courses = courseRepository.findAll1();
@@ -412,27 +415,29 @@ public class UserController {
         model.addAttribute("courses", courses);
         model.addAttribute("users",users);
         List<List<Double>> averages = new ArrayList<>();
-        List<Double> moyennes= new ArrayList<>();
-        Double note=0.0;
-        Double moyenne=0.0;
+        List<String> moyennes= new ArrayList<>();
         for(int i=0;i< users.size();i++ )
         {
+            Double value=0.0,note=0.0;
+            Double moyenne;
             List<Double> average1 = new ArrayList<>();
             for(int j=0;j< courses.size();j++ )
             {
                 average1.add(average2(courseRepository.findNotesByCourseIdByUserId(courses.get(j).getCourseId(),users.get(i).getUserId())));
             }
                 averages.add(average1);
-            System.out.println(averages.get(i));
-            for (Double note1 : average1){
-                note=+note1;
+
+            System.out.println(averages.get(0));
+            for(int p=0;p<averages.get(i).size();p++){
+                note=+ averages.get(i).get(0)+averages.get(i).get(p);
+                value=note;
             }
-            moyenne=note/average1.size();
-            moyennes.add(moyenne);
-            System.out.println(average1);
+            System.out.println(note);
+            moyenne=value/averages.get(i).size();
+            System.out.println(moyenne);
+                moyennes.add(formatter.format(moyenne));
         }
         System.out.println(moyennes);
-        System.out.println(averages);
         model.addAttribute("moyennes",moyennes);
         model.addAttribute("course", new Course());
         model.addAttribute ("averages",averages);

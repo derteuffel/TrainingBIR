@@ -263,6 +263,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center" >
                         <a class="btn btn-primary btn-block follow" th:href="@{ '/user/courses/' + ${user.userId}}">Matières<span></span>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-book"></i></a>
                         <a class="btn btn-danger btn-block follow" data-toggle="modal" data-target="#modal-warning" th:attr="data-target='#modal-warning'+${user.userId }">Supprimer<span></span>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash"></i></a>
+                        <a class="btn btn-success btn-block follow" th:href="@{ '/user/observations/' + ${user.userId}}">Observations Mediclales<span></span>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-medkit"></i></a>
                     </div>
                     <div class="row user-detail-row">
                         <div class="col-md-12 col-sm-12 user-detail-section2 pull-left">
