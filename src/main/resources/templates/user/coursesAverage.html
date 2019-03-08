@@ -81,7 +81,8 @@
             <div class="modal-body mx-3">
                 <div class="md-form mb-5">
                     <form class="text-center" th:object="${course}"  method="post" th:action="@{/course/addCourse/}">
-                        <input name="courseName" class="form-control validate mb-1"/>
+                        <input name="courseName" class="form-control validate mb-1" placeholder="Nom complet Matière"/>
+                        <input name="courseAbreviation" class="form-control validate mb-1" placeholder="Abreviation"/>
                         <input type="submit" value="ok" class="btn btn-success " style="width:50%">
                     </form>
                 </div>

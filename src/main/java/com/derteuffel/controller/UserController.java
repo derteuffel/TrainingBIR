@@ -14,6 +14,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -449,7 +450,8 @@ public class UserController {
     /**########## Get one user #########**/
 
     @GetMapping("/detail/{userId}")
-    public String detail(Model model, @PathVariable Long userId){
+    public String detail(Model model, @PathVariable Long userId, HttpSession session){
+        session.setAttribute("userId", userId);
         User user =userRepository.getOne(userId);
         model.addAttribute("user",user);
         return "user/detail";

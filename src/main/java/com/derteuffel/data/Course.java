@@ -15,6 +15,7 @@ public class Course implements Serializable {
     @GeneratedValue
     private Long courseId;
     private String courseName;
+    private String courseAbreviation;
 
     public Long getCourseId() {
         return courseId;
@@ -37,4 +38,19 @@ public class Course implements Serializable {
             mappedBy = "course")
     private Set<Note> notes = new HashSet<>();
 
+    public String getCourseAbreviation() {
+        return courseAbreviation;
+    }
+
+    public void setCourseAbreviation(String courseAbreviation) {
+        this.courseAbreviation = courseAbreviation;
+    }
+
+    public Set<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Set<Note> notes) {
+        this.notes = notes;
+    }
 }

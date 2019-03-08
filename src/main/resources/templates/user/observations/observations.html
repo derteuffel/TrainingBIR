@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link th:href="@{/css/addTheses.css}"  rel="stylesheet">
+    <link th:href="@{/css/compagnies.css}"  rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Observations </title>
+</head>
+<body>
+<div class="container">
+    <div class="row" style="padding-right: 15px">
+        <div class="col-12 col-sm-6 col-lg-3">
+            <img th:src="@{/images/logo-bir.png}" style="width: 100%;height: inherit">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-9" style="padding: 4rem">
+            <h3 class="text-center text-light">Bataillon d'Intervention Rapide</h3>
+        </div>
+    </div>
+    <nav class=" text-center  pt-3 navbar-light bg-light sticky-top" style="height: 6rem">
+        <h3 class="text-center" >OBSERVATIONS MEDICALES</h3>
+        <hr class="style14">
+    </nav>
+    <br>
+    <div class=" mb-3">
+        <h3 class="mt-3 pb-3 mb-4 font-italic border-bottom text-center" >OBSERVATIONS SUR UN SOLDAT</h3>
+        <div class="col-12 col-sm-12 col-lg-12" >
+            <div class="card"  th:each="observations : ${observationses}">
+                    <div class="card-header row">
+                        <div class="col-12 col-sm-6 col-lg-6">
+                            <p class="pull-left" >Date et Heure: <span th:text="${observations.observationDate}"></span> </p>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-6">
+                            <p class="pull-right" th:text="${observations.user.userName}"></p>
+                        </div>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-12 col-sm-6 col-lg-7 pull-left text-left">
+                            <h4 th:text="${observations.title}"></h4>
+                            <p th:text="${observations.observation}"></p>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-5">
+                            <ul th:each="fichier : ${observations.observationsFiles}">
+                                <li th:text="${fichier}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a data-toggle="modal" data-target="#modal-delete" th:attr="data-target='#modal-delete'+${observations.observationId}"  class="btn btn-danger rounded-circle" ><i class="fa fa-trash"></i></i>
+                        </a>
+                        <div class="modal card modal-warning alert-warning fade in" th:id="modal-delete+${observations.observationId}" >
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header text-center alert-info">
+                                        <h5 class="modal-title">Suppresion d'un element</h5>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <h3>Voulez vous vraiment supprimer cet element?</h3>
+                                    </div>
+                                    <div class="modal-footer text-center">
+                                        <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Retour</button>
+                                        <a  class="btn btn-success"  th:href="@{/observations/delete/} + ${observations.observationId}"><i class="fa fa-check"></i>&nbsp;Oui</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- add these button -->
+            <a data-toggle="modal" data-target="#modal-add" th:attr="data-target='#modal-add'"  class="btn btn-primary rounded-circle addButton" ><i class="fa fa-plus"></i>
+            </a>
+
+        </div>
+    </div>
+    <div class="modal card modal-warning alert-warning fade in" th:id="modal-add" >
+        <div class="modal-dialog">
+            <form th:object="${observations}" method="post" th:action="@{/observations/save}" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header text-center alert-info">
+                    <h5 class="modal-title">AJOUT D'UNE OBSERVATION</h5>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-12">
+                    <div class="form-group">
+                        <p for="title">Titre de l'observation:</p>
+                        <input class="form-control" type="text" th:field="*{title}" id="title" />
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-12">
+                    <div class="form-group">
+                        <p>Observations:</p>
+                        <textarea cols="63" rows="10" th:field="*{observation}"></textarea>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-12 mb-3">
+                    <div class="form-group custom-file">
+                        <p for="sectionAvatar">Associer un et/ou des fichiers:</p>
+                        <input multiple class="form-control-file border" type="file" name="files"  id="sectionAvatar" />
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Retour</button>
+                    <button  class="btn btn-success" type="submit" ><i class="fa fa-check"></i>&nbsp;Oui</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <a th:href="@{/home}" class="mx-auto pb-3 text-center">
+        <img alt="jQuery 2 DotNet" class="rounded mx-auto d-block" height="52px;" th:src="@{/images/bas_de_page.png}" style="display: block" width="208px; ">
+    </a>
+</div>
+</body>
+</html>
