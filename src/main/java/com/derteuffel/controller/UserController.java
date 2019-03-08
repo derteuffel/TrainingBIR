@@ -430,7 +430,7 @@ public class UserController {
 
             System.out.println(averages.get(0));
             for(int p=0;p<averages.get(i).size();p++){
-                note=+ averages.get(i).get(0)+averages.get(i).get(p);
+                note+= averages.get(i).get(p);
                 value=note;
             }
             System.out.println(note);
