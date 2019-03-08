@@ -1,5 +1,7 @@
 package com.derteuffel.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -78,6 +80,7 @@ public class Observations implements Serializable {
         this.observationDate = observationDate;
     }
 
+    @JsonIgnore
     public User getUser() {
         return user;
     }

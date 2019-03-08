@@ -86,7 +86,7 @@ public class ObservationsController {
 
     }
 
-    @DeleteMapping("/delete/{observationId}")
+    @GetMapping("/delete/{observationId}")
     public String delete(@PathVariable Long observationId, HttpSession session){
 observationsRepository.deleteById(observationId);
         return "redirect:/observations/user/"+(Long)session.getAttribute("userId");

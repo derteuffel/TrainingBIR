@@ -71,6 +71,10 @@
                         </div>
                     </div>
             </div>
+            <br>
+            <div >
+                <a class="btn btn-warning" th:href="@{/user/detail/}+${session.userId}">Retour</a>
+            </div>
             <!-- add these button -->
             <a data-toggle="modal" data-target="#modal-add" th:attr="data-target='#modal-add'"  class="btn btn-primary rounded-circle addButton" ><i class="fa fa-plus"></i>
             </a>
