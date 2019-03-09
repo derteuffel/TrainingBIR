@@ -165,7 +165,7 @@
         </div>
     </nav>
     <br>
-    <form th:object="${section}" method="post" th:action="@{/section/save}">
+    <form th:object="${section}" method="post" th:action="@{/section/save}" enctype="multipart/form-data">
         <div class="mt-3 container main-section mb-3 rounded">
             <div class="border" style="padding-right: 30px; padding-left: 30px">
                 <h4 class="text-center">AJOUT DES INFORMATIONS</h4>
