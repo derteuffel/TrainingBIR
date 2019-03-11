@@ -11,7 +11,7 @@
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/jquery.dataTables.min.js}"></script>
     <script th:src="@{/js/dataTable/courses.js}" type="text/javascript"></script>
-    <link th:href="@{/css/bootstrap.min.css}" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet">
 
     <link th:href="@{/fontAwesome/css/font-awesome.min.css}" rel="stylesheet">
 
@@ -40,7 +40,7 @@
                         <li class="nav-item">
                             <a class="nav-link " th:href="@{/compagnie/detail/}+${session.compagnieId}">Retour</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link " th:href="@{/section/detail/}+${section.sectionId}">Recrues/Soldats</a>
                         </li>
                         <li class="nav-item">
@@ -75,11 +75,11 @@
             <td th:text="${user.userEmail}"></td>
             <td th:text="${user.userPersonalTelephonNumber}"></td>
             <td>
-                <a th:href="@{'/user/detail/'+${user.userId}}" class="btn btn-success rounded-circle"><i class="fa fa-eye"></i></a>
+                <a th:href="@{'/user/detail/'+${user.userId}}" class="btn btn-success rounded-circl`e"><i class="fa fa-eye"></i></a>
                 <a data-toggle="modal" data-target="#modal-delete" th:attr="data-target='#modal-delete'+${user.userId}"  class="btn btn-danger rounded-circle" ><i class="fa fa-trash"></i></i>
                 </a>
             </td>
-            <div class="modal card modal-warning alert-warning fade in" th:id="modal-delete+${crew.groupeId}" >
+            <div class="modal card modal-warning alert-warning fade in" th:id="modal-delete+${user.userId}" >
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header text-center alert-info">
@@ -98,10 +98,6 @@
         </tr>
         </tbody>
     </table>
-    <!-- add these button -->
-    <!--a th:href="@{/section/add/form}" class="addButton btn btn-primary rounded-circle">
-        <i class="fa fa-plus"></i>
-    </a-->
 </div>
 <script type="text/javascript">
     $(document).ready(function () {

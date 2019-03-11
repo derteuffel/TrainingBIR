@@ -31,6 +31,7 @@ public class UserController {
     private static final int INITIAL_PAGE = 0;
     private static final int INITIAL_PAGE_SIZE = 5;
     private static final int[] PAGE_SIZES = {5,10,15,20,25,30,35,40};
+    public long a=1;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -101,7 +102,8 @@ public class UserController {
         }
         String fileName= fileUploadService.storeFile(file);
         user.setUserAvatar("/downloadFile/"+fileName);
-        user.setStatus(true);
+
+        user.setStatus(a);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();
@@ -110,7 +112,7 @@ public class UserController {
     /**########## Update an user #########**/
     @PostMapping("/update")
     public String updateSignalement(User user){
-        user.setStatus(true);
+        user.setStatus(a);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();
@@ -151,7 +153,7 @@ public class UserController {
             user.setSpecialities(specialite);
         }
         user.setSpecialitie(null);
-        user.setStatus(true);
+        user.setStatus(a);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();
@@ -213,7 +215,7 @@ public class UserController {
 
         user.setParticularMark(null);
 
-        user.setStatus(true);
+        user.setStatus(a);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();
@@ -313,7 +315,7 @@ public class UserController {
             }
 
             user.setParticularMark(null);
-            user.setStatus(true);
+            user.setStatus(a);
 
             userRepository.save(user);
         }
@@ -412,7 +414,7 @@ public class UserController {
     @GetMapping("/users/courses/average")
     public String usersCoursesAverage(Model model) {
         List<Course> courses = courseRepository.findAll1();
-        List<User> users = userRepository.findAllByStatus(true);
+        List<User> users = userRepository.findAllByStatus(a);
         model.addAttribute("courses", courses);
         model.addAttribute("users",users);
         List<List<Double>> averages = new ArrayList<>();
@@ -461,7 +463,7 @@ public class UserController {
     @GetMapping("/delete/{userId}")
     public String delete(@PathVariable Long userId){
         User user= userRepository.getOne(userId);
-        user.setStatus(false);
+        user.setStatus(a);
         userRepository.save(user);
         return "redirect:/user/all";
     }
