@@ -154,7 +154,7 @@ public class SectionController {
             return "section/form";
         }else {
             String fileName= fileUploadService.storeFile(file);
-            section.setSectionAvatar(fileName);
+            section.setSectionAvatar("/downloadFile/"+fileName);
             section.setCompagnie(compagnieRepository.getOne((Long)session.getAttribute("compagnieId")));
             Section section2 = sectionRepository.save(section);
             return "redirect:/section/detail/" +section2.getSectionId();
