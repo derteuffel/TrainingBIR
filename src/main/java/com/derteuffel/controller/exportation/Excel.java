@@ -188,7 +188,8 @@ public class Excel {
 
         List<List<String>> datas = new ArrayList<>() ;
         List<String> tmp = new ArrayList<>();
-        List<User> users = userRepository.findAll();
+        long a =1;
+        List<User> users = userRepository.findAllByStatus(a);
         User user;
         List<Double> averages = new ArrayList<>();
         for(int i=0;i< users.size();i++)

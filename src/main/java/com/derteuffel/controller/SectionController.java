@@ -1,8 +1,11 @@
 package com.derteuffel.controller;
 
+import com.derteuffel.data.Course;
+import com.derteuffel.data.Note;
 import com.derteuffel.data.Section;
 import com.derteuffel.data.User;
 import com.derteuffel.repository.CompagnieRepository;
+import com.derteuffel.repository.CourseRepository;
 import com.derteuffel.repository.SectionRepository;
 import com.derteuffel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +33,8 @@ public class SectionController {
     private CompagnieRepository compagnieRepository;
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private CourseRepository courseRepository;
     @Autowired
     private FileUploadService fileUploadService;
 
@@ -56,6 +61,85 @@ public class SectionController {
             sectionRepository.save(section);
         }
         return "redirect:/compagnie/detail/"+(Long)session.getAttribute("compagnieId");
+    }
+
+    /** helper average **/
+    public double average(List<Note> notes)
+    {
+        double average=0.0;
+        for(int i=0;i<notes.size();i++)
+        {
+
+            if(notes.get(i)==null) ;
+            else
+                average+=notes.get(i).getNoteVal();
+        }
+        return average/notes.size();
+    }
+    /** helper average **/
+
+
+    public double average2(List<Note> notes)
+    {
+        if(notes.size()==0) return 0;
+        double average=0.0;
+        for(int i=0;i<notes.size();i++)
+        {
+            average+=notes.get(i).getNoteVal();
+        }
+        return average/6;
+    }
+    /** helper average **/
+    DecimalFormat formatter= new DecimalFormat("#0.00");
+
+    @GetMapping("/courses/{sectionId}")
+    public String sectionCourses(Model model, @PathVariable long sectionId)
+    {
+
+        model.addAttribute("section",sectionRepository.getOne(sectionId));
+        long a = 1;
+        List<User> allByStatus=userRepository.findAllByStatus(a);
+        List<User> allBySection=userRepository.findBySection(sectionId);
+        List<User>users=new ArrayList<>();
+        for (User user: allBySection){
+            for (int i=0; i<allBySection.size();i++){
+                if (user.getStatus() == a){
+                    users.add(user);
+                }
+            }
+        }
+        List<Course> courses = courseRepository.findAll1();
+        model.addAttribute("courses", courses);
+        model.addAttribute("users",users);
+        List<List<Double>> averages = new ArrayList<>();
+        List<String> moyennes= new ArrayList<>();
+        for(int i=0;i< users.size();i++ )
+        {
+            Double value=0.0,note=0.0;
+            Double moyenne;
+            List<Double> average1 = new ArrayList<>();
+            for(int j=0;j< courses.size();j++ )
+            {
+                average1.add(average2(courseRepository.findNotesByCourseIdByUserId(courses.get(j).getCourseId(),users.get(i).getUserId())));
+            }
+            averages.add(average1);
+
+            System.out.println(averages.get(0));
+            for(int p=0;p<averages.get(i).size();p++){
+                note+= averages.get(i).get(p);
+                value=note;
+            }
+            System.out.println(note);
+            moyenne=value/averages.get(i).size();
+            System.out.println(moyenne);
+            moyennes.add(formatter.format(moyenne));
+        }
+        System.out.println(moyennes);
+        model.addAttribute("moyennes",moyennes);
+        model.addAttribute("course", new Course());
+        model.addAttribute ("averages",averages);
+        model.addAttribute("users",users);
+        return "section/courses";
     }
 
     @PostMapping("/save")
@@ -91,7 +175,6 @@ public class SectionController {
                 }
             }
         }
-        System.out.println(users);
         model.addAttribute("users",users);
         return "section/detail";
     }
