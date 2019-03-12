@@ -44,6 +44,8 @@ public class UserController {
 
     @Autowired
     private SequenceRepository sequenceRepository;
+    @Autowired
+    private SectionRepository sectionRepository;
 
     @Autowired
     private CompagnieRepository compagnieRepository;
@@ -470,6 +472,7 @@ public class UserController {
     @GetMapping("/update/identification/{userId}")
     public String identification(Model model, @PathVariable Long userId){
         model.addAttribute("user", userRepository.findById(userId).get());
+        model.addAttribute("sections",sectionRepository.findAll());
         return "user/update/identification";
     }
 
@@ -477,6 +480,7 @@ public class UserController {
     @GetMapping("/update/familial/{userId}")
     public String familial(Model model, @PathVariable Long userId){
         model.addAttribute("user", userRepository.findById(userId).get());
+        model.addAttribute("sections",sectionRepository.findAll());
         return "user/update/familial";
     }
 
@@ -484,6 +488,7 @@ public class UserController {
     @GetMapping("/update/instruction/{userId}")
     public String instruction(Model model, @PathVariable Long userId){
         model.addAttribute("user", userRepository.findById(userId).get());
+        model.addAttribute("sections",sectionRepository.findAll());
         return "user/update/instruction";
     }
 
@@ -491,6 +496,7 @@ public class UserController {
     @GetMapping("/update/professionnel/{userId}")
     public String professionnel(Model model, @PathVariable Long userId){
         model.addAttribute("user", userRepository.findById(userId).get());
+        model.addAttribute("sections",sectionRepository.findAll());
         return "user/update/professionnel";
     }
 
@@ -498,6 +504,7 @@ public class UserController {
     @GetMapping("/update/complementaire/{userId}")
     public String complementaire(Model model, @PathVariable Long userId){
         model.addAttribute("user", userRepository.findById(userId).get());
+        model.addAttribute("sections",sectionRepository.findAll());
         return "user/update/complementaire";
     }
 
@@ -505,6 +512,7 @@ public class UserController {
     @GetMapping("/update/signalement/{userId}")
     public String signalement(Model model, @PathVariable Long userId){
         model.addAttribute("user", userRepository.findById(userId).get());
+        model.addAttribute("sections",sectionRepository.findAll());
         return "user/update/signalement";
     }
 

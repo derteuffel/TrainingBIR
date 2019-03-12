@@ -1,5 +1,6 @@
 package com.derteuffel.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -304,6 +305,7 @@ public class User implements Serializable {
         this.observationses = observationses;
     }
 
+    @JsonIgnore
     public Section getSection() {
         return section;
     }
