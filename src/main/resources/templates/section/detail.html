@@ -37,7 +37,7 @@
                         <li class="nav-item">
                             <a class="nav-link " th:href="@{/compagnie/detail/}+${session.compagnieId}">Retour</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link " th:href="@{/section/detail/}+${section.sectionId}">Recrues/Soldats</a>
                         </li>
                         <li class="nav-item">
@@ -53,6 +53,8 @@
     <br>
 
     <h3 class="text-center">RECRUES/SOLDATS DE LA <strong th:text="${section.sectionName}"></strong></h3>
+
+    <h2 class="text-center"><a class="btn btn-success" th:href="@{/export/excel/courses_average/} + ${section.sectionId}">Exporter</a></h2>
     <table class="table text-center table-hover  table-lg display" id="sectionUsers">
         <thead class="text-white bg-secondary">
         <tr>
@@ -72,11 +74,11 @@
             <td th:text="${user.userEmail}"></td>
             <td th:text="${user.userPersonalTelephonNumber}"></td>
             <td>
-                <a th:href="@{'/user/detail/'+${user.userId}}" class="btn btn-success rounded-circle"><i class="fa fa-eye"></i></a>
+                <a th:href="@{'/user/detail/'+${user.userId}}" class="btn btn-success rounded-circl`e"><i class="fa fa-eye"></i></a>
                 <a data-toggle="modal" data-target="#modal-delete" th:attr="data-target='#modal-delete'+${user.userId}"  class="btn btn-danger rounded-circle" ><i class="fa fa-trash"></i></i>
                 </a>
             </td>
-            <div class="modal card modal-warning alert-warning fade in" th:id="modal-delete+${crew.groupeId}" >
+            <div class="modal card modal-warning alert-warning fade in" th:id="modal-delete+${user.userId}" >
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header text-center alert-info">
@@ -95,10 +97,6 @@
         </tr>
         </tbody>
     </table>
-    <!-- add these button -->
-    <!--a th:href="@{/section/add/form}" class="addButton btn btn-primary rounded-circle">
-        <i class="fa fa-plus"></i>
-    </a-->
 </div>
 <script type="text/javascript">
     $(document).ready(function () {

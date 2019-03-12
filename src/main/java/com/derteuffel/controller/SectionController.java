@@ -80,17 +80,18 @@ public class SectionController {
     @GetMapping("/detail/{sectionId}")
     public String detail(Model model, @PathVariable Long sectionId){
         model.addAttribute("section",sectionRepository.getOne(sectionId));
-        List<User> allByStatus=userRepository.findAllByStatus(true);
+        long a = 1;
+        List<User> allByStatus=userRepository.findAllByStatus(a);
         List<User> allBySection=userRepository.findBySection(sectionId);
         List<User>users=new ArrayList<>();
-        for (User user: allByStatus){
+        for (User user: allBySection){
             for (int i=0; i<allBySection.size();i++){
-                if (user.getUserId().equals(allBySection.get(i))){
+                if (user.getStatus() == a){
                     users.add(user);
                 }
             }
         }
-
+        System.out.println(users);
         model.addAttribute("users",users);
         return "section/detail";
     }

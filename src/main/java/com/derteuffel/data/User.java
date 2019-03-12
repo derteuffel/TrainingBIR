@@ -151,7 +151,7 @@ public class User implements Serializable {
     private Date enrollmentDate;
 
     @NotNull
-    private boolean status;
+    private long status;
 
     @OneToMany(mappedBy = "user")
     private List<Observations> observationses;
@@ -184,7 +184,7 @@ public class User implements Serializable {
                 ArrayList<String> lastKnowledges, String lastKnowledge, ArrayList<String> sports, String sport,String rectifiedHeight, String height,
                 ArrayList<String> particularMarks, String particularMark, String hairColor, String noiseStatus, String eyesStatus, String faceStatus,
                 String foreHeadStatus, String dyedStatus, String militaryDriverLicencceCategory, String civilDriverLicencceCategory, String driveWithNoDriverLicence,
-                String anotherAboutUser, Boolean status, String userBornPlace) {
+                String anotherAboutUser, long status, String userBornPlace) {
         this.userId = userId;
         this.userName = userName;
         this.rectifiedHeight=rectifiedHeight;
@@ -281,20 +281,16 @@ public class User implements Serializable {
         this.userBornPlace = userBornPlace;
     }
 
-    public Boolean getStatus() {
+    public long getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(long status) {
         this.status = status;
     }
 
-    public boolean isStatus() {
+    public long isStatus() {
         return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
     public List<Observations> getObservationses() {
