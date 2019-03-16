@@ -73,6 +73,7 @@ public class CompagnieController {
             }
 
         }
+        model.addAttribute("parlerFrancais", parlerFrancais);
         for (User user : users){
             for(String language : user.getTalkingLanguages())
             {
@@ -82,6 +83,7 @@ public class CompagnieController {
             }
 
         }
+        model.addAttribute("parlerAnglais",parlerAnglais);
 
         for (User user : users){
             for(String language : user.getWhritingLanguages())
@@ -92,6 +94,7 @@ public class CompagnieController {
             }
 
         }
+        model.addAttribute("ecrireAnglais", ecrireAnglais);
         for (User user : users){
             for(String language : user.getWhritingLanguages())
             {
@@ -101,8 +104,60 @@ public class CompagnieController {
             }
 
         }
+        model.addAttribute("ecrireFrancais", ecrireFrancais);
         System.out.println(parlerFrancais);
 
+        return "compagnie/statistique";
+    }
+
+    public List<User> sort(List<User> m_users, Compagnie compagnie, List<Section> sections )
+    {
+        List<User> users=new ArrayList<>();
+        List<User> users2=new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
+        List<User> users1=m_users;
+        for (User user : users1){
+            for (int i=0;i<users.size();i++){
+                if (user.getUserId().equals(users.get(i).getUserId())){
+                    users2.add(user);
+                }
+            }
+        }
+        return users2;
+    }
+
+    @GetMapping("/region/{compagnieId}/{userRegion}")
+    public String stats(@PathVariable String userRegion, @PathVariable Long compagnieId, Model model){
+
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        List<User> users1=userRepository.findAllByUserRegion(userRegion);
+        model.addAttribute("users",sort(users1,compagnie,sections));
+        model.addAttribute("compagnie", compagnie);
+        return "compagnie/statistique";
+    }
+
+    @GetMapping("/departement/{compagnieId}/{userDivision}")
+    public String stats1(@PathVariable String userDivision, @PathVariable Long compagnieId, Model model){
+
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        List<User> users1=userRepository.findAllByUserDivision(userDivision);
+        model.addAttribute("users",sort(users1,compagnie,sections));
+        model.addAttribute("compagnie", compagnie);
+        return "compagnie/statistique";
+    }
+    @GetMapping("/diplome/{compagnieId}/{userHigerCivilDiplom}")
+    public String stats2(@PathVariable String userHigerCivilDiplom, @PathVariable Long compagnieId, Model model){
+
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        List<User> users1=userRepository.findAllByUserHigerCivilDiplom(userHigerCivilDiplom);
+        model.addAttribute("users",sort(users1,compagnie,sections));
+        model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
     }
 
