@@ -10,7 +10,7 @@
     <script th:src="@{/js/popper.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/jquery.dataTables.min.js}"></script>
-    <script th:src="@{/js/dataTable/courses.js}" type="text/javascript"></script>
+    <script th:src="@{/js/dataTable/users.js}" type="text/javascript"></script>
     <link th:href="@{/css/bootstrap.min.css}" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" rel="stylesheet">
 
     <link th:href="@{/fontAwesome/css/font-awesome.min.css}" rel="stylesheet">
@@ -38,7 +38,7 @@
                         <li class="nav-item">
                             <a class="nav-link " th:href="@{/compagnie/all}">Retour</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link " th:href="@{/compagnie/statistique/}+${compagnie.compagnieId}">Statistiques</a>
                         </li>
                     </ul>
@@ -50,7 +50,130 @@
     </nav>
     <br>
 
-    <h3 class="text-center">ENSEMBLE DES STATISTIQUES DE LA <strong th:text="${compagnie.compagnieName}"></strong></h3>
+    <h3 class="text-center">Paramètres de trie</strong></h3>
+    <div class="row mb-2">
+        <div class="col-2">
+        <select class="form-control">
+            <option required>LANGUE PARLEE</option>
+            <option>FRANCAIS</option>
+            <option>ANGLAIS</option>
+            <option>FRANCAIS ET ANGLAIS</option>
+        </select>
+        </div>
+        <div class="col-2">
+        <select class="form-control" type="text"  >
+            <option selected>REGION</option>
+            <option value="ADAMAOUA">ADAMAOUA</option>
+            <option value="CENTRE">CENTRE</option>
+            <option value="EXTREME-NORD">EXTREME-NORD</option>
+            <option value="EST">EST</option>
+            <option value="LITORAL">LITTORAL</option>
+            <option value="OUEST">OUEST</option>
+            <option value="NORD">NORD</option>
+            <option value="NORD-OUEST">NORD-OUEST</option>
+            <option value="SUD">SUD</option>
+            <option value="SUD-OUEST">SUD-OUEST</option>
+        </select>
+        </div>
+
+        <div class="col-2">
+            <select class="form-control" type="text"  >
+                <option selected>ETHNIE</option>
+                <option>GBAYA</option>
+            </select>
+        </div>
+
+
+        <div class="col-2">
+            <select class="form-control" type="text"  >
+                <option selected>RELIGION </option>
+                <option>CATHOLIQUE</option>
+                <option>PROTESTANT</option>
+                <option>MULSULMAN</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <select class="form-control" type="text"  >
+                <option selected>SPORT</option>
+                <option>FOOTBALL</option>
+                <option>BASKETBALL</option>
+                <option>VOLLEYBALL</option>
+                <option>NATATION</option>
+                <option>TENIS</option>
+                <option>KARATE</option>
+                <option>BOX</option>
+                <option>KUNG FU</option>
+            </select>
+        </div>
+
+
+        <div class="col-2">
+            <select class="form-control" type="text"  >
+                <option selected>DEPARTEMENT</option>
+                <option>MOUNGO</option>
+            </select>
+        </div>
+
+
+</div>
+    <div class="row mb-2">
+        <div class="col-2">
+            <select class="form-control" type="text"  >
+                <option selected>NAGEUR </option>
+                <option>OUI</option>
+                <option>NON</option>
+            </select>
+        </div>
+
+        <div class="col-3">
+            <select class="form-control" type="text"  >
+                <option selected>DIPLOME LE PLUS ELEVE</option>
+                <option>MASTER</option>
+                <option>LICENCE</option>
+                <option>BACCALAUREAT</option>
+                <option>PROBATOIRE</option>
+                <option>BEPC</option>
+                <option>CEP</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <select class="form-control" type="text"  >
+                <option selected>MARQUES PARTICULIERES</option>
+                <option>CICATRICE AUX PIEDS</option>
+            </select>
+        </div>
+
+        <div class="col-2">
+            <select class="form-control" type="text"  >
+                <option selected>PAS DE PERMIS </option>
+                <option>OUI</option>
+                <option>NON</option>
+            </select>
+        </div>
+
+
+        <div class="col-2">
+            <select class="form-control" type="text"  >
+                <option selected>PERMIS CIVIL </option>
+                <option>OUI</option>
+                <option>NON</option>
+            </select>
+        </div>
+    </div>
+    <h4>Nombre: <span th:text="$users.size"></span></h4>
+    <div class="mt-3">
+        <table  class="table table-bordered table-hover table-lg display mt-3" id="user">
+            <thead class="text-white bg-secondary">
+            <th>Nom</th>
+            <th>Matricule Militaire</th>
+            <th>Region</th>
+            <th>Email</th>
+            <th>Numéro personnel</th>
+            <th>Actions</th>
+            </thead>
+        </table>
+    </div>
+
 
 </div>
 <script type="text/javascript">
