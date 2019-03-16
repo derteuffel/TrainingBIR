@@ -7,6 +7,7 @@ import com.derteuffel.repository.CompagnieRepository;
 import com.derteuffel.repository.SectionRepository;
 import com.derteuffel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -49,8 +50,8 @@ public class CompagnieController {
         return "compagnie/detail";
     }
 
-    @GetMapping("/statistique/{compagnieId}")
-    public String statiques(@PathVariable Long compagnieId, Model model){
+    @GetMapping("/jouer/foot/{compagnieId}")
+    public String foots(@PathVariable Long compagnieId, Model model){
         Compagnie compagnie= compagnieRepository.getOne(compagnieId);
         List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
         model.addAttribute("compagnie", compagnie);
@@ -58,43 +59,176 @@ public class CompagnieController {
         for (Section section : sections){
             users.addAll(userRepository.findBySection(section.getSectionId()));
         }
-        System.out.println(users.size());
-        List<String> languages= new ArrayList<>();
-        List<User> parlerFrancais= new ArrayList<>();
-        List<User> parlerAnglais= new ArrayList<>();
-        List<User> ecrireAnglais= new ArrayList<>();
+
+        List<User> foots= new ArrayList<>();
+        for (User user : users){
+            for(String sport : user.getSports())
+            {
+                if (sport.contains("FOOT")) {
+                    foots.add(user);
+                }
+            }
+
+        }
+
+        model.addAttribute("users", foots);
+        return"compagnie/statistique";
+    }
+    @GetMapping("/jouer/hand/{compagnieId}")
+    public String hands(@PathVariable Long compagnieId, Model model){
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        model.addAttribute("compagnie", compagnie);
+        List<User> users= new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
+        List<User> foots= new ArrayList<>();
+        for (User user : users){
+            for(String sport : user.getSports())
+            {
+                if (sport.contains("HAND")) {
+                    foots.add(user);
+                }
+            }
+
+        }
+
+        model.addAttribute("users", foots);
+        return"compagnie/statistique";
+    }
+    @GetMapping("/jouer/basket/{compagnieId}")
+    public String baskets(@PathVariable Long compagnieId, Model model){
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        model.addAttribute("compagnie", compagnie);
+        List<User> users= new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
+        List<User> foots= new ArrayList<>();
+        for (User user : users){
+            for(String sport : user.getSports())
+            {
+                if (sport.contains("BASKET")) {
+                    foots.add(user);
+                }
+            }
+
+        }
+
+        model.addAttribute("users", foots);
+        return"compagnie/statistique";
+    }
+    @GetMapping("/jouer/volley/{compagnieId}")
+    public String volleys(@PathVariable Long compagnieId, Model model){
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        model.addAttribute("compagnie", compagnie);
+        List<User> users= new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
+        List<User> foots= new ArrayList<>();
+        for (User user : users){
+            for(String sport : user.getSports())
+            {
+                if (sport.contains("VOL")) {
+                    foots.add(user);
+                }
+            }
+
+        }
+
+        model.addAttribute("users", foots);
+        return"compagnie/statistique";
+    }
+    @GetMapping("/jouer/karate/{compagnieId}")
+    public String karates(@PathVariable Long compagnieId, Model model){
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        model.addAttribute("compagnie", compagnie);
+        List<User> users= new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
+        List<User> foots= new ArrayList<>();
+        for (User user : users){
+            for(String sport : user.getSports())
+            {
+                if (sport.contains("KARAT")) {
+                    foots.add(user);
+                }
+            }
+
+        }
+
+        model.addAttribute("users", foots);
+        return"compagnie/statistique";
+    }
+    @GetMapping("/jouer/tennis/{compagnieId}")
+    public String tennis(@PathVariable Long compagnieId, Model model){
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        model.addAttribute("compagnie", compagnie);
+        List<User> users= new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
+        List<User> foots= new ArrayList<>();
+        for (User user : users){
+            for(String sport : user.getSports())
+            {
+                if (sport.contains("TEN")) {
+                    foots.add(user);
+                }
+            }
+
+        }
+
+        model.addAttribute("users", foots);
+        return"compagnie/statistique";
+    }
+    @GetMapping("/jouer/kung_fu/{compagnieId}")
+    public String kung_fu(@PathVariable Long compagnieId, Model model){
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        model.addAttribute("compagnie", compagnie);
+        List<User> users= new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
+        List<User> foots= new ArrayList<>();
+        for (User user : users){
+            for(String sport : user.getSports())
+            {
+                if (sport.contains("KUNG")) {
+                    foots.add(user);
+                }
+            }
+
+        }
+
+        model.addAttribute("users", foots);
+        return"compagnie/statistique";
+    }
+    @GetMapping("/ecrire/francais/{compagnieId}")
+    public String ecrireFrancais(@PathVariable Long compagnieId, Model model){
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        model.addAttribute("compagnie", compagnie);
+        List<User> users= new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
         List<User> ecrireFrancais= new ArrayList<>();
-        for (User user : users){
-            for(String language : user.getTalkingLanguages())
-            {
-                if (language.contains("FRANCAIS")) {
-                    parlerFrancais.add(user);
-                }
-            }
-
-        }
-        model.addAttribute("parlerFrancais", parlerFrancais);
-        for (User user : users){
-            for(String language : user.getTalkingLanguages())
-            {
-                if (language.contains("ENGL")|language.contains("ANGL")) {
-                    parlerAnglais.add(user);
-                }
-            }
-
-        }
-        model.addAttribute("parlerAnglais",parlerAnglais);
-
-        for (User user : users){
-            for(String language : user.getWhritingLanguages())
-            {
-                if (language.contains("ENGL")|language.contains("ANGL")) {
-                    ecrireAnglais.add(user);
-                }
-            }
-
-        }
-        model.addAttribute("ecrireAnglais", ecrireAnglais);
         for (User user : users){
             for(String language : user.getWhritingLanguages())
             {
@@ -104,9 +238,117 @@ public class CompagnieController {
             }
 
         }
-        model.addAttribute("ecrireFrancais", ecrireFrancais);
-        System.out.println(parlerFrancais);
 
+        model.addAttribute("users", ecrireFrancais);
+        return"compagnie/statistique";
+    }
+    @GetMapping("/ecrire/anglais/{compagnieId}")
+    public String anglais(@PathVariable Long compagnieId, Model model){
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        model.addAttribute("compagnie", compagnie);
+        List<User> users= new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
+        List<User> ecrireAnglais= new ArrayList<>();
+        for (User user : users){
+            for(String language : user.getWhritingLanguages())
+            {
+                if (language.contains("ENGL")|language.contains("ANGL")) {
+                    ecrireAnglais.add(user);
+                }
+            }
+
+        }
+
+        model.addAttribute("users", ecrireAnglais);
+        return"compagnie/statistique";
+    }
+    @GetMapping("/parler/francais/anglais/{compagnieId}")
+    public String francaisEtAnglais(@PathVariable Long compagnieId, Model model){
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        model.addAttribute("compagnie", compagnie);
+        List<User> users= new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
+        List<User> parlerFrancaisEtAnglais= new ArrayList<>();
+        for (User user : users){
+            for(String language : user.getTalkingLanguages())
+            {
+                if (language.contains("FRANCAIS")&language.contains("ANGL")) {
+                    parlerFrancaisEtAnglais.add(user);
+                }
+            }
+
+        }
+
+        model.addAttribute("users", parlerFrancaisEtAnglais);
+        return"compagnie/statistique";
+    }
+    @GetMapping("/parler/anglais/{compagnieId}")
+    public String parlerFrancais(@PathVariable Long compagnieId, Model model){
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        model.addAttribute("compagnie", compagnie);
+        List<User> users= new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
+        List<User> parlerAnglais= new ArrayList<>();
+        for (User user : users){
+            for(String language : user.getTalkingLanguages())
+            {
+                if (language.contains("ENGL")|language.contains("ANGL")) {
+                    parlerAnglais.add(user);
+                }
+            }
+
+        }
+
+
+        model.addAttribute("users", parlerAnglais);
+        return"compagnie/statistique";
+    }
+
+    @GetMapping("/ecrire/francais/anglais/{compagnieId}")
+    public String statiques(@PathVariable Long compagnieId, Model model){
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        model.addAttribute("compagnie", compagnie);
+        List<User> users= new ArrayList<>();
+        for (Section section : sections){
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+
+        List<User> ecrireFrancaisEtAnglais= new ArrayList<>();
+
+        for (User user : users){
+            for(String language : user.getWhritingLanguages())
+            {
+                if (language.contains("FRANCAIS")& language.contains("ANGL")) {
+                    ecrireFrancaisEtAnglais.add(user);
+                }
+            }
+
+        }
+
+        for (User user : users){
+            for(String sport : user.getSports())
+            {
+                if (sport.contains("FOOT")) {
+                    ecrireFrancaisEtAnglais.add(user);
+                }
+            }
+
+        }
+
+        model.addAttribute("users", ecrireFrancaisEtAnglais);
         return "compagnie/statistique";
     }
 
@@ -155,6 +397,16 @@ public class CompagnieController {
 
         Compagnie compagnie= compagnieRepository.getOne(compagnieId);
         List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        List<User> users=new ArrayList<>();
+        for (Section section : sections){
+
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+        List<String> diplom= new ArrayList<>();
+        for (User user : users){
+            diplom.add(user.getUserHigerCivilDiplom());
+        }
+        System.out.println(diplom);
         List<User> users1=userRepository.findAllByUserHigerCivilDiplom(userHigerCivilDiplom);
         model.addAttribute("users",sort(users1,compagnie,sections));
         model.addAttribute("compagnie", compagnie);
