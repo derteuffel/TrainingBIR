@@ -518,6 +518,15 @@ public class UserController {
         return "user/update/signalement";
     }
 
+    @GetMapping("/section/add/{userId}")
+    public String addSection(@PathVariable Long userId, Model model){
+        User user =userRepository.getOne(userId);
+        model.addAttribute("user", user);
+        model.addAttribute("sections",sectionRepository.findAll());
+
+        return "user/sectionAddForm";
+
+    }
 
 
 }

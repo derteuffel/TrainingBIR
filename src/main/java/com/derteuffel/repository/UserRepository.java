@@ -23,4 +23,17 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findBySection(@Param("id") Long sectionId);
 
     List<User> findAllByStatus(long status);
+
+    List<User> findAllByUserRegion(String userRegion);
+    List<User> findAllByUserEthnie(String userEthnie);
+    List<User> findAllBySports(List<String> sports);
+    List<User> findAllByUserDivision(String userDivision);
+    List<User> findAllByUserHigerCivilDiplom(String userHigerCivilDiplom);
+    List<User> findAllByTalkingLanguages(List<String> talkingLanguages);
+    List<User> findAllByWhritingLanguages(List<String> whritingLanguages);
+    List<User> findAllBySwimmingStatus(Boolean swimmingStatus);
+    List<User> findAllByUserReligion(String userReligion);
+    List<User> findAllByParticularMarks(List<String> particularMarks);
+    List<User> findAllByDriveWithNoDriverLicence(String driveWithNoDriverLicence);
+    List<User> findAllByCivilDriverLicencceCategory(String civilDriverLicencceCategory);
 }

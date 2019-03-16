@@ -50,20 +50,8 @@
     </nav>
     <br>
 
-    <h3 class="text-center">ENSEMBLE DES SECTIONS DE LA <strong th:text="${compagnie.compagnieName}"></strong></h3>
-    <div class="row" >
-        <div class="col-md-3 mt-3 text-center" th:each="section : ${sections}">
-            <a th:href="@{/section/detail/}+${section.sectionId}" class="btn" >
-                <img class="card-img-top" th:src="${section.sectionAvatar}" alt="Card image cap" style="height: 200px; border-radius: 50%">
-            </a>
-            <br>
-            <a class="btn btn-warning rounded-circle" th:href="@{/section/edit/form/}+${section.sectionId}"><i class="fa fa-pencil"></i></a>
-        </div>
-    </div>
-    <!-- add these button -->
-    <a th:href="@{/section/add/form}" class="addButton btn btn-primary rounded-circle">
-        <i class="fa fa-plus"></i>
-    </a>
+    <h3 class="text-center">ENSEMBLE DES STATISTIQUES DE LA <strong th:text="${compagnie.compagnieName}"></strong></h3>
+
 </div>
 <script type="text/javascript">
     $(document).ready(function () {

@@ -21,6 +21,7 @@ $(document).ready( function () {
                     var str3='';
                     str3 += '<a href="/user/detail/'+mData+'" class="btn btn-success rounded-circle"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;';
                     str3 += '<a href="/user/delete/'+mData+'" class="btn btn-danger rounded-circle"><i class="fa fa-trash"></i></a>';
+                    str3 += '<a href="/user/section/add/'+mData+'" class="btn btn-primary rounded-circle"><i class="fa fa-plus"></i></a>';
                     return str3;
                 }}
 
