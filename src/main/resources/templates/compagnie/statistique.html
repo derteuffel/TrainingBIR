@@ -70,37 +70,9 @@
             <div class=" btn-group dropup">
                 <button class="btn btn-light " data-toggle="dropdown" id="region">REGION</button>
                 <ul class="dropdown-menu" aria-labelledby="region">
-                    <li class="dropdown-item">
-                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId} + '/ADAMAOUA'" style="color:black">ADAMAOUA</a>
+                    <li class="dropdown-item" th:each="region: ${regions}">
+                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId} + '/'+ $region" th:text="${region}" style="color:black"></a>
                         </li>
-                    <li class="dropdown-item">
-                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/CENTRE'" style="color:black">CENTRE</a>
-                        </li>
-                    <li class="dropdown-item">
-                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/EXTREME-NORD'" style="color:black">EXTREME-NORD</a>
-                        </li>
-                    <li class="dropdown-item">
-                    <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/EST'" style="color:black">EST</a>
-                        </li>
-                    <li class="dropdown-item">
-                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/LITTORAL'" style="color:black">LITTORAL</a>
-                        </li>
-                    <li class="dropdown-item">
-                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/OUEST'" style="color:black">OUEST</a>
-                       </li>
-                    <li class="dropdown-item">
-                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/OUEST'" style="color:black">NORD</a>
-                        </li>
-                    <li class="dropdown-item">
-                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/NORD-OUEST'" style="color:black">NORD-OUEST</a>
-                        </li>
-                    <li class="dropdown-item">
-                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/SUD'" style="color:black">SUD</a>
-                    </li>
-                    <li class="dropdown-item">
-                    <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/SUD-OUEST'" style="color:black">SUD-OUEST</a>
-                    </li>
-
                 </ul>
             </div>
         </div>
