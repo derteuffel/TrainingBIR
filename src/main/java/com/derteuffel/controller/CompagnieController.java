@@ -402,13 +402,16 @@ public class CompagnieController {
 
             users.addAll(userRepository.findBySection(section.getSectionId()));
         }
-        List<String> diplom= new ArrayList<>();
+        List<User> usersDiplomes= new ArrayList<>();
         for (User user : users){
-            diplom.add(user.getUserHigerCivilDiplom());
+
+            if(userHigerCivilDiplom.contains(user.getUserHigerCivilDiplom()))
+            {
+
+                usersDiplomes.add(user);
+            }
         }
-        System.out.println(diplom);
-        List<User> users1=userRepository.findAllByUserHigerCivilDiplom(userHigerCivilDiplom);
-        model.addAttribute("users",sort(users1,compagnie,sections));
+        model.addAttribute("users",usersDiplomes);
         model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
     }

@@ -10,7 +10,7 @@
     <script th:src="@{/js/popper.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <script th:src="@{/js/jquery.dataTables.min.js}"></script>
-    <script th:src="@{/js/dataTable/users.js}" type="text/javascript"></script>
+    <script th:src="@{/js/dataTable/courses.js}" type="text/javascript"></script>
     <link th:href="@{/css/bootstrap.min.css}" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" rel="stylesheet">
 
     <link th:href="@{/fontAwesome/css/font-awesome.min.css}" rel="stylesheet">
@@ -160,9 +160,9 @@
             </select>
         </div>
     </div>
-    <h4>Nombre: <span th:text="$users.size"></span></h4>
+    <h4>Nombre: <span th:text="${#lists.size(users)}"></span></h4>
     <div class="mt-3">
-        <table  class="table table-bordered table-hover table-lg display mt-3" id="user">
+        <table  class="table table-bordered table-hover table-lg display mt-3" id="data">
             <thead class="text-white bg-secondary">
             <th>Nom</th>
             <th>Matricule Militaire</th>
@@ -171,6 +171,28 @@
             <th>Numéro personnel</th>
             <th>Actions</th>
             </thead>
+            <tbody>
+
+            <tr th:each="user: ${users}">
+                <td th:text="${user.userName}" ></td>
+                <td th:text="${user.userMilitaryCode}" ></td>
+                <td th:text="${user.userRegion}" ></td>
+                <td th:text="${user.userEmail}" ></td>
+                <td th:text="${user.userPersonalTelephonNumber}" ></td>
+                <td>
+                    <a href="@{'/user/detail/' + ${user.userId}}" class="btn btn-success rounded-circle">
+                    <i class="fa fa-eye"></i>
+                    </a>
+                    <a href="@{'/user/delete/' + ${user.userId}}" class="btn btn-danger rounded-circle">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                    <a href="@{'/user/section/add/' + ${user.userId}}" class="btn btn-primary rounded-circle">
+                        <i class="fa fa-plus"></i>
+                    </a>>
+                </td>
+
+            </tr>
+            </tbody>
         </table>
     </div>
 
