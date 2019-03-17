@@ -160,7 +160,7 @@
             </select>
         </div>
     </div>
-    <h4>Nombre: <span th:text="$users.size"></span></h4>
+    <h4>Nombre: <span th:text="${#lists.size(users)}"></span></h4>
     <div class="mt-3">
         <table  class="table table-bordered table-hover table-lg display mt-3" id="user">
             <thead class="text-white bg-secondary">
