@@ -94,16 +94,9 @@
             <div class=" btn-group">
                 <button class="btn btn-light " data-toggle="dropdown" id="religion">RELIGION</button>
                 <ul class="dropdown-menu" aria-labelledby="religion">
-                    <li class="dropdown-item">
-                        <a th:href="@{/compagnie/religion/} + ${compagnie.compagnieId} + '/CATHOLIQUE'" style="color:black">CATHOLIQUE</a>
+                    <li th:each="religion : ${religions}" class="dropdown-item">
+                        <a th:text="${religion}" th:href="@{/compagnie/departement/} + ${compagnie.compagnieId} + '/' + ${religion}" style="color:black"></a>
                     </li>
-                    <li class="dropdown-item">
-                        <a th:href="@{/compagnie/religion/} + ${compagnie.compagnieId} + '/PROTESTANT'" style="color:black">PROTESTANT</a>
-                    </li>
-                    <li class="dropdown-item">
-                        <a th:href="@{/compagnie/religion/} + ${compagnie.compagnieId} + '/MULSULMAN'" style="color:black">MULSULMAN </a>
-                    </li>
-
                 </ul>
             </div>
         </div>
@@ -122,23 +115,33 @@
             </select>
         </div>
 
-
         <div class="col-2">
-            <select class="form-control" type="text"  >
-                <option selected>DEPARTEMENT</option>
-                <option>MOUNGO</option>
-            </select>
+            <div class="dropup btn-group">
+                <button class="btn btn-light " data-toggle="dropdown" id="departement">DEPARTEMENT</button>
+                <ul class="dropdown-menu" aria-labelledby="departement">
+                    <li th:each="departement : ${departements}" class="dropdown-item">
+                        <a th:text="${departement}" th:href="@{/compagnie/departement/} + ${compagnie.compagnieId} + '/' + ${departement}" style="color:black"></a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
 
 </div>
     <div class="row mb-2">
+
         <div class="col-2">
-            <select class="form-control" type="text"  >
-                <option selected>NAGEUR </option>
-                <option>OUI</option>
-                <option>NON</option>
-            </select>
+            <div class="dropup btn-group">
+                <button class="btn btn-light " data-toggle="dropdown" id="nageur">NAGEUR</button>
+
+                <ul class="dropdown-menu" aria-labelledby="nageur">
+
+                    <li th:each="nageur : ${nageur}" class="dropdown-item">
+                        <a th:text="${nageur}" th:href="@{/compagnie/nageur/} + ${compagnie.compagnieId} + '/' + ${nageur}" style="color:black"></a>
+                    </li>
+
+                </ul>
+            </div>
         </div>
 
         <div class="col-3">
@@ -156,21 +159,33 @@
         </div>
 
         <div class="col-2">
-            <select class="form-control" type="text"  >
-                <option selected>PAS DE PERMIS </option>
-                <option>OUI</option>
-                <option>NON</option>
-            </select>
+            <div class="dropup btn-group">
+                <button class="btn btn-light " data-toggle="dropdown" id="noPermit">PAS DE PERMIS</button>
+
+                <ul class="dropdown-menu" aria-labelledby="noPermit">
+
+                    <li th:each="sansPermi : ${sansPermis}" class="dropdown-item">
+                        <a th:text="${sansPermi}" th:href="@{/compagnie/conduire/sans/} + ${compagnie.compagnieId} + '/' + ${sansPermi}" style="color:black"></a>
+                    </li>
+
+                </ul>
+            </div>
         </div>
-
-
         <div class="col-2">
-            <select class="form-control" type="text"  >
-                <option selected>PERMIS CIVIL </option>
-                <option>OUI</option>
-                <option>NON</option>
-            </select>
+            <div class="dropup btn-group">
+                <button class="btn btn-light " data-toggle="dropdown" id="noPermit">PERMIS CIVIL</button>
+
+                <ul class="dropdown-menu" aria-labelledby="noPermit">
+
+                    <li th:each="permi : ${permis}" class="dropdown-item">
+                        <a th:text="${permi}" th:href="@{/compagnie/permis/} + ${compagnie.compagnieId} + '/' + ${permi}" style="color:black"></a>
+                       </li>
+
+                </ul>
+            </div>
         </div>
+
+
     </div>
     <h4>Nombre: <span th:text="${#lists.size(users)}"></span></h4>
     <div class="mt-3">
