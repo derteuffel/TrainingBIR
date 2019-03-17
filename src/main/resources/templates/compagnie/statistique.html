@@ -126,21 +126,17 @@
         </div>
 
         <div class="col-3">
-            <select class="form-control" type="text"  >
-                <option selected>DIPLOME LE PLUS ELEVE</option>
-                <option>MASTER</option>
-                <option>LICENCE</option>
-                <option>BACCALAUREAT</option>
-                <option>PROBATOIRE</option>
-                <option>BEPC</option>
-                <option>CEP</option>
-            </select>
-        </div>
-        <div class="col-3">
-            <select class="form-control" type="text"  >
-                <option selected>MARQUES PARTICULIERES</option>
-                <option>CICATRICE AUX PIEDS</option>
-            </select>
+            <div class="dropup btn-group">
+            <button class="btn btn-light " data-toggle="dropdown" id="diplom">DIPLOME LE PLUS ELEVE</button>
+
+            <ul class="dropdown-menu" aria-labelledby="diplom">
+
+                <li th:each="diplome : ${diplomes}" class="dropdown-item">
+                    <a th:text="${diplome}" th:href="@{/compagnie/diplome/} + ${compagnie.compagnieId} + '/' + ${diplome}" style="color:black"></a>
+                </li>
+
+            </ul>
+                </div>
         </div>
 
         <div class="col-2">
