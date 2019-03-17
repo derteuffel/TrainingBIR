@@ -405,7 +405,7 @@ public class CompagnieController {
         List<User> usersDiplomes= new ArrayList<>();
         for (User user : users){
 
-            if(userHigerCivilDiplom.contains(user.getUserHigerCivilDiplom()))
+            if(userHigerCivilDiplom.toUpperCase().contains(user.getUserHigerCivilDiplom().toUpperCase()))
             {
 
                 usersDiplomes.add(user);
