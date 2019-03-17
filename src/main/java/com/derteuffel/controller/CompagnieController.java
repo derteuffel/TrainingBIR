@@ -398,6 +398,9 @@ public class CompagnieController {
     }
     public List<String> removeDuplicates(List<String> list)
     {
+        if (list == null){
+            return new ArrayList<>();
+        }
 
         // Create a new ArrayList
         List<String> newList = new ArrayList<String>();
@@ -406,7 +409,8 @@ public class CompagnieController {
 
             // If this element is not present in newList
             // then add it
-            if (!newList.contains(element) && !element.isEmpty()) {
+
+            if (element !=null && !newList.contains(element) && !element.isEmpty()) {
 
                 newList.add(element);
             }
@@ -549,6 +553,30 @@ public class CompagnieController {
         return "compagnie/statistique";
     }
 
+    @GetMapping("/nageur/{compagnieId}/{swimmingStatus}")
+    public String nageur(@PathVariable Boolean swimmingStatus, @PathVariable Long compagnieId, Model model){
+        List<String> diploms = new ArrayList<>();
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        List<User> users=new ArrayList<>();
+        for (Section section : sections){
+
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+        List<User> usersDiplomes= new ArrayList<>();
+        for (User user : users){
+
+            if(swimmingStatus)
+            {
+
+                usersDiplomes.add(user);
+            }
+        }
+        model.addAttribute("users",usersDiplomes);
+        model.addAttribute("compagnie", compagnie);
+        return "compagnie/statistique";
+    }
+
     @GetMapping("/conduire/sans/{compagnieId}/{driveWithNoDriverLicence}")
     public String conduire(@PathVariable String driveWithNoDriverLicence, @PathVariable Long compagnieId, Model model){
         List<String> diploms = new ArrayList<>();
@@ -623,7 +651,7 @@ public class CompagnieController {
         List<String> sansPermis= new ArrayList<>();
         for (User user : users){
 
-            diploms.add(user.getCivilDriverLicencceCategory());
+            diploms.add(user.getUserHigerCivilDiplom());
             ethnies.add(user.getUserEthnie());
             regions.add(user.getUserRegion());
             religions.add(user.getUserReligion());
@@ -632,14 +660,21 @@ public class CompagnieController {
             sansPermis.add(user.getDriveWithNoDriverLicence());
         }
 
+        System.out.println(removeDuplicates(diploms));
+        System.out.println(removeDuplicates(ethnies));
+        System.out.println(removeDuplicates(regions));
+        System.out.println(removeDuplicates(religions));
+        System.out.println(removeDuplicates(departements));
+        System.out.println(removeDuplicates(permis));
+        System.out.println(removeDuplicates(sansPermis));
         model.addAttribute("users",users);
-        model.addAttribute("diploms",diploms);
-        model.addAttribute("ethnies",ethnies);
-        model.addAttribute("regions",regions);
-        model.addAttribute("religions",religions);
-        model.addAttribute("departements",departements);
-        model.addAttribute("permis",permis);
-        model.addAttribute("sansPermis",sansPermis);
+        model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
 
         return "compagnie/statistique";
 
