@@ -392,9 +392,27 @@ public class CompagnieController {
         model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
     }
+    public List<String> removeDuplicates(List<String> list)
+    {
+
+        // Create a new ArrayList
+        List<String> newList = new ArrayList<String>();
+        // Traverse through the first list
+        for (String element : list) {
+
+            // If this element is not present in newList
+            // then add it
+            if (!newList.contains(element) && !element.isEmpty()) {
+
+                newList.add(element);
+            }
+        }
+        // return the new list
+        return newList;
+    }
     @GetMapping("/diplome/{compagnieId}/{userHigerCivilDiplom}")
     public String stats2(@PathVariable String userHigerCivilDiplom, @PathVariable Long compagnieId, Model model){
-
+        List<String> diploms = new ArrayList<>();
         Compagnie compagnie= compagnieRepository.getOne(compagnieId);
         List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
         List<User> users=new ArrayList<>();
@@ -410,7 +428,10 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
+            diploms.add(user.getUserHigerCivilDiplom());
         }
+
+        model.addAttribute("diplomes",removeDuplicates(diploms));
         model.addAttribute("users",usersDiplomes);
         model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
