@@ -52,46 +52,90 @@
 
     <h3 class="text-center">Paramètres de trie</strong></h3>
     <div class="row mb-2">
+
         <div class="col-2">
-        <select class="form-control">
-            <option required>LANGUE PARLEE</option>
-            <option>FRANCAIS</option>
-            <option>ANGLAIS</option>
-            <option>FRANCAIS ET ANGLAIS</option>
-        </select>
+                <div class=" btn-group">
+                    <button class="btn btn-light " data-toggle="dropdown" id="langue">LANGUE PARLEE</button>
+                    <ul class="dropdown-menu" aria-labelledby="langue">
+                        <li class="dropdown-item">
+                            <a th:href="@{/compagnie/parler/francais/} + ${compagnie.compagnieId}" style="color:black">FRANCAIS</a>
+                        </li> <li class="dropdown-item">
+                            <a th:href="@{/compagnie/parler/anglais/} + ${compagnie.compagnieId}" style="color:black">ANGLAIS</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        <div class="col-2">
+            <div class=" btn-group dropup">
+                <button class="btn btn-light " data-toggle="dropdown" id="region">REGION</button>
+                <ul class="dropdown-menu" aria-labelledby="region">
+                    <li class="dropdown-item">
+                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId} + '/ADAMAOUA'" style="color:black">ADAMAOUA</a>
+                        </li>
+                    <li class="dropdown-item">
+                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/CENTRE'" style="color:black">CENTRE</a>
+                        </li>
+                    <li class="dropdown-item">
+                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/EXTREME-NORD'" style="color:black">EXTREME-NORD</a>
+                        </li>
+                    <li class="dropdown-item">
+                    <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/EST'" style="color:black">EST</a>
+                        </li>
+                    <li class="dropdown-item">
+                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/LITTORAL'" style="color:black">LITTORAL</a>
+                        </li>
+                    <li class="dropdown-item">
+                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/OUEST'" style="color:black">OUEST</a>
+                       </li>
+                    <li class="dropdown-item">
+                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/OUEST'" style="color:black">NORD</a>
+                        </li>
+                    <li class="dropdown-item">
+                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/NORD-OUEST'" style="color:black">NORD-OUEST</a>
+                        </li>
+                    <li class="dropdown-item">
+                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/SUD'" style="color:black">SUD</a>
+                    </li>
+                    <li class="dropdown-item">
+                    <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId}  + '/SUD-OUEST'" style="color:black">SUD-OUEST</a>
+                    </li>
+
+                </ul>
+            </div>
         </div>
         <div class="col-2">
-        <select class="form-control" type="text"  >
-            <option selected>REGION</option>
-            <option value="ADAMAOUA">ADAMAOUA</option>
-            <option value="CENTRE">CENTRE</option>
-            <option value="EXTREME-NORD">EXTREME-NORD</option>
-            <option value="EST">EST</option>
-            <option value="LITORAL">LITTORAL</option>
-            <option value="OUEST">OUEST</option>
-            <option value="NORD">NORD</option>
-            <option value="NORD-OUEST">NORD-OUEST</option>
-            <option value="SUD">SUD</option>
-            <option value="SUD-OUEST">SUD-OUEST</option>
-        </select>
+            <div class="dropup btn-group">
+                <button class="btn btn-light " data-toggle="dropdown" id="ethnie">ETHNIE</button>
+
+                <ul class="dropdown-menu" aria-labelledby="ethnie">
+
+                    <li th:each="ethnie : ${ethnies}" class="dropdown-item">
+                        <a th:text="${ethnie}" th:href="@{/compagnie/ethnie/} + ${compagnie.compagnieId} + '/' + ${ethnie}" style="color:black"></a>
+                    </li>
+
+                </ul>
+            </div>
         </div>
 
         <div class="col-2">
-            <select class="form-control" type="text"  >
-                <option selected>ETHNIE</option>
-                <option>GBAYA</option>
-            </select>
+            <div class=" btn-group">
+                <button class="btn btn-light " data-toggle="dropdown" id="religion">RELIGION</button>
+                <ul class="dropdown-menu" aria-labelledby="religion">
+                    <li class="dropdown-item">
+                        <a th:href="@{/compagnie/religion/} + ${compagnie.compagnieId} + '/CATHOLIQUE'" style="color:black">CATHOLIQUE</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a th:href="@{/compagnie/religion/} + ${compagnie.compagnieId} + '/PROTESTANT'" style="color:black">PROTESTANT</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a th:href="@{/compagnie/religion/} + ${compagnie.compagnieId} + '/MULSULMAN'" style="color:black">MULSULMAN </a>
+                    </li>
+
+                </ul>
+            </div>
         </div>
 
-
-        <div class="col-2">
-            <select class="form-control" type="text"  >
-                <option selected>RELIGION </option>
-                <option>CATHOLIQUE</option>
-                <option>PROTESTANT</option>
-                <option>MULSULMAN</option>
-            </select>
-        </div>
         <div class="col-2">
             <select class="form-control" type="text"  >
                 <option selected>SPORT</option>
