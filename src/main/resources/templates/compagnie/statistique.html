@@ -242,13 +242,13 @@
                 <td th:text="${user.userEmail}" ></td>
                 <td th:text="${user.userPersonalTelephonNumber}" ></td>
                 <td>
-                    <a href="@{'/user/detail/' + ${user.userId}}" class="btn btn-success rounded-circle">
+                    <a th:href="@{/user/detail/} + ${user.userId}" class="btn btn-success rounded-circle">
                     <i class="fa fa-eye"></i>
                     </a>
-                    <a href="@{'/user/delete/' + ${user.userId}}" class="btn btn-danger rounded-circle">
+                    <a th:href="@{/user/delete/} + ${user.userId}" class="btn btn-danger rounded-circle">
                         <i class="fa fa-trash"></i>
                     </a>
-                    <a href="@{'/user/section/add/' + ${user.userId}}" class="btn btn-primary rounded-circle">
+                    <a th:href="@{/user/section/add/} + ${user.userId}" class="btn btn-primary rounded-circle">
                         <i class="fa fa-plus"></i>
                     </a>
                 </td>
