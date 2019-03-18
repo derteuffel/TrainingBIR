@@ -205,6 +205,13 @@ public class CompagnieController {
         }
 
         List<User> foots= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> diploms= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
             for(String sport : user.getSports())
             {
@@ -212,9 +219,23 @@ public class CompagnieController {
                     foots.add(user);
                 }
             }
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
 
         }
 
+        model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", foots);
         return"compagnie/statistique";
     }
@@ -224,6 +245,13 @@ public class CompagnieController {
         List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
         model.addAttribute("compagnie", compagnie);
         List<User> users= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> diploms= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (Section section : sections){
             users.addAll(userRepository.findBySection(section.getSectionId()));
         }
@@ -236,9 +264,23 @@ public class CompagnieController {
                     ecrireFrancais.add(user);
                 }
             }
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
 
         }
 
+        model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", ecrireFrancais);
         return"compagnie/statistique";
     }
@@ -253,6 +295,13 @@ public class CompagnieController {
         }
 
         List<User> ecrireAnglais= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> diploms= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
             for(String language : user.getWhritingLanguages())
             {
@@ -260,9 +309,22 @@ public class CompagnieController {
                     ecrireAnglais.add(user);
                 }
             }
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
 
         }
-
+        model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", ecrireAnglais);
         return"compagnie/statistique";
     }
@@ -277,6 +339,13 @@ public class CompagnieController {
         }
 
         List<User> parlerFrancaisEtAnglais= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> diploms= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
             for(String language : user.getTalkingLanguages())
             {
@@ -284,8 +353,23 @@ public class CompagnieController {
                     parlerFrancaisEtAnglais.add(user);
                 }
             }
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
+
 
         }
+        model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
 
         model.addAttribute("users", parlerFrancaisEtAnglais);
         return"compagnie/statistique";
@@ -301,6 +385,13 @@ public class CompagnieController {
         }
 
         List<User> parlerAnglais= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> diploms= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
             for(String language : user.getTalkingLanguages())
             {
@@ -308,10 +399,24 @@ public class CompagnieController {
                     parlerAnglais.add(user);
                 }
             }
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
+
 
         }
 
-
+        model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", parlerAnglais);
         return"compagnie/statistique";
     }
@@ -327,6 +432,14 @@ public class CompagnieController {
         }
 
         List<User> parlerAnglais= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> diploms= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
+
         for (User user : users){
             for(String language : user.getTalkingLanguages())
             {
@@ -335,9 +448,23 @@ public class CompagnieController {
                 }
             }
 
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
+
         }
 
-
+        model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", parlerAnglais);
         return"compagnie/statistique";
     }
@@ -353,6 +480,13 @@ public class CompagnieController {
         }
 
         List<User> ecrireFrancaisEtAnglais= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> diploms= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
 
         for (User user : users){
             for(String language : user.getWhritingLanguages())
@@ -361,19 +495,23 @@ public class CompagnieController {
                     ecrireFrancaisEtAnglais.add(user);
                 }
             }
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
 
         }
 
-        for (User user : users){
-            for(String sport : user.getSports())
-            {
-                if (sport.contains("FOOT")) {
-                    ecrireFrancaisEtAnglais.add(user);
-                }
-            }
-
-        }
-
+        model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", ecrireFrancaisEtAnglais);
         return "compagnie/statistique";
     }
@@ -398,6 +536,9 @@ public class CompagnieController {
     }
     public List<String> removeDuplicates(List<String> list)
     {
+        if (list == null){
+            return new ArrayList<>();
+        }
 
         // Create a new ArrayList
         List<String> newList = new ArrayList<String>();
@@ -406,7 +547,8 @@ public class CompagnieController {
 
             // If this element is not present in newList
             // then add it
-            if (!newList.contains(element) && !element.isEmpty()) {
+
+            if (element !=null && !newList.contains(element) && !element.isEmpty()) {
 
                 newList.add(element);
             }
@@ -425,6 +567,12 @@ public class CompagnieController {
             users.addAll(userRepository.findBySection(section.getSectionId()));
         }
         List<User> usersDiplomes= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
 
             if(userHigerCivilDiplom.toUpperCase().contains(user.getUserHigerCivilDiplom().toUpperCase()))
@@ -433,9 +581,21 @@ public class CompagnieController {
                 usersDiplomes.add(user);
             }
             diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
 
         model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
         model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
@@ -447,6 +607,12 @@ public class CompagnieController {
         Compagnie compagnie= compagnieRepository.getOne(compagnieId);
         List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
         List<User> users=new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (Section section : sections){
 
             users.addAll(userRepository.findBySection(section.getSectionId()));
@@ -459,10 +625,21 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserRegion());
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
-
         model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
         model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
@@ -479,6 +656,12 @@ public class CompagnieController {
             users.addAll(userRepository.findBySection(section.getSectionId()));
         }
         List<User> usersDiplomes= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
 
             if(userDivision.toUpperCase().contains(user.getUserDivision().toUpperCase()))
@@ -486,10 +669,21 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserDivision());
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
-
         model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
         model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
@@ -506,6 +700,12 @@ public class CompagnieController {
             users.addAll(userRepository.findBySection(section.getSectionId()));
         }
         List<User> usersDiplomes= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
 
             if(userEthnie.toUpperCase().contains(user.getUserEthnie().toUpperCase()))
@@ -513,10 +713,21 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserEthnie());
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
-
         model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
         model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
@@ -533,6 +744,12 @@ public class CompagnieController {
             users.addAll(userRepository.findBySection(section.getSectionId()));
         }
         List<User> usersDiplomes= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
 
             if(userReligion.toUpperCase().contains(user.getUserReligion().toUpperCase()))
@@ -540,10 +757,66 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserReligion());
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
+        }
+        model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
+        model.addAttribute("users",usersDiplomes);
+        model.addAttribute("compagnie", compagnie);
+        return "compagnie/statistique";
+    }
+
+    @GetMapping("/nageur/{compagnieId}/{swimmingStatus}")
+    public String nageur(@PathVariable Boolean swimmingStatus, @PathVariable Long compagnieId, Model model){
+        List<String> diploms = new ArrayList<>();
+        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
+        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
+        List<User> users=new ArrayList<>();
+        for (Section section : sections){
+
+            users.addAll(userRepository.findBySection(section.getSectionId()));
+        }
+        List<User> usersDiplomes= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
+        for (User user : users){
+
+            if(swimmingStatus)
+            {
+
+                usersDiplomes.add(user);
+            }
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
 
         model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
         model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
@@ -560,6 +833,12 @@ public class CompagnieController {
             users.addAll(userRepository.findBySection(section.getSectionId()));
         }
         List<User> usersDiplomes= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
 
             if(driveWithNoDriverLicence.toUpperCase().contains(user.getDriveWithNoDriverLicence().toUpperCase()))
@@ -567,10 +846,22 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getDriveWithNoDriverLicence());
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
 
         model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
         model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
@@ -587,6 +878,12 @@ public class CompagnieController {
             users.addAll(userRepository.findBySection(section.getSectionId()));
         }
         List<User> usersDiplomes= new ArrayList<>();
+        List<String> ethnies= new ArrayList<>();
+        List<String> regions= new ArrayList<>();
+        List<String> religions= new ArrayList<>();
+        List<String> departements= new ArrayList<>();
+        List<String> permis= new ArrayList<>();
+        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
 
             if(civilDriverLicencceCategory.toUpperCase().contains(user.getDriveWithNoDriverLicence().toUpperCase()))
@@ -594,10 +891,23 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getCivilDriverLicencceCategory());
+            diploms.add(user.getUserHigerCivilDiplom());
+            ethnies.add(user.getUserEthnie());
+            regions.add(user.getUserRegion());
+            religions.add(user.getUserReligion());
+            departements.add(user.getUserDivision());
+            permis.add(user.getCivilDriverLicencceCategory());
+            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
 
+
         model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
         model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
@@ -623,7 +933,7 @@ public class CompagnieController {
         List<String> sansPermis= new ArrayList<>();
         for (User user : users){
 
-            diploms.add(user.getCivilDriverLicencceCategory());
+            diploms.add(user.getUserHigerCivilDiplom());
             ethnies.add(user.getUserEthnie());
             regions.add(user.getUserRegion());
             religions.add(user.getUserReligion());
@@ -632,14 +942,21 @@ public class CompagnieController {
             sansPermis.add(user.getDriveWithNoDriverLicence());
         }
 
+        System.out.println(removeDuplicates(diploms));
+        System.out.println(removeDuplicates(ethnies));
+        System.out.println(removeDuplicates(regions));
+        System.out.println(removeDuplicates(religions));
+        System.out.println(removeDuplicates(departements));
+        System.out.println(removeDuplicates(permis));
+        System.out.println(removeDuplicates(sansPermis));
         model.addAttribute("users",users);
-        model.addAttribute("diploms",diploms);
-        model.addAttribute("ethnies",ethnies);
-        model.addAttribute("regions",regions);
-        model.addAttribute("religions",religions);
-        model.addAttribute("departements",departements);
-        model.addAttribute("permis",permis);
-        model.addAttribute("sansPermis",sansPermis);
+        model.addAttribute("diplomes",removeDuplicates(diploms));
+        model.addAttribute("ethnies",removeDuplicates(ethnies));
+        model.addAttribute("regions",removeDuplicates(regions));
+        model.addAttribute("religions",removeDuplicates(religions));
+        model.addAttribute("departements",removeDuplicates(departements));
+        model.addAttribute("permis",removeDuplicates(permis));
+        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
 
         return "compagnie/statistique";
 
