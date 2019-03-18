@@ -190,6 +190,7 @@ public class Excel {
         List<String> tmp = new ArrayList<>();
         long a =1;
         List<User> users = userRepository.findAllByStatus(true);
+        System.out.println(users);
         User user;
         List<Double> averages = new ArrayList<>();
         for(int i=0;i< users.size();i++)
@@ -205,9 +206,10 @@ public class Excel {
             }
 
             tmp.add(formatter.format(moyenne(averages)));
-        }
+
             datas.add(tmp);
             tmp= new ArrayList<>();
+        }
 
         return new FileSystemResource(create( workbook,headers,datas,"Utilisateurs, Matières et Moyennes" + ".xls"));
     }
