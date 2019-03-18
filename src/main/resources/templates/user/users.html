@@ -15,8 +15,6 @@
     <script th:src="@{/js/jquery.dataTables.min.js}"></script>
     <script th:src="@{/js/dataTafble/courses.js}" type="text/javascript"></script>
     <link th:href="@{/fontAwesome/css/font-awesome.min.css}" rel="stylesheet">
-    <link th:href="@{/fontAwesome/css/font-awesome.css}" rel="stylesheet">
-
 
 
 
@@ -92,10 +90,10 @@
     </nav>
     <br>
     <div class=" mb-3">
-        <h3 class="mt-3 pb-3 mb-4 font-italic border-bottom text-center" >TOUS LES SOLDATS/RECRUES</h3>
+        <h3 class="mt-3 pb-3 mb-4 font-italic border-bottom text-center" >TOUTES LES SOLDATS/RECRUES</h3>
         <div class="col-12 col-sm-12 col-lg-12" >
-            <table  class="table table-bordered table-hover table-lg display" id="user">
-                <thead class="text-white bg-secondary">
+            <table  class="table text-center table-hover  table-lg display" id="user">
+                <thead class="text-white text-center bg-secondary">
                 <th>Nom</th>
                 <th>Matricule Militaire</th>
                 <th>Region</th>
@@ -103,13 +101,99 @@
                 <th>Numero personnel</th>
                 <th>Actions</th>
                 </thead>
+                <tbody class="text-center">
+                <tr th:each="user : ${users}" >
+                    <td th:text="${user.userName}"></td>
+                    <td th:text="${user.userMilitaryCode}"></td>
+                    <td th:text="${user.userRegion}"></td>
+                    <td th:text="${user.userEmail}"></td>
+                    <td th:text="${user.userPersonalTelephonNumber}"></td>
+                    <td>
+                        <a th:href="@{'/user/detail/'+${user.userId}}" class="btn btn-success rounded-circle"><i class="fa fa-eye"></i></a>
+                        <button type="button" class="btn btn-danger rounded-circle" data-toggle="modal" data-target="#exampleModal">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <h3>Etes vous sure de vouloir supprimer définitivement cet Utilisateur?</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a type="button" class="btn btn-primary" th:href="@{/user/delete/{userId}(userId=${user.userId})}"><i class="fa fa-check"></i>&nbsp;Yes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+                </tbody>
             </table>
-            <!-- add these button -->
-            <a th:href="@{/user/add/form}" class="addButton btn btn-primary rounded-circle">
-                <i class="fa fa-plus"></i>
-            </a>
-            <!-- add these button -->
         </div>
+        <hr>
+        <br>
+        <h3 class="mt-3 pb-3 mb-4 font-italic border-bottom text-center" >TOUTES LES SOLDATS/RECRUES SANS SECTION</h3>
+        <div class="col-12 col-sm-12 col-lg-12" >
+            <table  class="table text-center table-hover  table-lg display" id="user1">
+                <thead class="text-white text-center bg-secondary">
+                <th>Nom</th>
+                <th>Matricule Militaire</th>
+                <th>Region</th>
+                <th>Email</th>
+                <th>Numero personnel</th>
+                <th>Actions</th>
+                </thead>
+                <tbody class="text-center">
+                <tr th:each="user1 : ${usersNoSections}" >
+                    <td th:text="${user1.userName}"></td>
+                    <td th:text="${user1.userMilitaryCode}"></td>
+                    <td th:text="${user1.userRegion}"></td>
+                    <td th:text="${user1.userEmail}"></td>
+                    <td th:text="${user1.userPersonalTelephonNumber}"></td>
+                    <td>
+                        <a th:href="@{'/user/detail/'+${user1.userId}}" class="btn btn-success rounded-circle"><i class="fa fa-eye"></i></a>
+                        <button type="button" class="btn btn-danger rounded-circle" data-toggle="modal" data-target="#exampleModale">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        <a th:href="@{'/user/section/add/'+${user1.userId}}" class="btn btn-primary rounded-circle"><i class="fa fa-eye"></i></a>
+                    </td>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModale" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <h3>Etes vous sure de vouloir supprimer définitivement cet Utilisateur?</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a type="button" class="btn btn-primary" th:href="@{/user/delete/{userId}(userId=${user1.userId})}"><i class="fa fa-check"></i>&nbsp;Yes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+        <!-- add these button -->
+        <a th:href="@{/user/add/form}" class="addButton btn btn-primary rounded-circle">
+            <i class="fa fa-plus"></i>
+        </a>
+        <!-- add these button -->
     </div>
     <hr>
     <a th:href="@{/home}" class="mx-auto pb-3 text-center">

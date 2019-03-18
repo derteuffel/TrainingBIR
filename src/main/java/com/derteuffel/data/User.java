@@ -1,6 +1,7 @@
 package com.derteuffel.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -150,8 +151,7 @@ public class User implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date enrollmentDate;
 
-    @NotNull
-    private long status;
+    private @NotNull Boolean status;
 
     @OneToMany(mappedBy = "user")
     private List<Observations> observationses;
@@ -184,7 +184,7 @@ public class User implements Serializable {
                 ArrayList<String> lastKnowledges, String lastKnowledge, ArrayList<String> sports, String sport,String rectifiedHeight, String height,
                 ArrayList<String> particularMarks, String particularMark, String hairColor, String noiseStatus, String eyesStatus, String faceStatus,
                 String foreHeadStatus, String dyedStatus, String militaryDriverLicencceCategory, String civilDriverLicencceCategory, String driveWithNoDriverLicence,
-                String anotherAboutUser, long status, String userBornPlace) {
+                String anotherAboutUser, Boolean status, String userBornPlace) {
         this.userId = userId;
         this.userName = userName;
         this.rectifiedHeight=rectifiedHeight;
@@ -281,16 +281,12 @@ public class User implements Serializable {
         this.userBornPlace = userBornPlace;
     }
 
-    public long getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(long status) {
+    public void setStatus(Boolean status) {
         this.status = status;
-    }
-
-    public long isStatus() {
-        return status;
     }
 
     public List<Observations> getObservationses() {

@@ -55,7 +55,7 @@
     <h3 class="text-center">RECRUES/SOLDATS DE LA <strong th:text="${section.sectionName}"></strong></h3>
 
       <table class="table text-center table-hover  table-lg display" id="sectionUsers">
-        <thead class="text-white bg-secondary">
+        <thead class="text-white text-center bg-secondary">
         <tr>
             <th>Nom</th>
             <th>Matricule Militaire</th>
@@ -65,7 +65,7 @@
             <th>Actions</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
         <tr th:each="user : ${users}" >
             <td th:text="${user.userName}"></td>
             <td th:text="${user.userMilitaryCode}"></td>
@@ -74,21 +74,25 @@
             <td th:text="${user.userPersonalTelephonNumber}"></td>
             <td>
                 <a th:href="@{'/user/detail/'+${user.userId}}" class="btn btn-success rounded-circl`e"><i class="fa fa-eye"></i></a>
-                <a data-toggle="modal" data-target="#modal-delete" th:attr="data-target='#modal-delete'+${user.userId}"  class="btn btn-danger rounded-circle" ><i class="fa fa-trash"></i></i>
-                </a>
+                <button type="button" class="btn btn-danger rounded-circle" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-trash"></i>
+                </button>
             </td>
-            <div class="modal card modal-warning alert-warning fade in" th:id="modal-delete+${user.userId}" >
-                <div class="modal-dialog">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header text-center alert-info">
-                            <h5 class="modal-title">Suppresion d'un element</h5>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <div class="modal-body text-center">
-                            <h3>Voulez vous vraiment supprimer cet element?</h3>
+                            <h3>Etes vous sure de vouloir supprimer définitivement cet Utilisateur?</h3>
                         </div>
-                        <div class="modal-footer text-center">
-                            <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Retour</button>
-                            <a  class="btn btn-success"  th:href="@{/user/delete/} + ${user.userId}"><i class="fa fa-check"></i>&nbsp;Oui</a>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a type="button" class="btn btn-primary" th:href="@{/user/delete/{userId}(userId=${user.userId})}"><i class="fa fa-check"></i>&nbsp;Yes</a>
                         </div>
                     </div>
                 </div>

@@ -20,8 +20,8 @@ public class UserRestController {
 
     @GetMapping("/user")
     public List<User> user(){
-        long a=1;
-        List<User> users= userRepository.findAllByStatus(a);
+
+        List<User> users= userRepository.findAllByStatus(true);
         return users;
     }
 

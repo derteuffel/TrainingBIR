@@ -98,15 +98,12 @@ public class SectionController {
 
         model.addAttribute("section",sectionRepository.getOne(sectionId));
         long a = 1;
-        List<User> allByStatus=userRepository.findAllByStatus(a);
         List<User> allBySection=userRepository.findBySection(sectionId);
         List<User>users=new ArrayList<>();
         for (User user: allBySection){
-            for (int i=0; i<allBySection.size();i++){
-                if (user.getStatus() == a){
+                if (user.getStatus() == true){
                     users.add(user);
                 }
-            }
         }
         List<Course> courses = courseRepository.findAll1();
         model.addAttribute("courses", courses);
@@ -164,15 +161,11 @@ public class SectionController {
     @GetMapping("/detail/{sectionId}")
     public String detail(Model model, @PathVariable Long sectionId){
         model.addAttribute("section",sectionRepository.getOne(sectionId));
-        long a = 1;
-        List<User> allByStatus=userRepository.findAllByStatus(a);
         List<User> allBySection=userRepository.findBySection(sectionId);
         List<User>users=new ArrayList<>();
         for (User user: allBySection){
-            for (int i=0; i<allBySection.size();i++){
-                if (user.getStatus() == a){
-                    users.add(user);
-                }
+            if (user.getStatus()== true){
+                users.add(user);
             }
         }
         model.addAttribute("users",users);
