@@ -78,7 +78,17 @@ public class UserController {
     }*/
 
     @GetMapping("/all")
-    public String users(){
+    public String users(Model model){
+        List<User> users=userRepository.findAllByStatus(true);
+        model.addAttribute("users",users);
+        List<User> usersNoSection= new ArrayList<>();
+        for (User user : users){
+            if (user.getSection() == null ){
+                usersNoSection.add(user);
+            }
+        }
+
+        model.addAttribute("usersNoSections",usersNoSection);
         return "user/users";
     }
 
@@ -105,7 +115,7 @@ public class UserController {
         String fileName= fileUploadService.storeFile(file);
         user.setUserAvatar("/downloadFile/"+fileName);
 
-        user.setStatus(a);
+        user.setStatus(true);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();
@@ -114,7 +124,7 @@ public class UserController {
     /**########## Update an user #########**/
     @PostMapping("/update")
     public String updateSignalement(User user){
-        user.setStatus(a);
+        user.setStatus(true);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();
@@ -155,7 +165,7 @@ public class UserController {
             user.setSpecialities(specialite);
         }
         user.setSpecialitie(null);
-        user.setStatus(a);
+        user.setStatus(true);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();
@@ -217,7 +227,7 @@ public class UserController {
 
         user.setParticularMark(null);
 
-        user.setStatus(a);
+        user.setStatus(true);
         userRepository.save(user);
 
         return "redirect:/user/detail/"+user.getUserId();
@@ -317,7 +327,7 @@ public class UserController {
             }
 
             user.setParticularMark(null);
-            user.setStatus(a);
+            user.setStatus(true);
 
             userRepository.save(user);
         }
@@ -416,7 +426,7 @@ public class UserController {
     @GetMapping("/users/courses/average")
     public String usersCoursesAverage(Model model) {
         List<Course> courses = courseRepository.findAll1();
-        List<User> users = userRepository.findAllByStatus(a);
+        List<User> users = userRepository.findAllByStatus(true);
         model.addAttribute("courses", courses);
         model.addAttribute("users",users);
         List<List<Double>> averages = new ArrayList<>();
@@ -465,7 +475,7 @@ public class UserController {
     @GetMapping("/delete/{userId}")
     public String delete(@PathVariable Long userId){
         User user= userRepository.getOne(userId);
-        user.setStatus(a);
+        user.setStatus(false);
         userRepository.save(user);
         return "redirect:/user/all";
     }
@@ -526,6 +536,20 @@ public class UserController {
 
         return "user/sectionAddForm";
 
+    }
+
+    @GetMapping("/section/null")
+    public String userWithNoSection(Model model){
+        List<User> allUsers=userRepository.findAllByStatus(true);
+        List<User> usersNoSection= new ArrayList<>();
+        for (User user : allUsers){
+            if (user.getSection().getSectionId() == null){
+                usersNoSection.add(user);
+            }
+        }
+
+        model.addAttribute("usersNoSection",usersNoSection);
+        return "user/users";
     }
 
 
