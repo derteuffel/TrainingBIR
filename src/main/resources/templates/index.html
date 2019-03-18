@@ -17,50 +17,41 @@
 </head>
 <body>
 <div class="container">
-    <div class="row" style="padding-right: 15px">
-        <div class="col-12 col-sm-6 col-lg-3">
-            <img th:src="@{/images/logo-bir.png}" style="width: 100%;height: inherit">
+
+    <div class="row" style="padding-right: 15px;padding-left:15px;">
+        <div class="col-12 col-sm-6 col-lg-3" style="background-color:#969c5c">
+            <img th:src="@{/images/logo2-bir.jpg}" style="width: 100%;height: inherit">
         </div>
-        <div class="col-12 col-sm-6 col-lg-9 alert-warning" style="padding: 4rem">
-            <h3 class="text-center">Bataillon d'Intervention Rapide</h3>
+        <div class="col-12 col-sm-6 col-lg-9 bgimg" style="background-color:#969c5c;padding: 4rem">
+            <h3 class="text-center text-light">Bataillon d'Intervention Rapide</h3>
         </div>
     </div>
-    <nav class="navbar navbar-expand-sm   navbar-light bg-light sticky-top" style="height: 6rem">
+    <nav class="navbar navbar-expand-sm   navbar-lightsticky-top" style="height: 6rem;background-color:#485d4c">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/home}">Acceuil <span class="sr-only">(current)</span></a>
+                <li class="nav-item active">
+                    <a class="nav-link   " th:href="@{/home}">Acceuil <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " th:href="@{/user/all}" href="#">Soldats/Recrues</a>
-                </li>
-                <!--li class="nav-item dropdown dmenu">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Our Service
-                    </a>
-                    <div class="dropdown-menu sm-menu">
-                        <a class="dropdown-item" href="#">service2</a>
-                        <a class="dropdown-item" href="#">service 2</a>
-                        <a class="dropdown-item" href="#">service 3</a>
-                    </div>
-                </li-->
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/compagnie/all}">Compagnies</a>
+                <li class="nav-item ">
+                    <a class="nav-link  text-white" th:href="@{/user/all}" href="#">Soldats/Recrues</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/user/users/courses/average}">Matières</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/stats/all}">Statistiques</a>
+                <li class="nav-item ">
+                    <a class="nav-link text-white" th:href="@{/compagnie/all}">Compagnies</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/about}">A Propos</a>
+                <li class="nav-item ">
+                    <a class="nav-link text-white" th:href="@{/user/users/courses/average}">Matières</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-white" th:href="@{/stats/all}">Statistiques</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link  text-white" th:href="@{/about}">A Propos</a>
                 </li>
                 <!-- <li class="nav-item dropdown dmenu">
                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -82,6 +73,13 @@
 
     <h3>Ici contenue a propos du deroulement des activité chez nous</h3>
 
+
+    <footer style="height:10rem;bottom:0;background-color:#969c5c;width:100%;padding:1rem">
+        <h4 class="text-center " style="color:white"><strong>BATAILLON D'INTERVENTION RAPIDE</strong></h4>
+        <a th:href="@{/home}" class="mx-auto pb-3 text-center">
+            <img alt="jQuery 2 DotNet" class="rounded mx-auto d-block" height="52px;" th:src="@{/images/logo1-bir.png}" style="display: block" width="208px;">
+        </a>
+    </footer>
 
 </div>
 <script type="text/javascript">
