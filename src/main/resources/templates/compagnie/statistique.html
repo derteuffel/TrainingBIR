@@ -54,31 +54,37 @@
     <div class="row mb-2">
 
         <div class="col-2">
+            <div class="dropup btn-group">
+                <button class="btn btn-primary " data-toggle="dropdown" id="departement">DEPARTEMENT</button>
+                <ul class="dropdown-menu" aria-labelledby="departement">
+                    <li th:each="departement : ${departements}" class="dropdown-item">
+                        <a th:text="${departement}" th:href="@{/compagnie/departement/} + ${compagnie.compagnieId} + '/' + ${departement}" style="color:black"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-2">
                 <div class=" btn-group">
-                    <button class="btn btn-light " data-toggle="dropdown" id="langue">LANGUE PARLEE</button>
+                    <button class="btn btn-primary " data-toggle="dropdown" id="langue">LANGUE PARLEE</button>
                     <ul class="dropdown-menu" aria-labelledby="langue">
                         <li class="dropdown-item">
                             <a th:href="@{/compagnie/parler/francais/} + ${compagnie.compagnieId}" style="color:black">FRANCAIS</a>
-                        </li> <li class="dropdown-item">
+                        </li>
+                        <li class="dropdown-item">
                             <a th:href="@{/compagnie/parler/anglais/} + ${compagnie.compagnieId}" style="color:black">ANGLAIS</a>
                         </li>
+
+                        <li class="dropdown-item">
+                            <a th:href="@{/compagnie/parler/francais/anglais/} + ${compagnie.compagnieId}" style="color:black">FRANCAIS ET ANGLAIS</a>
+                        </li>
+
 
                     </ul>
                 </div>
             </div>
         <div class="col-2">
             <div class=" btn-group dropup">
-                <button class="btn btn-light " data-toggle="dropdown" id="region">REGION</button>
-                <ul class="dropdown-menu" aria-labelledby="region">
-                    <li class="dropdown-item" th:each="region: ${regions}">
-                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId} + '/'+ $region" th:text="${region}" style="color:black"></a>
-                        </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="dropup btn-group">
-                <button class="btn btn-light " data-toggle="dropdown" id="ethnie">ETHNIE</button>
+                <button class="btn btn-primary " data-toggle="dropdown" id="ethnie">ETHNIE</button>
 
                 <ul class="dropdown-menu" aria-labelledby="ethnie">
 
@@ -89,10 +95,9 @@
                 </ul>
             </div>
         </div>
-
         <div class="col-2">
-            <div class=" btn-group">
-                <button class="btn btn-light " data-toggle="dropdown" id="religion">RELIGION</button>
+            <div class=" btn-group dropup">
+                <button class="btn btn-primary " data-toggle="dropdown" id="religion">RELIGION</button>
                 <ul class="dropdown-menu" aria-labelledby="religion">
                     <li th:each="religion : ${religions}" class="dropdown-item">
                         <a th:text="${religion}" th:href="@{/compagnie/departement/} + ${compagnie.compagnieId} + '/' + ${religion}" style="color:black"></a>
@@ -100,43 +105,28 @@
                 </ul>
             </div>
         </div>
-
-        <div class="col-2">
-            <select class="form-control" type="text"  >
-                <option selected>SPORT</option>
-                <option>FOOTBALL</option>
-                <option>BASKETBALL</option>
-                <option>VOLLEYBALL</option>
-                <option>NATATION</option>
-                <option>TENIS</option>
-                <option>KARATE</option>
-                <option>BOX</option>
-                <option>KUNG FU</option>
-            </select>
-        </div>
-
-        <div class="col-2">
+        <div class="col-3">
             <div class="dropup btn-group">
-                <button class="btn btn-light " data-toggle="dropdown" id="departement">DEPARTEMENT</button>
-                <ul class="dropdown-menu" aria-labelledby="departement">
-                    <li th:each="departement : ${departements}" class="dropdown-item">
-                        <a th:text="${departement}" th:href="@{/compagnie/departement/} + ${compagnie.compagnieId} + '/' + ${departement}" style="color:black"></a>
+                <button class="btn btn-primary " data-toggle="dropdown" id="diplom">DIPLOME LE PLUS ELEVE</button>
+
+                <ul class="dropdown-menu" aria-labelledby="diplom">
+
+                    <li th:each="diplome : ${diplomes}" class="dropdown-item">
+                        <a th:text="${diplome}" th:href="@{/compagnie/diplome/} + ${compagnie.compagnieId} + '/' + ${diplome}" style="color:black"></a>
                     </li>
+
                 </ul>
             </div>
         </div>
-
-
-</div>
+    </div>
     <div class="row mb-2">
-
         <div class="col-2">
-            <div class="dropup btn-group">
-                <button class="btn btn-light " data-toggle="dropdown" id="nageur">NAGEUR</button>
+            <div class="x` btn-group">
+                <button class="btn btn-primary " data-toggle="dropdown" id="nageur">NAGEUR</button>
 
                 <ul class="dropdown-menu" aria-labelledby="nageur">
 
-                    <li th:each="nageur : ${nageur}" class="dropdown-item">
+                    <li th:each="nageur : ${nageurs}" class="dropdown-item">
                         <a th:text="${nageur}" th:href="@{/compagnie/nageur/} + ${compagnie.compagnieId} + '/' + ${nageur}" style="color:black"></a>
                     </li>
 
@@ -144,23 +134,9 @@
             </div>
         </div>
 
-        <div class="col-3">
-            <div class="dropup btn-group">
-            <button class="btn btn-light " data-toggle="dropdown" id="diplom">DIPLOME LE PLUS ELEVE</button>
-
-            <ul class="dropdown-menu" aria-labelledby="diplom">
-
-                <li th:each="diplome : ${diplomes}" class="dropdown-item">
-                    <a th:text="${diplome}" th:href="@{/compagnie/diplome/} + ${compagnie.compagnieId} + '/' + ${diplome}" style="color:black"></a>
-                </li>
-
-            </ul>
-                </div>
-        </div>
-
         <div class="col-2">
             <div class="dropup btn-group">
-                <button class="btn btn-light " data-toggle="dropdown" id="noPermit">PAS DE PERMIS</button>
+                <button class="btn btn-primary " data-toggle="dropdown" id="noPermit">PAS DE PERMIS</button>
 
                 <ul class="dropdown-menu" aria-labelledby="noPermit">
 
@@ -173,20 +149,79 @@
         </div>
         <div class="col-2">
             <div class="dropup btn-group">
-                <button class="btn btn-light " data-toggle="dropdown" id="noPermit">PERMIS CIVIL</button>
+                <button class="btn btn-primary " data-toggle="dropdown" id="noPermit">PERMIS CIVIL</button>
 
                 <ul class="dropdown-menu" aria-labelledby="noPermit">
 
                     <li th:each="permi : ${permis}" class="dropdown-item">
                         <a th:text="${permi}" th:href="@{/compagnie/permis/} + ${compagnie.compagnieId} + '/' + ${permi}" style="color:black"></a>
-                       </li>
+                    </li>
 
                 </ul>
             </div>
         </div>
 
+        <div class="col-2">
+            <div class=" btn-group ">
+                <button class="btn btn-primary " data-toggle="dropdown" id="sport">SPORT</button>
+                <ul class="dropdown-menu" aria-labelledby="sport">
+                    <li class="dropdown-item">
+                        <a  th:href="@{/compagnie/jouer/foot/} + ${compagnie.compagnieId}" style="color:black">
+                            FOOTBALL
+                        </a>
+                    </li>
 
+                    <li class="dropdown-item">
+                        <a  th:href="@{/compagnie/jouer/hand/} + ${compagnie.compagnieId}" style="color:black">
+                            HANDBALL
+                        </a>
+                    </li>
+
+                    <li class="dropdown-item">
+                        <a  th:href="@{/compagnie/jouer/basket/} + ${compagnie.compagnieId}" style="color:black">
+                            BASKETBALL
+                        </a>
+                    </li>
+
+                    <li class="dropdown-item">
+                        <a  th:href="@{/compagnie/jouer/volley/} + ${compagnie.compagnieId}" style="color:black">
+                            VOLLEYBALL
+                        </a>
+                    </li>
+
+                    <li class="dropdown-item">
+                        <a  th:href="@{/compagnie/jouer/karate/} + ${compagnie.compagnieId}" style="color:black">
+                            KARATE
+                        </a>
+                    </li>
+
+
+                    <li class="dropdown-item">
+                        <a  th:href="@{/compagnie/jouer/tennis/} + ${compagnie.compagnieId}" style="color:black">
+                            TENNIS
+                        </a>
+                    </li>
+
+                    <li class="dropdown-item">
+                        <a  th:href="@{/compagnie/jouer/kung_fu/} + ${compagnie.compagnieId}" style="color:black">
+                            KUNG FU
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class=" btn-group dropup">
+                <button class="btn btn-primary " data-toggle="dropdown" id="region">REGION</button>
+                <ul class="dropdown-menu" aria-labelledby="region">
+                    <li class="dropdown-item" th:each="region: ${regions}">
+                        <a th:href="@{/compagnie/region/} + ${compagnie.compagnieId} + '/'+ ${region}" th:text="${region}" style="color:black"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
+
     <h4>Nombre: <span th:text="${#lists.size(users)}"></span></h4>
     <div class="mt-3">
         <table  class="table table-bordered table-hover table-lg display mt-3" id="data">

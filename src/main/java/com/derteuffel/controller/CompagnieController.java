@@ -52,14 +52,7 @@ public class CompagnieController {
 
     @GetMapping("/jouer/foot/{compagnieId}")
     public String foots(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+        List<User> users= settingThingsUp(model,compagnieId);
         List<User> foots= new ArrayList<>();
         for (User user : users){
             for(String sport : user.getSports())
@@ -74,16 +67,11 @@ public class CompagnieController {
         model.addAttribute("users", foots);
         return"compagnie/statistique";
     }
+
+
     @GetMapping("/jouer/hand/{compagnieId}")
     public String hands(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+        List<User> users= settingThingsUp(model,compagnieId);
         List<User> foots= new ArrayList<>();
         for (User user : users){
             for(String sport : user.getSports())
@@ -98,15 +86,11 @@ public class CompagnieController {
         model.addAttribute("users", foots);
         return"compagnie/statistique";
     }
+
+
     @GetMapping("/jouer/basket/{compagnieId}")
     public String baskets(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
+        List<User> users= settingThingsUp(model,compagnieId);
 
         List<User> foots= new ArrayList<>();
         for (User user : users){
@@ -122,16 +106,10 @@ public class CompagnieController {
         model.addAttribute("users", foots);
         return"compagnie/statistique";
     }
+
     @GetMapping("/jouer/volley/{compagnieId}")
     public String volleys(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+        List<User> users= settingThingsUp(model,compagnieId);
         List<User> foots= new ArrayList<>();
         for (User user : users){
             for(String sport : user.getSports())
@@ -142,20 +120,13 @@ public class CompagnieController {
             }
 
         }
-
         model.addAttribute("users", foots);
         return"compagnie/statistique";
     }
+
     @GetMapping("/jouer/karate/{compagnieId}")
     public String karates(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+          List<User> users= settingThingsUp(model,compagnieId);
         List<User> foots= new ArrayList<>();
         for (User user : users){
             for(String sport : user.getSports())
@@ -170,16 +141,10 @@ public class CompagnieController {
         model.addAttribute("users", foots);
         return"compagnie/statistique";
     }
+
     @GetMapping("/jouer/tennis/{compagnieId}")
     public String tennis(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+        List<User> users= settingThingsUp(model,compagnieId);
         List<User> foots= new ArrayList<>();
         for (User user : users){
             for(String sport : user.getSports())
@@ -194,24 +159,11 @@ public class CompagnieController {
         model.addAttribute("users", foots);
         return"compagnie/statistique";
     }
+
     @GetMapping("/jouer/kung_fu/{compagnieId}")
     public String kung_fu(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+        List<User> users= settingThingsUp(model,compagnieId);
         List<User> foots= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> diploms= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
             for(String sport : user.getSports())
             {
@@ -219,43 +171,16 @@ public class CompagnieController {
                     foots.add(user);
                 }
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
-
         }
 
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", foots);
         return"compagnie/statistique";
     }
+
+
     @GetMapping("/ecrire/francais/{compagnieId}")
     public String ecrireFrancais(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> diploms= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+        List<User> users= settingThingsUp(model,compagnieId);
         List<User> ecrireFrancais= new ArrayList<>();
         for (User user : users){
             for(String language : user.getWhritingLanguages())
@@ -264,44 +189,17 @@ public class CompagnieController {
                     ecrireFrancais.add(user);
                 }
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
 
         }
 
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", ecrireFrancais);
         return"compagnie/statistique";
     }
+
     @GetMapping("/ecrire/anglais/{compagnieId}")
     public String anglais(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+        List<User> users= settingThingsUp(model,compagnieId);
         List<User> ecrireAnglais= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> diploms= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
             for(String language : user.getWhritingLanguages())
             {
@@ -309,43 +207,14 @@ public class CompagnieController {
                     ecrireAnglais.add(user);
                 }
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
-
         }
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", ecrireAnglais);
         return"compagnie/statistique";
     }
     @GetMapping("/parler/francais/anglais/{compagnieId}")
     public String francaisEtAnglais(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+        List<User> users= settingThingsUp(model,compagnieId);
         List<User> parlerFrancaisEtAnglais= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> diploms= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
             for(String language : user.getTalkingLanguages())
             {
@@ -353,45 +222,15 @@ public class CompagnieController {
                     parlerFrancaisEtAnglais.add(user);
                 }
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
-
-
         }
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
-
         model.addAttribute("users", parlerFrancaisEtAnglais);
         return"compagnie/statistique";
     }
+
     @GetMapping("/parler/anglais/{compagnieId}")
     public String parlerAnglais(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+        List<User> users= settingThingsUp(model,compagnieId);
         List<User> parlerAnglais= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> diploms= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
             for(String language : user.getTalkingLanguages())
             {
@@ -399,46 +238,16 @@ public class CompagnieController {
                     parlerAnglais.add(user);
                 }
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
-
 
         }
-
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", parlerAnglais);
         return"compagnie/statistique";
     }
 
     @GetMapping("/parler/francais/{compagnieId}")
     public String parlerFrancais(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+        List<User> users= settingThingsUp(model,compagnieId);
         List<User> parlerAnglais= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> diploms= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
 
         for (User user : users){
             for(String language : user.getTalkingLanguages())
@@ -448,46 +257,17 @@ public class CompagnieController {
                 }
             }
 
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
 
         }
 
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", parlerAnglais);
         return"compagnie/statistique";
     }
 
     @GetMapping("/ecrire/francais/anglais/{compagnieId}")
     public String statiques(@PathVariable Long compagnieId, Model model){
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        model.addAttribute("compagnie", compagnie);
-        List<User> users= new ArrayList<>();
-        for (Section section : sections){
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-
+        List<User> users= settingThingsUp(model,compagnieId);
         List<User> ecrireFrancaisEtAnglais= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> diploms= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
-
         for (User user : users){
             for(String language : user.getWhritingLanguages())
             {
@@ -495,27 +275,11 @@ public class CompagnieController {
                     ecrireFrancaisEtAnglais.add(user);
                 }
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
 
         }
-
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users", ecrireFrancaisEtAnglais);
         return "compagnie/statistique";
     }
-
     public List<User> sort(List<User> m_users, Compagnie compagnie, List<Section> sections )
     {
         List<User> users=new ArrayList<>();
@@ -558,21 +322,8 @@ public class CompagnieController {
     }
     @GetMapping("/diplome/{compagnieId}/{userHigerCivilDiplom}")
     public String stats2(@PathVariable String userHigerCivilDiplom, @PathVariable Long compagnieId, Model model){
-        List<String> diploms = new ArrayList<>();
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        List<User> users=new ArrayList<>();
-        for (Section section : sections){
-
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
+        List<User> users=settingThingsUp(model,compagnieId);
         List<User> usersDiplomes= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
 
             if(userHigerCivilDiplom.toUpperCase().contains(user.getUserHigerCivilDiplom().toUpperCase()))
@@ -580,43 +331,17 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
+
         }
 
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
-        model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
     }
 
     @GetMapping("/region/{compagnieId}/{userRegion}")
     public String region(@PathVariable String userRegion, @PathVariable Long compagnieId, Model model){
-        List<String> diploms = new ArrayList<>();
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        List<User> users=new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
-        for (Section section : sections){
+        List<User> users=settingThingsUp(model,compagnieId);
 
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
         List<User> usersDiplomes= new ArrayList<>();
         for (User user : users){
 
@@ -625,43 +350,17 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
-        model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
     }
-
     @GetMapping("/departement/{compagnieId}/{userDivision}")
     public String departement(@PathVariable String userDivision, @PathVariable Long compagnieId, Model model){
-        List<String> diploms = new ArrayList<>();
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        List<User> users=new ArrayList<>();
-        for (Section section : sections){
 
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
+        List<User> users=settingThingsUp(model,compagnieId);
+
         List<User> usersDiplomes= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
+
         for (User user : users){
 
             if(userDivision.toUpperCase().contains(user.getUserDivision().toUpperCase()))
@@ -669,43 +368,17 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
-        model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
     }
 
+
     @GetMapping("/ethnie/{compagnieId}/{userEthnie}")
     public String ethnie(@PathVariable String userEthnie, @PathVariable Long compagnieId, Model model){
-        List<String> diploms = new ArrayList<>();
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        List<User> users=new ArrayList<>();
-        for (Section section : sections){
+        List<User> users=settingThingsUp(model,compagnieId);
+         List<User> usersDiplomes= new ArrayList<>();
 
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-        List<User> usersDiplomes= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
         for (User user : users){
 
             if(userEthnie.toUpperCase().contains(user.getUserEthnie().toUpperCase()))
@@ -713,43 +386,18 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
+
         }
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
+
         model.addAttribute("users",usersDiplomes);
-        model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
     }
 
     @GetMapping("/religion/{compagnieId}/{userReligion}")
     public String religion(@PathVariable String userReligion, @PathVariable Long compagnieId, Model model){
-        List<String> diploms = new ArrayList<>();
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        List<User> users=new ArrayList<>();
-        for (Section section : sections){
 
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
         List<User> usersDiplomes= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
+        List<User> users = settingThingsUp(model,compagnieId);
         for (User user : users){
 
             if(userReligion.toUpperCase().contains(user.getUserReligion().toUpperCase()))
@@ -757,88 +405,33 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
-        model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
     }
 
     @GetMapping("/nageur/{compagnieId}/{swimmingStatus}")
-    public String nageur(@PathVariable Boolean swimmingStatus, @PathVariable Long compagnieId, Model model){
-        List<String> diploms = new ArrayList<>();
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        List<User> users=new ArrayList<>();
-        for (Section section : sections){
+    public String nageur(@PathVariable String swimmingStatus, @PathVariable Long compagnieId, Model model){
 
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
-        List<User> usersDiplomes= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
+        List<User> usersDiplomes = new ArrayList<>();
+        List<User> users = settingThingsUp(model,compagnieId);
         for (User user : users){
 
-            if(swimmingStatus)
+            if(swimmingStatus=="OUI")
             {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
 
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
-        model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
     }
-
     @GetMapping("/conduire/sans/{compagnieId}/{driveWithNoDriverLicence}")
-    public String conduire(@PathVariable String driveWithNoDriverLicence, @PathVariable Long compagnieId, Model model){
-        List<String> diploms = new ArrayList<>();
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        List<User> users=new ArrayList<>();
-        for (Section section : sections){
 
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
+    public String conduire(@PathVariable String driveWithNoDriverLicence, @PathVariable Long compagnieId, Model model){
         List<User> usersDiplomes= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
+        List<User> users = settingThingsUp(model,compagnieId);
         for (User user : users){
 
             if(driveWithNoDriverLicence.toUpperCase().contains(user.getDriveWithNoDriverLicence().toUpperCase()))
@@ -846,44 +439,15 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
 
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
-        model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
     }
-
     @GetMapping("/permis/{compagnieId}/{civilDriverLicencceCategory}")
     public String permis(@PathVariable String civilDriverLicencceCategory, @PathVariable Long compagnieId, Model model){
-        List<String> diploms = new ArrayList<>();
-        Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
-        List<User> users=new ArrayList<>();
-        for (Section section : sections){
-
-            users.addAll(userRepository.findBySection(section.getSectionId()));
-        }
         List<User> usersDiplomes= new ArrayList<>();
-        List<String> ethnies= new ArrayList<>();
-        List<String> regions= new ArrayList<>();
-        List<String> religions= new ArrayList<>();
-        List<String> departements= new ArrayList<>();
-        List<String> permis= new ArrayList<>();
-        List<String> sansPermis= new ArrayList<>();
+        List<User> users = settingThingsUp(model,compagnieId);
         for (User user : users){
 
             if(civilDriverLicencceCategory.toUpperCase().contains(user.getDriveWithNoDriverLicence().toUpperCase()))
@@ -891,39 +455,24 @@ public class CompagnieController {
 
                 usersDiplomes.add(user);
             }
-            diploms.add(user.getUserHigerCivilDiplom());
-            ethnies.add(user.getUserEthnie());
-            regions.add(user.getUserRegion());
-            religions.add(user.getUserReligion());
-            departements.add(user.getUserDivision());
-            permis.add(user.getCivilDriverLicencceCategory());
-            sansPermis.add(user.getDriveWithNoDriverLicence());
         }
 
 
-        model.addAttribute("diplomes",removeDuplicates(diploms));
-        model.addAttribute("ethnies",removeDuplicates(ethnies));
-        model.addAttribute("regions",removeDuplicates(regions));
-        model.addAttribute("religions",removeDuplicates(religions));
-        model.addAttribute("departements",removeDuplicates(departements));
-        model.addAttribute("permis",removeDuplicates(permis));
-        model.addAttribute("sansPermis",removeDuplicates(sansPermis));
         model.addAttribute("users",usersDiplomes);
-        model.addAttribute("compagnie", compagnie);
         return "compagnie/statistique";
     }
 
-    @GetMapping("/statistique/{compagnieId}")
-    public String statistique(@PathVariable Long compagnieId, Model model){
+    public List<User> settingThingsUp (Model model, long compagnieId)
 
+    {
         Compagnie compagnie= compagnieRepository.getOne(compagnieId);
-        model.addAttribute("compagnie", compagnie);
         List<Section> sections=sectionRepository.findAllByCompagnie(compagnie.getCompagnieId());
         List<User> users=new ArrayList<>();
         for (Section section : sections){
 
             users.addAll(userRepository.findBySection(section.getSectionId()));
         }
+
         List<String> diploms= new ArrayList<>();
         List<String> ethnies= new ArrayList<>();
         List<String> regions= new ArrayList<>();
@@ -931,6 +480,7 @@ public class CompagnieController {
         List<String> departements= new ArrayList<>();
         List<String> permis= new ArrayList<>();
         List<String> sansPermis= new ArrayList<>();
+        List<String> nageurs = new ArrayList<>();
         for (User user : users){
 
             diploms.add(user.getUserHigerCivilDiplom());
@@ -940,16 +490,12 @@ public class CompagnieController {
             departements.add(user.getUserDivision());
             permis.add(user.getCivilDriverLicencceCategory());
             sansPermis.add(user.getDriveWithNoDriverLicence());
+            if(user.getSwimmingStatus()!=null && user.getSwimmingStatus()) nageurs.add("OUI");
+            else nageurs.add("NON");
         }
 
-        System.out.println(removeDuplicates(diploms));
-        System.out.println(removeDuplicates(ethnies));
-        System.out.println(removeDuplicates(regions));
-        System.out.println(removeDuplicates(religions));
-        System.out.println(removeDuplicates(departements));
-        System.out.println(removeDuplicates(permis));
-        System.out.println(removeDuplicates(sansPermis));
         model.addAttribute("users",users);
+        model.addAttribute("nageurs",removeDuplicates(nageurs));
         model.addAttribute("diplomes",removeDuplicates(diploms));
         model.addAttribute("ethnies",removeDuplicates(ethnies));
         model.addAttribute("regions",removeDuplicates(regions));
@@ -957,10 +503,18 @@ public class CompagnieController {
         model.addAttribute("departements",removeDuplicates(departements));
         model.addAttribute("permis",removeDuplicates(permis));
         model.addAttribute("sansPermis",removeDuplicates(sansPermis));
-
+        model.addAttribute("compagnie", compagnie);
+        return users;
+    }
+    @GetMapping("/statistique/{compagnieId}")
+    public String statistique(@PathVariable Long compagnieId, Model model){
+        settingThingsUp(model,compagnieId);
         return "compagnie/statistique";
 
     }
+
+
+
     @GetMapping("/add/form")
     public String form(Model model){
         model.addAttribute("compagnie", new Compagnie());
