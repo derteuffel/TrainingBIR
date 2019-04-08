@@ -298,7 +298,7 @@ public class CompagnieController {
         }
         return users2;
     }
-    public List<String> removeDuplicates(List<String> list)
+    public static List<String> removeDuplicates(List<String> list)
     {
         if (list == null){
             return new ArrayList<>();
