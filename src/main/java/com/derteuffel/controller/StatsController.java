@@ -91,16 +91,17 @@ public class StatsController {
         for(User user:users)
         {
             if(user.getUserHigerCivilDiplom()!=null) {
+
                 tmp = user.getUserHigerCivilDiplom().replaceAll("\\s+", "");
                 dip.add(tmp);
+
             }
 
-
         }
+
         List<String> dipUnique = CompagnieController.removeDuplicates(dip);
 
         Collections.sort(dipUnique);
-        System.out.println(dipUnique);
         for(String diplome : dipUnique)
         {
             diplomes.add(new Diplome(diplome,userRepository.findAllByUserHigerCivilDiplom(diplome)));
@@ -152,17 +153,17 @@ public class StatsController {
                     HSSFRow aRow = sheet.createRow(j);
                     aRow.setHeight((short) 450);
                         aRow.createCell(0).setCellValue(user.getUserName());
-                        aRow.createCell(1).setCellValue(user.getUserTrainingLevelInstruction());
+                        aRow.createCell(1).setCellValue(user.getUserTrainingLevelInstruction().toUpperCase());
                         if(user.getSection()!=null)
                         aRow.createCell(2).setCellValue(user.getSection().getSectionName());
                     else
 
-                            aRow.createCell(2).setCellValue("Non définie");
+                            aRow.createCell(2).setCellValue("     ");
 
                     if(user.getSection()!=null && user.getSection().getCompagnie()!=null)
                         aRow.createCell(3).setCellValue(user.getSection().getCompagnie().getCompagnieName());
                     else
-                        aRow.createCell(3).setCellValue("Non définie");
+                        aRow.createCell(3).setCellValue("    ");
                     aRow.createCell(4).setCellValue(user.getUserRegion());
                 }
                 j+=2;

@@ -106,11 +106,11 @@
                     <td th:text="${user.userName}"></td>
                     <td th:text="${user.userTrainingLevelInstruction}"></td>
                     <td th:if="${user.section}!=null" th:text="${user.section.sectionName}"></td>
-                    <td th:if="${user.section}==null">Non définie</td>
+                    <td th:if="${user.section}==null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td th:if="${user.section}!=null and ${user.section.compagnie}!=null" th:text="${user.section.compagnie.compagnieName}"></td>
-                    <td th:if="${user.section}==null or ${user.section.compagnie}==null">Non définie</td>
+                    <td th:if="${user.section}==null or ${user.section.compagnie}==null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td th:text="${user.userRegion}"></td>
-                </tr>
+                </  tr>
             </tbody>
         </table>
     </div>
