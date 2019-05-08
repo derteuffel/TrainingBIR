@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/jquery.dataTables.min.css}">
     <link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet">
+    <link th:href="@{/css/index.css}"  rel="stylesheet">
     <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{/js/popper.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
@@ -53,27 +54,73 @@
                 <li class="nav-item ">
                     <a class="nav-link  text-white" th:href="@{/about}">A Propos</a>
                 </li>
-                <!-- <li class="nav-item dropdown dmenu">
-                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                   Dropdown link
-                 </a>
-                 <div class="dropdown-menu sm-menu">
-                   <a class="dropdown-item" href="#">Link 1</a>
-                   <a class="dropdown-item" href="#">Link 2</a>
-                   <a class="dropdown-item" href="#">Link 3</a>
-                   <a class="dropdown-item" href="#">Link 4</a>
-                   <a class="dropdown-item" href="#">Link 5</a>
-                   <a class="dropdown-item" href="#">Link 6</a>
-                 </div>
-               </li> -->
+
             </ul>
         </div>
     </nav>
     <br>
+    <div style="position:fixed;bottom:3rem;right:3rem;" data-toggle="modal" data-target="#postModal">
+        <a class="btn btn-success" style="border-radius:50%">
+            <i class="fa fa-plus fa-lg"></i>
+        </a>
+    </div>
+    <div style="padding:0 15rem 0 15rem;">
 
-    <h3>Ici contenue a propos du deroulement des activité chez nous</h3>
+        <div class="feeds mb-5 mt-5">
+            <div class="card mb-3 mt-3" th:each="post : ${posts}">
+                <div class="card-body">
+                   <div> <strong><i class="fa fa-people"></i><i>CDT HAND</i></strong>
+                   </div>
+                    <div class="row">
+                        <div class="col-8 text-left">
+                            <h5 class="card-title" th:text="${post.postTitle}"></h5>
+                        </div>
+                        <div class="col-4 text-right">
+                            <i th:text="${#strings.substring(post.postDate,0, #strings.length(post.postDate)-2)}"></i>
+                        </div>
+                    </div>
+                    <hr>
+                    <p class="card-text" th:text="${post.postDescription}"></p>
+                    <ul>
+                        <li><a href="">Listes1.pdf</a></li>
+                        <li><a href="">Listes2.pdf</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="postModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Faire une publication</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form th:action="@{/post/save}" method="post">
+                <div class="modal-body">
+                        <div class="form-group" style="margin-bottom:.5rem">
+                            <input class="form-control mb-1" placeholder="Titre de la publication" name="postTitle">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="postDescription" placeholder="Contenu de la publication" rows="5"></textarea>
+                        </div>
+                        <div class="row justify-content-space-between align-items-center">
+                            <div class="col">
+                                <strong>Ajouter des pièces jointes&nbsp;&nbsp;<i class="fa fa-lg fa-paperclip"></i></strong>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
 
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit"  class="btn btn-success">Publier</button>
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
     <footer style="height:10rem;bottom:0;background-color:#969c5c;width:100%;padding:1rem">
         <h4 class="text-center " style="color:white"><strong>BATAILLON D'INTERVENTION RAPIDE</strong></h4>
         <a th:href="@{/home}" class="mx-auto pb-3 text-center">

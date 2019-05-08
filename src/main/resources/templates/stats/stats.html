@@ -60,24 +60,20 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" th:href="@{/about}">A Propos</a>
                 </li>
-                <!-- <li class="nav-item dropdown dmenu">
-                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                   Dropdown link
-                 </a>
-                 <div class="dropdown-menu sm-menu">
-                   <a class="dropdown-item" href="#">Link 1</a>
-                   <a class="dropdown-item" href="#">Link 2</a>
-                   <a class="dropdown-item" href="#">Link 3</a>
-                   <a class="dropdown-item" href="#">Link 4</a>
-                   <a class="dropdown-item" href="#">Link 5</a>
-                   <a class="dropdown-item" href="#">Link 6</a>
-                 </div>
+
                </li> -->
             </ul>
         </div>
     </nav>
     <nav class=" text-center  pt-3 navbar-light bg-light sticky-top" style="height: 6rem">
-        <h5 class="text-left"><a th:href="@{/stats/diplomes}">Distinction par diplôme</a></h5>
+        <div class="row">
+            <h5 class="text-left col-md-6">
+                <a th:href="@{/stats/diplomes}">Distinction par diplôme</a>
+            </h5>
+            <h5 class="text-right col-md-6">
+                <a th:href="@{/stats/otherDistinctions}">Distinction suivant d'autres critères </a>
+            </h5>
+        </div>
         <h3 class="text-center" >Moyenne Générale par matière</h3>
         <hr class="style14">
     </nav>

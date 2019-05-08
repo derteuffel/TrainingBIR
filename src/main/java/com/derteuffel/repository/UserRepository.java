@@ -23,7 +23,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findBySection(@Param("id") Long sectionId);
 
     List<User> findAllByStatus(Boolean status);
+    List<User> findAllBycivilDriverLicencceCategory(String civilDriverLicenceCategory);
 
+    @Query("select u from User as u  where u.civilQualification is not null ")
+    List<User> findAllByCivilQualification1();
     List<User> findAllByUserRegion(String userRegion);
     List<User> findAllByUserEthnie(String userEthnie);
     List<User> findAllBySports(List<String> sports);
